@@ -3,6 +3,12 @@ const {
   CLOUDINARY_URL,
 } = require("../../config/cloudinary.config");
 
+
+/*
+Recibe un archivo y hace la peticion a cloudinary para guardarlo
+  @params: Object 
+*/
+//Sin terminar aun
 const uploadMusic = async (file) => {
   cloudinary
     .uploader(file, {
