@@ -12,11 +12,12 @@ module.exports = () => {
     User.create(newUser);
   });
 
-  songs.forEach(({ name, genre, url, isActive }) => {
+  songs.forEach(({ name, genre, url, imageUrl, isActive }) => {
     const newSong = {
       name,
       genre,
       url,
+      imageUrl,
       isActive,
     };
     Song.create(newSong);
