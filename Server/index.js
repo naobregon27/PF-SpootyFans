@@ -7,10 +7,12 @@ const llenarDB = require("./llenarDB");
 conn
   .sync({ force: true })
   .then(
-    app.listen(port, async () => {
+    app.listen(port, () => {
       console.log(`Listen on Port: ${port}`);
-      llenarDB();
-      console.log("The database has been successfully populated.");
     })
   )
+  .then(() => {
+    llenarDB();
+    console.log("The database has been successfully populated.");
+  })
   .catch((error) => console.error(error));

@@ -4,9 +4,8 @@ module.exports = (sequelize) => {
   sequelize.define(
     "Song",
     {
-      id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
+      url: {
+        type: DataTypes.STRING,
         primaryKey: true,
       },
 
@@ -16,11 +15,6 @@ module.exports = (sequelize) => {
       },
 
       genre: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-
-      url: {
         type: DataTypes.STRING,
         allowNull: false,
       },
