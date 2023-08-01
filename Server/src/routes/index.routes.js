@@ -1,6 +1,6 @@
 const routes = require('express').Router();
-const songsRoutes = require('./songs.routes')
+const musicRouter = require('./Music.routes')
 
-routes.use('/songs', songsRoutes)
+routes.use('/musica', musicRouter)
 
 module.exports = routes
