@@ -23,6 +23,10 @@ const postMusic = (req, res) => {
   });
 };
 
+const getMusic = (req, res) => {
+  console.log("Hola")
+
+}
 
 
 module.exports = {
