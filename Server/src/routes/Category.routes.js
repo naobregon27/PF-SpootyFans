@@ -3,7 +3,7 @@ const { getCategoryById, getAllCategory } = require("../controllers/category/get
 
 
 categoryRouter.get('/category', async (req, res) => {
-    const AllCategory = await getCategory();
+    const AllCategory = await getAllCategory();
 
     try {
         res.status(200).json(AllCategory);
