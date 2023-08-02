@@ -78,13 +78,6 @@ module.exports = {
       isActive: true,
     },
     {
-      name: "Sicko Mode",
-      genre: "Trap",
-      url: "https://res.cloudinary.com/dlhpctfa3/video/upload/v1691016115/audiofiles/op3zas9dijvlwczh420y.mp3",
-      imageUrl: 'https://res.cloudinary.com/ddapzcwlm/image/upload/v1691019202/pwmetfcxq3jssmzkfib8.jpg',
-      isActive: false,
-    },
-    {
       name: "Bohemian Rhapsody",
       genre: "Rock",
       url: "https://res.cloudinary.com/dlhpctfa3/video/upload/v1691016394/audiofiles/cgmpz5ppilitylgcr5cm.mp3",
