@@ -1,5 +1,8 @@
 const categoryRouter = require("express").Router();
-const { getCategoryById, getAllCategory } = require("../controllers/category/getCategoryById");
+const {
+  getCategoryById,
+  getAllCategory,
+} = require("../controllers/categories/getCategoryById");
 
 
 categoryRouter.get('/category', async (req, res) => {
