@@ -1,11 +1,14 @@
-import LoadingPage from "./Components/Loading/LoadingPage"
+import { Routes, Route } from "react-router-dom";
+import Landing from "./Views/Landing/Landing";
 
 function App() {
 
   return (
-    <>
-      <LoadingPage/>
-    </>
+    <div>
+    <Routes>
+      <Route exact path="/" element={<Landing/>}/>
+    </Routes>
+    </div>
   )
 }
 
