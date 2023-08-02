@@ -1,9 +1,17 @@
 <b>Para ejecutar el servidor necesita carga a un archivo .env lo siguiente:
         -puerto de servidor: PORT
-        -name que le de Cloudinary: CLOUD_NAME
-        -la api publica que le de Cloudinary: CLOUD_KEY
-        -la api key que les de Cloudinary: CLOUD_API
-</b>
-<b>La url de cloudinary se compon de:
-        cloudinary://CLOUD_KEY:CLOUD_API@CLOUD_NAME        
+        -Nombre de la db: DB_USER
+        -Password de la db: DB_PASSWORD
+        -Host de la db: DB_HOST
+        -Clave secreta para JWT:  SECRET_KEY
+        IMPORTANTE!!!
+        LA DB DEBE CONFIGURARSE EN UTF-8 NO EN LATIN O INGLES POR TEMAS DE CARACATERES ACEPTADOS!
+        ANTE CUALQUIER DUDA DE COMO USAR EL CLIENTE DE MARIA DB SE PUEDE REVISAR MENSAJES DEL GRUPO DE WSP
+        DONDE HEMOS ESTADO SUBIENDO COMO SE USA EL BACK O SAN GOOGLE
+        URL DE LOS MICROSERVICIOS:
+        PARA LA SUBIDA DE IMAGENES: https://postimagemicroservice-production.up.railway.app/cloudinary/upload
+        PARA LA SUBIDA DE LAS CANCIONES: http://localhost:3001/musica/upload
+        RECUERDEN LEVANTAR EL MICROSERVICIO Y PONERLE LAS VARIABLES DE ENTORNO QUE PASE AL GRUPO DE WSP!
+        SI NECESITAN EJEMPLO DE COMO HACER LA PETICION A ESTAS URL PUEDEN VER EL FORM EN REACT QUE SUBI DE EJEMPLO
+        A MI GITHUB, LO TIENEN EN EL GRUPO DE WSP, DE LA RESPUESTAS DE ESAS PETICIONES DEBEN MANDARLE AL BACK LAS URL ASI TENEMOS ACCESO A LA CANCION, NOSOTROS GUARDAMOS EL LINK NO LA CANCION!
 </b>
