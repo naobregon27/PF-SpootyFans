@@ -2,8 +2,6 @@
 
 const Card = ({id, name, genre, url}) => {
 
-
-    
     return( 
         <div>
 
