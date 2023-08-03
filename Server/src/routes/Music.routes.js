@@ -35,6 +35,10 @@ musicRouter.get("/", async (req, res) => {
   }
 });
 
+musicRouter.get('/all', async (req, res)=>{
+  const sound = await Song.findAll();
+  res.status(200).json(sound);
+})
 
 
 module.exports = musicRouter;
