@@ -88,7 +88,7 @@ playListRouter.put("/:playListId", authentication, async (req, res) => {
   });
 
   if (modifiedPlayList.error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ error: modifiedPlayList.message });
   } else {
     res.status(200).json(modifiedPlayList);
   }
