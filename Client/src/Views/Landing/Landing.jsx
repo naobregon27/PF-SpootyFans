@@ -5,7 +5,7 @@ import style from "./Landing.module.css"
 function Landing() {
   return (
     <div className={style.landing_container}>
-      <h1>Wellcome</h1>
+      <h1>Welcome</h1>
       <NavLink to="/home">
         <button>home</button>
       </NavLink>

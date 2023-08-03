@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
+import logo from "../../assets/logo.jpg";
+import style from "./SignUp.module.css";
 
 const SignUp = () => {
-  const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -13,7 +15,7 @@ const SignUp = () => {
     event.preventDefault();
     const errors = validate();
     if (Object.keys(errors).length === 0) {
-      console.log(`Name: ${name}, Email: ${email}, Password: ${password}, Confirm Password: ${confirmPassword}, Is Checked: ${isChecked}`);
+      console.log(`Username: ${username}, Email: ${email}, Password: ${password}, Confirm Password: ${confirmPassword}, Is Checked: ${isChecked}`);
     } else {
       setErrors(errors);
     }
@@ -21,8 +23,8 @@ const SignUp = () => {
 
   const validate = () => {
     const errors = {};
-    if (!name) {
-      errors.name = 'Name is required';
+    if (!username) {
+      errors.username = 'Username is required';
     }
     if (!email) {
       errors.email = 'Email is required';
@@ -44,34 +46,37 @@ const SignUp = () => {
   };
 
   return (
+<form onSubmit={handleSubmit} className={style.mainContainer}>
+<div>
+        <img className={style.logo}src={logo}></img>
 
-    <div>
-        
+        <NavLink to="/home">
+    <button className={style.boton}>contact us</button>
+    <button className={style.boton}>Back to Home!</button>
+      </NavLink>
+      <hr/>
+     <div className={style.log}>
     <h1>Register</h1>
 
-    <Link to="/login">
-        <button>Back to login</button>
-         </Link>    
-
-    <form onSubmit={handleSubmit}>
+    
       <label>
-        Name:
-        <input type="text" value={name} onChange={(event) => setName(event.target.value)} />
-        {errors.name && <span>{errors.name}</span>}
+        
+        <input className={style.datos} type="text" value={username} placeholder="Username" onChange={(event) => setUsername(event.target.value)} />
+        {errors.username && <span>{errors.username}</span>}
       </label>
       <label>
-        Email:
-        <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} />
+      
+        <input className={style.datos} type="email" value={email} placeholder="Email"onChange={(event) => setEmail(event.target.value)} />
         {errors.email && <span>{errors.email}</span>}
       </label>
       <label>
-        Password:
-        <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
+        
+        <input className={style.datos} type="password" value={password} placeholder="Password" onChange={(event) => setPassword(event.target.value)} />
         {errors.password && <span>{errors.password}</span>}
       </label>
       <label>
-        Confirm Password:
-        <input type="password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
+        
+        <input className={style.datos} type="password" value={confirmPassword} placeholder="Confirm Password"onChange={(event) => setConfirmPassword(event.target.value)} />
         {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
       </label>
       <label>
@@ -79,10 +84,16 @@ const SignUp = () => {
         I agree to the terms and conditions
         {errors.isChecked && <span>{errors.isChecked}</span>}
       </label>
-      <button type="submit">Submit</button>
-    </form>
+      <button className={style.boton} type="submit">Submit</button>
+      <hr/>
+      <NavLink to="/login">
+<button className={style.boton}>want to log in?</button>
+</NavLink>
 
+    
+</div>
     </div>
+    </form>
   );
 };
 

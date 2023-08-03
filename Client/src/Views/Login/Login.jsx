@@ -4,8 +4,7 @@ import logo from "../../assets/logo.jpg";
 import { NavLink } from "react-router-dom";
 import validation from "../../Components/Validation/Validation";
 
-const Form = ({login}) => {
-  
+const Form = ({ login }) => {
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -13,19 +12,24 @@ const Form = ({login}) => {
   const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
-    setErrors(validation({...userData,[event.target.name]: event.target.value }))
-    setUserData({ ...userData,[event.target.name]: event.target.value,})
-};
+    setErrors(validation({ ...userData, [event.target.name]: event.target.value }));
+    setUserData({ ...userData, [event.target.name]: event.target.value });
+  };
 
-
-const handleSubmit = (event)=>{
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    login(userData)
-};  
 
+    // llamar a la función de inicio de sesión del backend (userLogin)
+    try {
+      const token = await login(userData);
+      // almaceno el token en el local storage y redirigo al usuario 
+      console.log("Token received:", token);
+    } catch (error) {
+      console.error("Error during login:", error.message);
+    }
+  };
 
-
-return (
+  return (
   <form onSubmit={handleSubmit} className={style.mainContainer}>
     <div>
 
@@ -38,19 +42,19 @@ return (
       </NavLink>
      <hr/>
      <div className={style.log}>
-        <h2>welcome!</h2>
+        <h2>welcome back!</h2>
       <label htmlFor="email"></label>
-      <input
+      <input className={style.datos}
         onChange={handleChange}
         value={userData.email}
         type="text"
         name="email"
-        placeholder="Phone Number, username or email"
+        placeholder="Username or email"
       />
       <p>{errors.email}</p>
     
       <label htmlFor="password"></label>
-      <input
+      <input className={style.datos}
         onChange={handleChange}
         value={userData.password}
         type="password"
@@ -67,8 +71,9 @@ return (
       <button className={style.boton} onClick={handleSubmit} 
        type="submit">LOG IN</button>
 <hr/>
+<NavLink to="/signup">
 <button className={style.boton}>want to sign up?</button>
-       
+</NavLink>
     </div>  </div>
   </form>
 );

@@ -10,7 +10,7 @@ function SearchBar() {
 
   return (
     <div className={styles.searchbar}>
-      <input type="text" value={searchTerm} onChange={handleSearch}  placeholder=" buscá tu tema/artista favorito..."/>
+      <input type="text" value={searchTerm} onChange={handleSearch}  placeholder=" find your fav song/artist..."/>
       <button  className={styles.buscar}>
           🔍
         </button>

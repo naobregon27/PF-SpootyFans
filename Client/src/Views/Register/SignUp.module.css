@@ -32,12 +32,14 @@
     background:rgba(230, 214, 214, 0.718);
     border: none;
     outline: none;
-    width: 100%;
-    
   }
-  .searchbar input::placeholder { color:#005c80; }
+  .log input::placeholder { color:#005c80; }
 
-  .boton {
+.datos{
+  width: 33%;
+}
+
+.boton {
     margin-top: 26px;
     border:3px solid rgba(40, 146, 152, 0.736);
     color: #ffffff;
@@ -57,12 +59,3 @@
   .boton:hover{
     border: 3px solid rgb(22, 170, 178);
   }
-
-  .remember-content {
-    display: flex;
-    align-items: center;
-}
-
-.remember-label {
-    margin-left: 1px; /* Ajusta el espacio entre el checkbox y el texto "Recuérdame" según sea necesario */
-}
