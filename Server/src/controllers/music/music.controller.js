@@ -33,12 +33,12 @@ const searchId = async(req, res)=>{
  
  try {
   if(!id) throw new Error("Debe de mandarme id");
-  if(typeof id != 'number') throw new Error("El id deve ser un number");
-  const song = await Song.findByPk(id)
+  if(typeof Number(id) != 'number') throw new Error("La id debe ser un número");
+  const song = await Song.findByPk(Number(id))
 
   res.status(200).json(song)
  } catch (error) {
-  res.status.json({error: error.message})
+  res.status(400).json({ error: error.message });
  }
 
 }

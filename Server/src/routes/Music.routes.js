@@ -4,14 +4,16 @@ const { postMusic, searchId } = require("../controllers/music/music.controller")
 const getSongByName = require("../helpers/getMusicByName");
 const {Song} = require("../db")
 const categoryRelationship = require('../helpers/categoryRelationship')
+const authentication = require("../middlewares/authentication");
 
 // Configurar Multer para guardar el archivo temporal en la carpeta 'uploads'
 const upload = multer({ dest: "uploads/" });
 
-musicRouter.get('/detail/:id', searchId)
+musicRouter.get("/detail/:id", authentication, searchId);
 
-musicRouter.post("/upload/url", upload.single("file"), postMusic); 
-musicRouter.get("/", async (req, res) => {
+musicRouter.post("/upload/url", upload.single("file"), postMusic);
+
+musicRouter.get("/", authentication, async (req, res) => {
   const { name } = req.query;
 
   const songs = await getSongByName(name);
@@ -23,10 +25,10 @@ musicRouter.get("/", async (req, res) => {
   }
 });
 
-musicRouter.get('/all', async (req, res)=>{
+musicRouter.get("/all", authentication, async (req, res) => {
   const songs = await Song.findAll();
   res.status(200).json(songs);
-})
+});
 
 
 module.exports = musicRouter;
