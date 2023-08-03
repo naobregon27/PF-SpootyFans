@@ -9,12 +9,6 @@ import {allSongs} from "../../Redux/actions"
 
 function Home() {
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(allSongs())
-  },[])
-
   return (
     <div>
       <Cards/>
