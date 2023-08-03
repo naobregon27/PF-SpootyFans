@@ -1,4 +1,4 @@
-const { Song } = require("../../db");
+const { Song } = require("../db");
 const { Op } = require("sequelize");
 
 const getSongByName = async (songName) => {
