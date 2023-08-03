@@ -11,7 +11,7 @@ const Cards = () => {
                 return (
                     <Card id = {song.id}
                         name = {song.name}
-                        imageURL = {song.imageUrl}
+                        image = {song.imageUrl}
                         genre = {song.genre}
                         url = {song.url}/>
                 )
