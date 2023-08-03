@@ -1,10 +1,19 @@
 const {Song} = require('../../db')
 const categoryRelationship = require('../../helpers/categoryRelationship')
+const validateParams = require('../../utils/validationsPostMusic/validateDate')
 
 const postMusic = async (req, res) => {
   const {url, name, genre, imageUrl, isActive} = req.body
 
   try {
+    validateParams({
+      url,
+      name,
+      genre,
+      imageUrl,
+      isActive,
+  });
+
     const song = await  Song.create({
       url,
       name,
@@ -21,11 +30,10 @@ const postMusic = async (req, res) => {
 
 const searchId = async(req, res)=>{
   const {id} = req.params
-  console.log(id);
+ 
  try {
   if(!id) throw new Error("Debe de mandarme id");
-  if(typeof id != 'string') throw new Error("El id deve ser un string");
-  if(id.length < 5) throw new Error("Tu id es muy corto, revisalo");
+  if(typeof id != 'number') throw new Error("El id deve ser un number");
   const song = await Song.findByPk(id)
 
   res.status(200).json(song)
