@@ -1,0 +1,20 @@
+.searchbar input{
+    font-family: Century Schoolbook;
+    font-weight: bold;
+    font-size: 18px;
+    background:rgba(230, 214, 214, 0.718);
+    border: none;
+    outline: none;
+    width: 507px;
+    margin-top: 1em;
+  }
+  .searchbar input::placeholder { color:#005c80; }
+  
+  .buscar{
+    background-color: #1eaeacd8 ;
+    border: 2.5px dotted #ceee2cd4;
+    padding: 5px;
+    cursor: pointer;
+    border-radius:11px;
+    
+  }

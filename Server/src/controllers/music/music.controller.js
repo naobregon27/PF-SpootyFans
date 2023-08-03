@@ -1,38 +1,40 @@
-const { cloudinary } = require("../../../config_librerias/cloudinary.config");
-const fs = require("fs");
+const {Song} = require('../../db')
 
-const postMusic = (req, res) => {
-  // Obtenemos el path temporal del archivo en el servidor local
-  const uploadLocation = req.file.path;
+const postMusic = async (req, res) => {
+  const {url, name, genre, imageUrl, isActive} = req.body
 
-  cloudinary.uploader.upload(
-    uploadLocation,
-    { resource_type: "video", folder: "audiofiles/", overwrite: true },
-    (error, result) => {
-      // Eliminamos el archivo temporal del servidor local después de cargarlo en Cloudinary
-      fs.unlink(uploadLocation, (deleteErr) => {
-        if (deleteErr) {
-          console.error(
-            "Error al eliminar el archivo temporal:",
-            deleteErr.message
-          );
-        }
+  try {
+    const song = await  Song.create({
+      url,
+      name,
+      genre,
+      imageUrl,
+      isActive
+    })
 
-        if (error) {
-          console.error(
-            "Error al cargar el archivo en Cloudinary:",
-            error.message
-          );
-          res.status(500).json(error);
-        } else {
-          console.log("Temp file was deleted");
-          res.status(200).json({ fileUrl: result.secure_url });
-        }
-      });
-    }
-  );
+    res.status(201).json(song)
+  } catch (error) {
+    res.status(404).json(error)
+  }
 };
+
+const searchId = async(req, res)=>{
+  const {id} = req.params
+  console.log(id);
+ try {
+  if(!id) throw new Error("Debe de mandarme id");
+  if(typeof id != 'string') throw new Error("El id deve ser un string");
+  if(id.length < 5) throw new Error("Tu id es muy corto, revisalo");
+  const song = await Song.findByPk(id)
+
+  res.status(200).json(song)
+ } catch (error) {
+  res.status.json({error: error.message})
+ }
+
+}
 
 module.exports = {
   postMusic,
+  searchId
 };
