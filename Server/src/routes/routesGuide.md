@@ -1,5 +1,5 @@
 ## Guía de rutas (spotyfans-api)
-Antes de empezar con las rutas, deben tener en cuenta que las rutas deniegan el acceso a cualquier petición a no ser que se mande el token por header. Este token es enviado por la api cuando un usuario inicia sesión.
+Antes de empezar con las rutas, deben tener en cuenta que las rutas deniegan el acceso a cualquier petición a no ser que se mande el token por header ("x-access-token"). Este token es enviado por la api cuando un usuario inicia sesión.
 El token es básicamente información encriptada que al desencriptarse (mediante la SECRET_KEY), brinda información relevante sobre el usuario que está en la sesión.
 El token, al desencriptarse toma forma de un objeto similar a este:
 ```js
