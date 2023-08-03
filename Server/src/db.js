@@ -38,6 +38,7 @@ User.hasMany(Song);
 Song.belongsTo(User);
 User.hasMany(PlayList);
 PlayList.belongsTo(User);
+ 
 
 module.exports = {
   ...sequelize.models,
