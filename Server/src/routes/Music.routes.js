@@ -3,6 +3,7 @@ const multer = require('multer');
 const { postMusic, searchId } = require("../controllers/music/music.controller"); // Importa directamente el controlador y su función
 const getSongByName = require("../helpers/getMusicByName");
 const {Song} = require("../db")
+const categoryRelationship = require('../helpers/categoryRelationship')
 
 // Configurar Multer para guardar el archivo temporal en la carpeta 'uploads'
 const upload = multer({ dest: "uploads/" });
@@ -14,7 +15,7 @@ musicRouter.get('/detail/:id', async(req, res)=>{
   if(!id) throw new Error("Debe de mandarme id");
  
   const song = await Song.findByPk(id)
-
+  categoryRelationship(song)
   res.status(200).json(song)
  } catch (error) {
   res.status(401).json({error: error.message})

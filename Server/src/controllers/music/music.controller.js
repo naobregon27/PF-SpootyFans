@@ -1,4 +1,5 @@
 const {Song} = require('../../db')
+const categoryRelationship = require('../../helpers/categoryRelationship')
 
 const postMusic = async (req, res) => {
   const {url, name, genre, imageUrl, isActive} = req.body
@@ -11,7 +12,7 @@ const postMusic = async (req, res) => {
       imageUrl,
       isActive
     })
-
+    await categoryRelationship(song)
     res.status(201).json(song)
   } catch (error) {
     res.status(404).json(error)
