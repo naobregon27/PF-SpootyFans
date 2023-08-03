@@ -1,8 +1,4 @@
-body {
-    margin: 0;
-  }
-  
-  .navbar {
+  /* .navbar {
     width: 100%;
     background-color: rgba(0, 0, 0, 0);
     padding: 10px;
@@ -125,4 +121,17 @@ body {
   cursor: pointer;
   border-radius: 100px;
   justify-content: center;
+} */
+
+
+.navbar_container{
+  width: 100vw;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.logo_nav{
+  width: 4rem;
 }

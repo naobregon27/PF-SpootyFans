@@ -14,3 +14,10 @@ export const allSongs = () => {
    };
 };
 
+export const findSong = (name) => {
+   return async function (dispatch) {
+      const {data} = await axios.get(`http://localhost:3001/musica/?name=${name}`);
+      const songByName = data;
+      dispatch({type: GET_SONGS_BY_NAME, payload: songByName})
+   }
+}
