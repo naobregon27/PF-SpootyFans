@@ -3,12 +3,19 @@ const passwordEncrypt = require("../../utils/passwordEncrypt");
 const validatePassword = require("../../utils/validations/validatePassword");
 const validateUsername = require("../../utils/validations/validateUsername");
 
-const userRegister = async ({ username, password, isActive, isPremium }) => {
+const userRegister = async ({
+  username,
+  password,
+  email,
+  isActive,
+  isPremium,
+}) => {
   try {
     // Verificamos si llegan todos los datos necesarios
     if (
       !username ||
       !password ||
+      !email ||
       isActive === undefined ||
       isPremium === undefined
     )
@@ -43,6 +50,7 @@ const userRegister = async ({ username, password, isActive, isPremium }) => {
     const newUser = {
       username: validatedUsername,
       password: await passwordEncrypt(validatedPassword),
+      email,
       isActive,
       isPremium,
     };

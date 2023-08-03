@@ -3,10 +3,11 @@ const { User, PlayList, Song, Category } = require("./src/db");
 const categoryRelationship = require('./src/helpers/categoryRelationship')
 
 module.exports = () => {
-  users.forEach(({ username, password, isPremium, isActive }) => {
+  users.forEach(({ username, password, email, isPremium, isActive }) => {
     const newUser = {
       username,
       password,
+      email,
       isPremium,
       isActive,
     };

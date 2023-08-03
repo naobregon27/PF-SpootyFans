@@ -19,6 +19,7 @@ const userLogin = async ({ username, password }) => {
     const payload = {
       userId: userFound.id,
       username: userFound.username,
+      email: userFound.email,
       isActive: userFound.isActive,
       isPremium: userFound.isPremium,
     };
