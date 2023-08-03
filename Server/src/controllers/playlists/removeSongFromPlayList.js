@@ -1,6 +1,6 @@
 const { Song, PlayList } = require("../../db");
 
-const addSongToPlayList = async ({ songId, playListId, userId }) => {
+const removeSongFromPlayList = async ({ songId, playListId, userId }) => {
   try {
     if (!songId || !playListId || !userId)
       throw new Error("Datos insuficientes.");
@@ -19,15 +19,15 @@ const addSongToPlayList = async ({ songId, playListId, userId }) => {
 
     if (playListFound.UserId !== userId)
       throw new Error(
-        "Sólo el usuario creador de la PlayList puede añadir canciones."
+        "Sólo el usuario creador de la PlayList puede remover canciones."
       );
 
-    await playListFound.addSong(songFound);
+    await playListFound.removeSong(songFound);
 
-    return "Canción añadida correctamente";
+    return "Canción removida correctamente";
   } catch (error) {
     return { error: error.message };
   }
 };
 
-module.exports = addSongToPlayList;
+module.exports = removeSongFromPlayList;
