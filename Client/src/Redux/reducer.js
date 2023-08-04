@@ -1,4 +1,4 @@
-import { GET_ALL_SONGS, GET_SONGS_BY_NAME } from "./actions";
+import { GET_ALL_SONGS, GET_SONGS_BY_NAME, SEARCH_ID } from "./actions";
 
 const initialState = {
    songs: [],
@@ -12,6 +12,11 @@ const reducer = (state = initialState, action) => {
          
          // case GET_SONGS_BY_NAME:
          // return {...state, songsCopy: action.payload};
+      
+      case SEARCH_ID:
+         return{
+            ...state,
+            songsDetail: action.payload};
 
       default:
          return { ...state };
