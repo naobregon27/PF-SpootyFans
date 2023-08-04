@@ -1,7 +1,7 @@
 import ReactAudioPlayer from "react-audio-player";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Detail = () => {
   const { id } = useParams();
@@ -29,12 +29,15 @@ const Detail = () => {
     }
   };
 
+  useEffect(() => {
+    if (id) {
+      getSongDetail(id);
+    }
+  }, [id]);
+
   if (!id) {
     return <h1>No hay ID</h1>;
-  } else {
-    getSongDetail(id);
   }
-
   return (
     <>
       <h2>{songDetail.name}</h2>
