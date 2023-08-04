@@ -8,12 +8,12 @@ const Detail = () => {
   const [songDetail, setSongDetail] = useState({});
   const getSongDetail = async (songId) => {
     try {
+      const token = localStorage.getItem("token");
       const response = await axios.get(
         `http://localhost:3001/music/detail/${songId}`,
         {
           headers: {
-            "x-access-token":
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjExLCJ1c2VybmFtZSI6InVzdWFyaW8xIiwiZW1haWwiOiJ1c3VhcmlvMUBleGFtcGxlLmNvbSIsImlzQWN0aXZlIjp0cnVlLCJpc1ByZW1pdW0iOmZhbHNlLCJpYXQiOjE2OTExMTE1NjQsImV4cCI6MTY5MTE5Nzk2NH0.fMfUelcTaKwfO_T26mytcUEMDZ_JKwUsQYB2WwcyZro",
+            "x-access-token": token,
           },
         }
       );
