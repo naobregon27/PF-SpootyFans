@@ -2,71 +2,71 @@ module.exports = {
   users: [
     {
       username: "ana_garcia",
-      password: "ana123",
+      password: "$2b$10$c16BvoCvsQ1Zeg6/NTzmieTGdRwCHNLLBgOm7PBTNjAvh.1Fmqowi", // anagarcia123
       email: "anagarcia123@example.com",
       isPremium: true,
       isActive: true,
     },
     {
       username: "juan_perez",
-      password: "juan456",
-      email: "juanperez456@example.com",
+      password: "$2b$10$mOp6Dan8NbpRZqhiwHhczeIahtgE4H0d15HuJYlmjvyA7OmfsE/ae", // juan4567
+      email: "juan4567@example.com",
       isPremium: false,
       isActive: true,
     },
     {
       username: "laura_martinez",
-      password: "laura789",
-      email: "lauramartinez789@example.com",
+      password: "$2b$10$zqNS.0hudxSbSrFcFW35reHCyib5Y7gxkxIFlz.7a.g3PIyrL3ppO", // laura789
+      email: "laura789@example.com",
       isPremium: false,
       isActive: true,
     },
     {
       username: "carlos_rodriguez",
-      password: "carlos2023",
-      email: "carlosrodriguez2023@example.com",
+      password: "$2b$10$T9ksAEyirmXSsjPukfOjD.X1DB5ZpR/YKqPUafTY6qn5Y.1S5SMum", // carlos2023
+      email: "carlos2023@example.com",
       isPremium: true,
       isActive: true,
     },
     {
       username: "maria_sanchez",
-      password: "maria567",
-      email: "mariasanchez567@example.com",
+      password: "$2b$10$fHfEhAhvz8AYK1q0ZhInpe.1zjevkif1ESnpKbTbRWiZSfsd6bDMq", // maria567
+      email: "maria567@example.com",
       isPremium: false,
       isActive: true,
     },
     {
       username: "roberto_gomez",
-      password: "roberto2023",
-      email: "robertogomez2023@example.com",
+      password: "$2b$10$i8AKkOEv1xCz7toAHzWxfe0./ZlbsqKtmAjvqQKOS6aJRAYb2UIsa", // roberto2023
+      email: "roberto2023@example.com",
       isPremium: false,
       isActive: true,
     },
     {
       username: "lucia_lopez",
-      password: "luciaPremium",
-      email: "lucialopez88@example.com",
+      password: "$2b$10$VbLhaa4GH1vvpTVJwxHseOadc/xgq8UnEB.FOL8q6Db.PXZljqO0W", // luciaPremium1
+      email: "luciaPremium1@example.com",
       isPremium: true,
       isActive: true,
     },
     {
       username: "david_smith",
-      password: "david111",
-      email: "davidsmith111@example.com",
+      password: "$2b$10$wKr83autAp4B3Onf0RtQgecXaPQXNzit07iNiOtKN/SSeFZ.4YbLq", // david123
+      email: "david123@example.com",
       isPremium: false,
       isActive: false,
     },
     {
       username: "ana_martinez",
-      password: "ana2023",
-      email: "anamartinez2023@example.com",
+      password: "$2b$10$M9FdYmIxniICIdkySxqmUO6AvfinsGymPpCdDOKJZVd7ULwoIOw76", // anamar2023
+      email: "anamar2023@example.com",
       isPremium: false,
       isActive: true,
     },
     {
       username: "juan_gonzalez",
-      password: "juanPremium",
-      email: "juangonzalez77@example.com",
+      password: "$2b$10$DeTK.lBrOYt8thThINLJFeP/kv8pNWDmIN/rrDbuoIql8W0mGsGGC", // juanPremium1
+      email: "juanPremium1@example.com",
       isPremium: true,
       isActive: true,
     },
