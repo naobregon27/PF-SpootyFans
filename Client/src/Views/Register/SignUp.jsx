@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.jpg";
 import style from "./SignUp.module.css";
+import axios from "axios";
+//import {useDispatch} from "react-redux";
+//import { createUser } from '../../Redux/actions';
 
 const SignUp = () => {
   const [username, setUsername] = useState('');
@@ -11,15 +14,41 @@ const SignUp = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [errors, setErrors] = useState({});
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const errors = validate();
-    if (Object.keys(errors).length === 0) {
-      console.log(`Username: ${username}, Email: ${email}, Password: ${password}, Confirm Password: ${confirmPassword}, Is Checked: ${isChecked}`);
-    } else {
-      setErrors(errors);
-    }
-  };
+  //const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  
+   const createUser = async (signUp) => {
+    
+      try {
+        const response = await axios.post("http://localhost:3001/user/register", signUp);
+        //console.log(response);
+        alert("User created successfully");
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    const handleSubmit = async (event) => {
+
+      event.preventDefault();
+      const errors = validate();
+      if (Object.keys(errors).length === 0) 
+      {
+  
+  
+       await createUser({username, email, password, isActive: true, isPremium:true });
+
+       navigate("/login");
+  
+       // alert("User created successfully");
+        //console.log(`Username: ${username}, Email: ${email}, Password: ${password}, Confirm Password: ${confirmPassword}, Is Checked: ${isChecked}`);
+      } else {
+        setErrors(errors);
+      }
+    };
+  
+
 
   const validate = () => {
     const errors = {};
@@ -84,7 +113,7 @@ const SignUp = () => {
         I agree to the terms and conditions
         {errors.isChecked && <span>{errors.isChecked}</span>}
       </label>
-      <button className={style.boton} type="submit">Submit</button>
+      <button className={style.boton}  type="submit">Submit</button>
       <hr/>
       <NavLink to="/login">
 <button className={style.boton}>want to log in?</button>
@@ -98,3 +127,4 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
