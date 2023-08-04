@@ -1,38 +1,49 @@
-const { cloudinary } = require("../../../config_librerias/cloudinary.config");
-const fs = require("fs");
+const {Song} = require('../../db')
+const categoryRelationship = require('../../helpers/categoryRelationship')
+const validateParams = require('../../utils/validationsPostMusic/validateDate')
 
-const postMusic = (req, res) => {
-  // Obtenemos el path temporal del archivo en el servidor local
-  const uploadLocation = req.file.path;
+const postMusic = async (req, res) => {
+  const {url, name, genre, imageUrl, isActive} = req.body
 
-  cloudinary.uploader.upload(
-    uploadLocation,
-    { resource_type: "video", folder: "audiofiles/", overwrite: true },
-    (error, result) => {
-      // Eliminamos el archivo temporal del servidor local después de cargarlo en Cloudinary
-      fs.unlink(uploadLocation, (deleteErr) => {
-        if (deleteErr) {
-          console.error(
-            "Error al eliminar el archivo temporal:",
-            deleteErr.message
-          );
-        }
+  try {
+    validateParams({
+      url,
+      name,
+      genre,
+      imageUrl,
+      isActive,
+  });
 
-        if (error) {
-          console.error(
-            "Error al cargar el archivo en Cloudinary:",
-            error.message
-          );
-          res.status(500).json(error);
-        } else {
-          console.log("Temp file was deleted");
-          res.status(200).json({ fileUrl: result.secure_url });
-        }
-      });
-    }
-  );
+    const song = await  Song.create({
+      url,
+      name,
+      genre,
+      imageUrl,
+      isActive
+    })
+    await categoryRelationship(song)
+    res.status(201).json(song)
+  } catch (error) {
+    res.status(404).json(error)
+  }
 };
+
+const searchId = async(req, res)=>{
+  const {id} = req.params
+ 
+ try {
+  if(!id) throw new Error("Debe de mandarme id");
+  if(typeof Number(id) != 'number') throw new Error("La id debe ser un número");
+  const song = await Song.findByPk(Number(id))
+
+  res.status(200).json(song)
+ } catch (error) {
+  res.status(400).json({ error: error.message });
+ }
+
+}
 
 module.exports = {
   postMusic,
+  searchId
 };

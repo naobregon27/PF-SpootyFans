@@ -1,5 +1,7 @@
 const { User } = require("../../db");
 const verifyPassword = require("../../utils/verifyPassword");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const userLogin = async ({ username, password }) => {
   try {
@@ -14,7 +16,18 @@ const userLogin = async ({ username, password }) => {
 
     if (!passwordVerified) throw new Error("Contraseña incorrecta.");
 
-    return userFound;
+    const payload = {
+      userId: userFound.id,
+      username: userFound.username,
+      email: userFound.email,
+      isActive: userFound.isActive,
+      isPremium: userFound.isPremium,
+    };
+
+    const { SECRET_KEY } = process.env;
+
+    const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "1d" });
+    return token;
   } catch (error) {
     return { error: error.message };
   }
