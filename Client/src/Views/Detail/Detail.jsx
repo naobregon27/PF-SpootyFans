@@ -1,16 +1,51 @@
-import React, {useState} from "react";
+import ReactAudioPlayer from "react-audio-player";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 const Detail = () => {
- const [songsData] = useState(null);
+  const { id } = useParams();
+  const [songDetail, setSongDetail] = useState({});
+  const getSongDetail = async (songId) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/music/detail/${songId}`,
+        {
+          headers: {
+            "x-access-token":
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjExLCJ1c2VybmFtZSI6InVzdWFyaW8xIiwiZW1haWwiOiJ1c3VhcmlvMUBleGFtcGxlLmNvbSIsImlzQWN0aXZlIjp0cnVlLCJpc1ByZW1pdW0iOmZhbHNlLCJpYXQiOjE2OTExMTE1NjQsImV4cCI6MTY5MTE5Nzk2NH0.fMfUelcTaKwfO_T26mytcUEMDZ_JKwUsQYB2WwcyZro",
+          },
+        }
+      );
 
- return(
-  <div>
-    <img src={songsData.imageUrl} alt={songsData.name} />
-    <h2>Name: {songsData.name}</h2>
-    <h2>Genres: {songsData.genre}</h2>
+      if (response.status === 200) {
+        const { url, name, genre, imageUrl } = response.data;
+        setSongDetail({ url, name, genre, imageUrl });
+      } else {
+        throw new Error("No se ha podido realizar la petición exitosamente.");
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
-  </div>
- );
+  if (!id) {
+    return <h1>No hay ID</h1>;
+  } else {
+    getSongDetail(id);
+  }
+
+  return (
+    <>
+      <h2>{songDetail.name}</h2>
+      <h3>Género: {songDetail.genre}</h3>
+      <img
+        src={songDetail.imageUrl}
+        alt={`Imagen de la canción ${songDetail.name}`}
+      />
+      <ReactAudioPlayer src={songDetail.url} controls />
+    </>
+  );
 };
 
 export default Detail;
