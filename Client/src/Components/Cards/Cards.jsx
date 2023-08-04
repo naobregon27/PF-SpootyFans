@@ -9,7 +9,9 @@ const Cards = () => {
         <div>
             {songs.map((song) => {
                 return (
-                    <Card id = {song.id}
+                    <Card 
+                   key = {song.id}
+                    id = {song.id}
                         name = {song.name}
                         image = {song.imageUrl}
                         genre = {song.genre}
