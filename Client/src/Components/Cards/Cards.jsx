@@ -5,12 +5,22 @@ const Cards = () => {
 
     const songs = useSelector((state) => state.songs)
 
+    const filter = useSelector((state) => state.songFiltered)
+
     return (
         <div>
-            {songs.map((song) => {
+            {filter.length? 
+            <Card key = {filter[0].id}
+                id = {filter[0].id}
+                name = {filter[0].name}
+                image = {filter[0].imageUrl}
+                genre = {filter[0].genre}
+                url = {filter[0].url}/>
+
+            :songs.map((song) => {
                 return (
                     <Card 
-                   key = {song.id}
+                    key = {song.id}
                     id = {song.id}
                         name = {song.name}
                         image = {song.imageUrl}
