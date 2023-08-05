@@ -8,7 +8,7 @@
    height: 100vh;
    overflow: hidden;
 
-   background-image: url("C:\Users\Thiago\Desktop\pf-SpotiFans\PF-SpootyFans\Client\src\assets\BackgroundLanding.svg");
+   background-image: url("../../assets/BackgroundLanding.svg");
    background-size: cover;
 }
 
