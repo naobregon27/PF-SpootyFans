@@ -11,7 +11,9 @@ function App() {
    const location = useLocation();
    return (
       <>
-        {location.pathname !== "/" && location.pathname !== "/form" ? <NavBar  /> : null}
+         {location.pathname !== "/" && location.pathname !== "/login" && location.pathname !== "/signup" ? (
+            <NavBar />
+         ) : null}
          <Routes>
             <Route exact path="/" element={<Landing />} />
             <Route path="/login" element={<Form />} />

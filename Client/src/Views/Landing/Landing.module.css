@@ -1,4 +1,4 @@
-.landing_container{
+.landing_container {
    display: flex;
    align-items: center;
    justify-content: center;
@@ -7,4 +7,55 @@
    width: 100vw;
    height: 100vh;
    overflow: hidden;
+
+   background-image: url("C:\Users\Thiago\Desktop\pf-SpotiFans\PF-SpootyFans\Client\src\assets\BackgroundLanding.svg");
+   background-size: cover;
+}
+
+.title_container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+}
+
+.primary_title_landing,
+.secondary_title_landing {
+   color: #fff;
+   font-size: 100px;
+   font-style: normal;
+   font-weight: 300;
+
+   margin: 0;
+   padding: 0;
+}
+
+.button_to_home {
+   margin-top: 7rem;
+   padding: 0.6rem 1.6rem;
+   text-transform: uppercase;
+   border-radius: 8px;
+   font-size: 17px;
+   font-weight: 500;
+   color: #ffffff;
+   text-shadow: none;
+   background: #1e1f21;
+   box-shadow: transparent;
+   border: 1px solid #ffffff;
+   transition: 0.5s ease;
+   user-select: none;
+   cursor: pointer;
+   font-family: "Roboto Condensed", sans-serif;
+}
+
+.button_to_home:hover,
+.button_to_home:focus {
+   scale: 1.05;
+   animation: none;
+   color: #ffffff;
+   background: #2bc20e;
+   border: 1px solid #9CFF00;
+   /* text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff; */
+   box-shadow: 0 0 5px #9cff00, 0 0 20px #9cff00, 0 0 50px #9cff00,
+      0 0 100px #9cff00;
 }
