@@ -2,6 +2,8 @@ import ReactAudioPlayer from "react-audio-player";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import style from "./Detail.module.css";
+
 
 const Detail = () => {
   const { id } = useParams();
@@ -39,15 +41,25 @@ const Detail = () => {
     return <h1>No hay ID</h1>;
   }
   return (
+       <div className={style.detalles}>
     <>
-      <h2>{songDetail.name}</h2>
-      <h3>Género: {songDetail.genre}</h3>
+      <h2 className={style.titulo}>{songDetail.name}</h2>
+      <h3><u>Género:</u> {songDetail.genre}</h3>
       <img
+      className={style.album}
         src={songDetail.imageUrl}
         alt={`Imagen de la canción ${songDetail.name}`}
       />
-      <ReactAudioPlayer src={songDetail.url} controls />
+         
+          <div className="hr">
+            <span></span>
+          </div>
+       
+
+      <ReactAudioPlayer className={style.song} src={songDetail.url} controls />
     </>
+    </div>
+   
   );
 };
 
