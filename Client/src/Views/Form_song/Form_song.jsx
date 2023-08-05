@@ -1,23 +1,49 @@
-import { useDispatch } from "react-redux";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 const FormSong = () => {
   const [soundFile, setSoundFile] = useState(null);
   const [imagedFile, setImageFile] = useState(null);
   const [data, setData] = useState({
-    url:'',
-    name: 'name',
-    genre: 'Genero',
-    imageUrl: '',
-    isActive: true
-  })
+    url: "",
+    name: "name",
+    genre: "Genero",
+    imageUrl: "",
+    isActive: true,
+  });
 
   const handleSoundChange = (e) => {
     setSoundFile(e.target.files[0]);
   };
+
   const handleImageChange = (e) => {
     setImageFile(e.target.files[0]);
+  };
+
+  const handleNameChange = (e) => {
+    setData({
+      ...data,
+      name: e.target.value,
+    });
+  };
+
+  const handleGenreChange = (e) => {
+    setData({
+      ...data,
+      genre: e.target.value,
+    });
+  };
+
+  const postData = async (postData) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/music/upload/url",
+        postData
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const up = async (e) => {
@@ -33,38 +59,23 @@ const FormSong = () => {
         "http://localhost:4001/postmusic",
         formSound
       );
-      console.log(
-        "URL del archivo musical cargado:",
-        responseSound.data.fileUrl
-      );
+      console.log("URL del archivo musical cargado:", responseSound.data.fileUrl);
 
       const responseImage = await axios.post(
         "https://postimagemicroservice-production.up.railway.app/cloudinary/upload",
         formImage
       );
-      console.log(
-          "URL del archivo jpg cargado:",
-        responseImage.data.secure_url
-        );
-        console.log(data);
-       await setData(
-          {...data,
-              imageUrl:responseImage.data.secure_url,
-              url:responseSound.data.fileUrl
-          })
-          const postData = async () => {
-            try {
-              const response = await axios.post(
-                "http://localhost:3001/music/upload/url",
-                data
-              );
-              console.log(response.data);
-            } catch (error) {
-              console.log(error);
-            }
-          };
-        
-          postData();
+      console.log("URL del archivo jpg cargado:", responseImage.data.secure_url);
+
+      const postDataObject = {
+        ...data,
+        imageUrl: responseImage.data.secure_url,
+        url: responseSound.data.fileUrl,
+      };
+
+      await setData(postDataObject);
+      await postData(postDataObject);
+
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -86,7 +97,25 @@ const FormSong = () => {
             onChange={handleImageChange}
           />
         </div>
-        <button type="button" onClick={(e) => up(e)}>
+        <div className="form-group">
+          <label htmlFor="name">Nombre de la canción</label>
+          <input
+            type="text"
+            id="name"
+            value={data.name}
+            onChange={handleNameChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="genre">Género</label>
+          <input
+            type="text"
+            id="genre"
+            value={data.genre}
+            onChange={handleGenreChange}
+          />
+        </div>
+        <button type="button" onClick={up}>
           Subir
         </button>
       </form>
