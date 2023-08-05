@@ -66,3 +66,10 @@ export const searchId = (id) => {
      }
   };
 };
+
+export const filterByGenre = (payload) => {
+  return{
+    type:GET_SONGS_BY_GENRE,
+    payload
+  }
+}
