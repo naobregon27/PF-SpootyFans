@@ -3,14 +3,14 @@ import { GET_ALL_SONGS, GET_SONGS_BY_NAME, SEARCH_ID, GET_SONGS_BY_GENRE } from 
 
 const initialState = {
    songs: [],
-   songFiltered: [],
+   songsCopy: [],
 };
 
 const reducer = (state = initialState, action) => {
    // const songsCopy = [...state.songs];
    switch (action.type) {
       case GET_ALL_SONGS:
-         return { ...state, songs: action.payload };
+         return { ...state, songs: action.payload, songsCopy: action.payload };
          
          // case GET_SONGS_BY_NAME:
          // return {...state, songsCopy: action.payload};
@@ -20,10 +20,16 @@ const reducer = (state = initialState, action) => {
             ...state,
             songsDetail: action.payload};
 
+      case GET_SONGS_BY_NAME:
+         return{
+            ...state,
+            songsCopy:  action.payload
+         }
+
       case GET_SONGS_BY_GENRE:
          return{
             ...state,
-            songsFiltered: songs.filter((song) => song.genre === action.payload)
+            songsCopy: state.songs.filter((song) => song.genre === action.payload)
          }
 
       default:

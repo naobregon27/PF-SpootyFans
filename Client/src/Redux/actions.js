@@ -29,7 +29,7 @@ export const findSong = (name) => {
     const token = localStorage.getItem("token");
     try {
       const { data } = await axios.get(
-        `http://localhost:3001/music/?name=${name}`,
+        `http://localhost:3001/music?name=${name}`,
         {
           headers: {
             "x-access-token": token,

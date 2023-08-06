@@ -1,13 +1,14 @@
 import style from "./Filters.module.css";
-import {filterByGenre } from "../../../Redux/actions";
-import { useDispatch, useSelector } from "react-redux";
+import {filterByGenre, allSongs} from "../../../Redux/actions";
+import { useDispatch } from "react-redux";
 
 const Filters = () => {
 
   const dispatch = useDispatch();
 
   const handleGenre = (event) => {
-    dispatch(filterByGenre(event.target.value))
+    event.target.value === "All" ? dispatch(allSongs()) 
+    : dispatch(filterByGenre(event.target.value))
   }
 
     return (
@@ -20,11 +21,12 @@ const Filters = () => {
           onChange={handleGenre}
         >
           <option value="">genres:</option>
+          <option value="All">All</option>
           <option value="Pop">Pop</option>
           <option value="Rock">Rock</option>
           <option value="Hip-Hop">Hip-Hop</option>
-          <option value="Electrónica">Electrónica</option>
-          <option value="Reggaetón">Reggaetón</option>
+          <option value="Electronic">Electrónica</option>
+          <option value="Reggaeton">Reggaetón</option>
         </select>
       </div>
       

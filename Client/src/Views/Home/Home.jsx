@@ -6,7 +6,7 @@ import Pagination from "../../Components/Pagination/Pagination"
 
 function Home() {
   const dispatch = useDispatch();
-  const songs = useSelector((state) => state.songs); 
+  const songs = useSelector((state) => state.songsCopy); 
   const [currentPage, setCurrentPage] = useState(1); 
   const itemsPerPage = 4;
 
