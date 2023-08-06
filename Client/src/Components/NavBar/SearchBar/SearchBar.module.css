@@ -1,20 +1,25 @@
-/* .searchbar input{
+.searchbar input{
     font-family: Century Schoolbook;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 24px;
     background:rgba(230, 214, 214, 0.718);
     border: none;
     outline: none;
-    width: 507px;
-    margin-top: 1em;
+    width: 400px;
+    height: auto;
+    border-radius:7px;
   }
   .searchbar input::placeholder { color:#005c80; }
   
   .buscar{
-    background-color: #1eaeacd8 ;
+    background-color: #1eae34d8 ;
     border: 2.5px dotted #ceee2cd4;
+    font-size: 17px;
     padding: 5px;
     cursor: pointer;
-    border-radius:11px;
-    
-  } */
+    border-radius:7px;
+  }
+
+  .searchbar{
+    margin-top: 1em;
+  }

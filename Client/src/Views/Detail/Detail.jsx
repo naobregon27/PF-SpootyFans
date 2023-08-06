@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import style from "./Detail.module.css";
 
+
 const Detail = () => {
   const { id } = useParams();
   const [songDetail, setSongDetail] = useState({});
@@ -40,17 +41,25 @@ const Detail = () => {
     return <h1>No hay ID</h1>;
   }
   return (
-    <div className={style.detalles}>
+       <div className={style.detalles}>
+    <>
       <h2 className={style.titulo}>{songDetail.name}</h2>
-      <h3>Género: {songDetail.genre}</h3>
+      <h3><u>Género:</u> {songDetail.genre}</h3>
       <img
-        className={style.album}
+      className={style.album}
         src={songDetail.imageUrl}
         alt={`Imagen de la canción ${songDetail.name}`}
       />
+         
+          <div className="hr">
+            <span></span>
+          </div>
+       
 
       <ReactAudioPlayer className={style.song} src={songDetail.url} controls />
+    </>
     </div>
+   
   );
 };
 

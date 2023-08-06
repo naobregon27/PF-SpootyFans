@@ -10,8 +10,7 @@
     align-items: center;
     border-radius: 15px;
     text-align: center;
-
-    margin-top: 1em;
+    margin-top: 3em;
     border: 3.5px dotted #10890ad4;
   }
   
@@ -31,23 +30,37 @@
     margin-bottom: 0.5em;
     margin-top: 0.5em;
     border-radius: 5px;
-    outline: none
+    outline: none;
+    border: 1px solid black;
   }
   
   
 .song {
   /* acá los estilos para el contenedor del reproductor */
-  background-color: red;
+  width: 70%;
+  border-radius: 27px;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  
+  background-color: #10890ad4;
+  border: 1.5px solid #0c6308d4;
 }
 
 .song::-webkit-media-controls-panel {
   /* acá los estilos para los controles del reproductor */
-  background-color: blue;
+  background-color: #10890ad4;
+  border: 1.5px solid #0c6308d4;
+
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  
 }
 
 .song::-webkit-media-controls-play-button {
   /* acá los estilos para el botón de control (play) */
-  background-color: green;
+  background-color: rgb(79, 196, 79);
+  border-radius: 5px;
 }
 
 .song::-webkit-media-controls-pause-button {
@@ -57,15 +70,24 @@
 
 .song::-webkit-media-controls-timeline {
   /* acá los estilos para la barra de progreso */
-  background-color: orange;
+  color: #10890ad4;
+  
+  border-radius: 5px;
+  padding: 11px;
+  margin-left: 0.5em;
 }
 
 .song::-webkit-media-controls-current-time-display {
   /* acá los estilos para el tiempo transcurrido */
-  background-color: purple;
+  color: rgb(217, 231, 14);
+  
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .song::-webkit-media-controls-time-remaining-display {
   /* acá los estilos para el tiempo restante */
-  background-color: skyblue;
+  color:  #17620b;
+  border-radius: 5px;
+  padding: 5px;
 }

@@ -18,10 +18,10 @@ function SearchBar() {
   }
 
   return (
-    <div >
-      <input type="text" value={searchTerm} onChange={handleChange}  placeholder=" find your fav song/artist..."/>
-      <button onClick={handleSearch}>
-          search
+    <div className={styles.searchbar}>
+      <input className={styles.input} type="text" value={searchTerm} onChange={handleChange}  placeholder=" find your fav song/artist..."/>
+      <button className={styles.buscar} onClick={handleSearch}>
+      🔍
         </button>
     </div>
   );
