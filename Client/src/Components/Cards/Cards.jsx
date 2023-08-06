@@ -1,9 +1,7 @@
 import Card from "../Card/Card"
 import {useSelector} from "react-redux";
 
-const Cards = () => {
-
-    const songs = useSelector((state) => state.songs)
+const Cards = ({ songs }) => {
 
     const filter = useSelector((state) => state.songFiltered)
 
