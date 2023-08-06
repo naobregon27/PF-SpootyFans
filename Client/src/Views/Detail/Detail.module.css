@@ -1,0 +1,71 @@
+.detalles{
+    font-family: 'DK Lemon Yellow Sun', cursive;
+    font-weight:lighter;
+    font-size: 35px;
+    color: #10890ad4;;
+    background-color: rgba(38, 181, 30, 0.633);
+    width:23%;
+    margin: auto;
+    backdrop-filter: blur(24px);
+    align-items: center;
+    border-radius: 15px;
+    text-align: center;
+
+    margin-top: 1em;
+    border: 3.5px dotted #10890ad4;
+  }
+  
+  .detalles:hover {
+  transform: scale(99.9%);
+  backdrop-filter:blur(30px);
+  }
+  
+  .titulo{
+    color:  #17620b;
+    font-weight: bold;
+  }
+  
+  .album{
+    width: 50%;
+    height: auto;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    border-radius: 5px;
+    outline: none
+  }
+  
+  
+.song {
+  /* acá los estilos para el contenedor del reproductor */
+  background-color: red;
+}
+
+.song::-webkit-media-controls-panel {
+  /* acá los estilos para los controles del reproductor */
+  background-color: blue;
+}
+
+.song::-webkit-media-controls-play-button {
+  /* acá los estilos para el botón de control (play) */
+  background-color: green;
+}
+
+.song::-webkit-media-controls-pause-button {
+  /* acá los estilos para el botón de control (pause) */
+  background-color: yellow;
+}
+
+.song::-webkit-media-controls-timeline {
+  /* acá los estilos para la barra de progreso */
+  background-color: orange;
+}
+
+.song::-webkit-media-controls-current-time-display {
+  /* acá los estilos para el tiempo transcurrido */
+  background-color: purple;
+}
+
+.song::-webkit-media-controls-time-remaining-display {
+  /* acá los estilos para el tiempo restante */
+  background-color: skyblue;
+}
