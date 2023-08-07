@@ -16,17 +16,22 @@ function NavBar() {
    }
    
    return (
-      <div className={style.navbar_container}>
-         <img className={style.logo_nav} src={logo} alt="" />
-         <SearchBar/>
-         <NavLink to="/home">
-            <button className={style.botonc} onClick={handleRerender}>home</button>
-         </NavLink>
-         <NavLink to="/login">
-            <button className={style.botonc} >log in</button>
-         </NavLink>
-         <Filters/>
-      </div>
+     <div className={style.navbar_container}>
+       <img className={style.logo_nav} src={logo} alt="" />
+       <SearchBar />
+       <NavLink to="/home">
+         <button className={style.botonc} onClick={handleRerender}>
+           home
+         </button>
+       </NavLink>
+       <NavLink to="/login">
+         <button className={style.botonc}>log in</button>
+       </NavLink>
+       <NavLink to="/create">
+         <button className={style.botonc}>Upload</button>
+       </NavLink>
+       <Filters />
+     </div>
    );
 }
 
