@@ -1,9 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap");
-body {
-   margin: 0;
-   display: flex;
-   place-items: center;
-   min-width: 320px;
-   min-height: 100vh;
-   font-family: "Roboto Condensed", sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
