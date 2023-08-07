@@ -5,7 +5,6 @@ import logo from "../../assets/logoSpotiFans.svg";
 import style from "./NavBar.module.css";
 import SearchBar from "./SearchBar/SearchBar";
 import { allSongs } from "../../Redux/actions";
-import Filters from "./Filters/Filters";
 
 function NavBar() {
 
@@ -25,12 +24,12 @@ function NavBar() {
          </button>
        </NavLink>
        <NavLink to="/login">
-         <button className={style.botonc}>log in</button>
+         <button className={style.botonc}>Log in</button>
        </NavLink>
        <NavLink to="/create">
          <button className={style.botonc}>Upload</button>
        </NavLink>
-       <Filters />
+       
      </div>
    );
 }

@@ -3,6 +3,7 @@ import Cards from '../../Components/Cards/Cards';
 import { useDispatch, useSelector } from 'react-redux';
 import {allSongs} from "../../Redux/actions";
 import Pagination from "../../Components/Pagination/Pagination"
+import Filters from "./Filters/Filters";
 
 function Home() {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ function Home() {
 
   return (
     <div>
+      <Filters />
       <Cards songs={currentItems}/>
       <Pagination
         currentPage={currentPage}

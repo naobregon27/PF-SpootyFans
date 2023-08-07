@@ -4,7 +4,7 @@
     font-size: 35px;
     color: #10890ad4;;
     background-color: rgba(38, 181, 30, 0.633);
-    width:23%;
+    width:33%;
     margin: auto;
     backdrop-filter: blur(24px);
     align-items: center;
@@ -25,13 +25,13 @@
   }
   
   .album{
-    width: 50%;
+    width: 66%;
     height: auto;
     margin-bottom: 0.5em;
     margin-top: 0.5em;
     border-radius: 5px;
     outline: none;
-    border: 1px solid black;
+    border: 2px solid black;
   }
   
   
@@ -71,10 +71,11 @@
 .song::-webkit-media-controls-timeline {
   /* acá los estilos para la barra de progreso */
   color: #10890ad4;
-  
+  width: 200%;
   border-radius: 5px;
-  padding: 11px;
-  margin-left: 0.5em;
+  padding: 1px;
+  margin-left: 1px;
+  margin-right: 1px;
 }
 
 .song::-webkit-media-controls-current-time-display {
