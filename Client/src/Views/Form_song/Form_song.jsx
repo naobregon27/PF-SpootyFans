@@ -1,13 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
+import style from "./Form_song.module.css";
 
 const FormSong = () => {
   const [soundFile, setSoundFile] = useState(null);
   const [imagedFile, setImageFile] = useState(null);
   const [data, setData] = useState({
     url: "",
-    name: "name",
-    genre: "Genero",
+    name: "",
+    genre: "",
     imageUrl: "",
     isActive: true,
   });
@@ -90,22 +91,30 @@ const FormSong = () => {
 
   return (
     <>
-      <form>
+      <form className={style.mainContainer}>
+      <div className={style.form}>
+               <h2>good luck...</h2>
         <div className="form-group">
-          <label htmlFor="file">Seleccione un archivo</label>
-          <input type="file" id="file" onChange={handleSoundChange} />
+          <label htmlFor="file">Choose the audio file</label>
+          <input 
+            className={`${style.datos} ${style['datos-btn']}`}
+            type="file" 
+            id="file" 
+            onChange={handleSoundChange} />
         </div>
         <div className="form-group">
-          <label htmlFor="exampleFormControlFile1">Seleccione una imagen</label>
+          <label htmlFor="exampleFormControlFile1">Choose the album cover</label>
           <input
+            className={`${style.datos} ${style['datos-btn']}`}
             type="file"
             id="exampleFormControlFile1"
             onChange={handleImageChange}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="name">Nombre de la canción</label>
+          <label htmlFor="name">Name of the song:</label>
           <input
+            className={style.datos}
             type="text"
             id="name"
             value={data.name}
@@ -113,17 +122,20 @@ const FormSong = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="genre">Género</label>
+          <label htmlFor="genre">Genre:</label>
           <input
+            className={style.datos}
             type="text"
             id="genre"
             value={data.genre}
             onChange={handleGenreChange}
           />
         </div>
-        <button type="button" onClick={up}>
-          Subir
+        <button className={style.boton}
+        type="button" onClick={up}>
+          Upload your song!
         </button>
+        </div>
       </form>
     </>
   );
