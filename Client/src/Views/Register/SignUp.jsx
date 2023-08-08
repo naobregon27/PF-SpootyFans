@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logoSpotiFans.svg";
 import style from "./SignUp.module.css";
 import axios from "axios";
@@ -69,18 +69,16 @@ const SignUp = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={style.mainContainer}>
-      <div>
-        <img className={style.logo} src={logo}></img>
-
-        <NavLink to="/home">
-          <button className={style.boton}>contact us</button>
-          <button className={style.boton}>Back to Home!</button>
-        </NavLink>
-        <hr />
-        <div className={style.log}>
-          <h1>Register</h1>
-
+    <main className={style.mainContainer}>
+      <img className={style.logo} src={logo}></img>
+      <div className={style.log}>
+        <div className={style.title_container}>
+          <h1 className={style.title}>Register</h1>
+          <Link to="/login" className={style.to_login}>
+            or Login
+          </Link>
+        </div>
+        <form onSubmit={handleSubmit} className={style.form_container}>
           <label>
             <input
               className={style.datos}
@@ -121,7 +119,7 @@ const SignUp = () => {
             />
             {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
           </label>
-          <label>
+          {/* <label>
             <input
               type="checkbox"
               checked={isChecked}
@@ -129,18 +127,14 @@ const SignUp = () => {
             />
             I agree to the terms and conditions
             {errors.isChecked && <span>{errors.isChecked}</span>}
-          </label>
+          </label> */}
           <button className={style.boton} type="submit">
             Submit
           </button>
-          <SocialLoginOptions />
-          <hr />
-          <NavLink to="/login">
-            <button className={style.boton}>want to log in?</button>
-          </NavLink>
-        </div>
+        </form>
+        <SocialLoginOptions />
       </div>
-    </form>
+    </main>
   );
 };
 
