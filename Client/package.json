@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.11.1",
     "axios": "^1.4.0",
+    "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
     "react-audio-player": "0.17.0",
     "react-dom": "^18.2.0",
