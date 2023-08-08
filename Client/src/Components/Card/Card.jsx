@@ -3,16 +3,15 @@ import styles from "./Card.module.css";
 
 const Card = ({ id, name, genre, url, image }) => {
    return (
-      <div className={styles.container}>
-         <div className={styles.carta}>
+     <div className={styles.container}>
+       <div className={styles.carta}>
          <NavLink to={`/detail/${id}`}>
-            <h2>{name}</h2>
-            <img src={image} alt={image} />
-            <h3>{genre}</h3>
-            {/* <h3>{url}</h3> */}
+           <h3 className={styles.title}>{name}</h3>
+           <img src={image} alt={image} />
+           <h3>{genre}</h3>
          </NavLink>
-         </div>
-      </div>
+       </div>
+     </div>
    );
 };
 

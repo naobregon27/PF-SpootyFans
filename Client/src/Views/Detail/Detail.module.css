@@ -5,12 +5,12 @@
     color: #10890ad4;;
     background-color: rgba(38, 181, 30, 0.633);
     width:33%;
-    margin: auto;
+    margin: 3rem auto 0 auto;
+    padding: .5rem;
     backdrop-filter: blur(24px);
     align-items: center;
     border-radius: 15px;
     text-align: center;
-    margin-top: 3em;
     border: 3.5px dotted #10890ad4;
   }
   
@@ -27,8 +27,7 @@
   .album{
     width: 66%;
     height: auto;
-    margin-bottom: 0.5em;
-    margin-top: 0.5em;
+    margin: .5rem auto;
     border-radius: 5px;
     outline: none;
     border: 2px solid black;
@@ -39,8 +38,7 @@
   /* acá los estilos para el contenedor del reproductor */
   width: 70%;
   border-radius: 27px;
-  margin-bottom: 0.5em;
-  margin-top: 0.5em;
+  margin: 1rem auto;
   
   background-color: #10890ad4;
   border: 1.5px solid #0c6308d4;

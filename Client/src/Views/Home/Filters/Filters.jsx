@@ -15,8 +15,7 @@ const Filters = () => {
       <div className={style.filters}>
         <div className={style.filter}>
           <select className={style.select} onChange={handleGenre}>
-            <option value="">Genres:</option>
-            <option value="All">All</option>
+            <option value="All">All Genres</option>
             <option value="Pop">Pop</option>
             <option value="Rock">Rock</option>
             <option value="Hip-Hop">Hip-Hop</option>
