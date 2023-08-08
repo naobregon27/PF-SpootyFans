@@ -7,6 +7,7 @@ import SignUp from "./Views/Register/SignUp";
 import FormSong from "./Views/Form_song/Form_song";
 import Detail from "./Views/Detail/Detail";
 import NavBar from "./Components/NavBar/NavBar";
+import Playlist from "./Views/Playlists/Playlist";
 
 function App() {
   const location = useLocation().pathname;
@@ -36,6 +37,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/create" element={<FormSong />} />
         <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/playlist" element={<Playlist />} />
       </Routes>
     </>
   );
