@@ -239,7 +239,7 @@ Esta ruta agrega una canción a una lista de reproducción.
 **Body:**
 ```json
 {
-  "songId": "1", // id de la canción
+  "songId": 1, // id de la canción
   "playListId": 11 // id de la PlayList
 }
 ```
