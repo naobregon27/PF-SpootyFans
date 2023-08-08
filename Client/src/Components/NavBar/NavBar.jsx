@@ -38,6 +38,9 @@ function NavBar() {
           Logout
         </button>
       </NavLink>
+      <NavLink to="/playlist">
+         <button className={style.botonc}>New playlist</button>
+       </NavLink>
     </div>
   );
 }
