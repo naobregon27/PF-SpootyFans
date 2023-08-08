@@ -1,7 +1,7 @@
 import { useState } from "react";
 import style from "./Login.module.css";
 import logo from "../../assets/logoSpotiFans.svg";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import validation from "../../Components/Validation/Validation";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -42,54 +42,50 @@ const Form = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={style.mainContainer}>
-      <div>
-        <img className={style.logo} src={logo}></img>
-        <NavLink to="/home">
-          <button className={style.boton}>contact us</button>
-          <button className={style.boton}>Back to Home!</button>
-        </NavLink>
-        <hr />
-        <div className={style.log}>
-          <h2>welcome back!</h2>
-          <label htmlFor="username"></label>
-          <input
-            className={style.datos}
-            onChange={handleChange}
-            value={userData.username}
-            type="text"
-            name="username"
-            placeholder="Username"
-          />
-          <p>{errors.username}</p>
+    <main className={style.mainContainer}>
+      <img className={style.logo} src={logo}></img>
+      <div className={style.log}>
+        <div className={style.title_container}>
+          <h1 className={style.title}>Login</h1>
+          <Link to="/signup" className={style.to_signup}>
+            or SignUp?
+          </Link>
+        </div>
+        <form onSubmit={handleSubmit} className={style.form_container}>
+          <label>
+            <input
+              className={style.datos}
+              onChange={handleChange}
+              value={userData.username}
+              type="text"
+              name="username"
+              placeholder="Username"
+            />
+            <p>{errors.username}</p>
+          </label>
 
-          <label htmlFor="password"></label>
-          <input
-            className={style.datos}
-            onChange={handleChange}
-            value={userData.password}
-            type="password"
-            name="password"
-            placeholder="Password"
-          />
-          <p>{errors.p}</p>
-
-          <div>
+          <label>
+            <input
+              className={style.datos}
+              onChange={handleChange}
+              value={userData.password}
+              type="password"
+              name="password"
+              placeholder="Password"
+            />
+            <p>{errors.p}</p>
+          </label>
+          {/* <div>
             <input type="checkbox" name="rememberMe" id="rememberMe"></input>
             <label htmlFor="rememberMe"> Remember me</label>
-          </div>
-
+          </div> */}
           <button className={style.boton} type="submit">
-            LOG IN
+            Login
           </button>
-          <SocialLoginOptions />
-          <hr />
-          <NavLink to="/signup">
-            <button className={style.boton}>want to sign up?</button>
-          </NavLink>
-        </div>
+        </form>
+        <SocialLoginOptions />
       </div>
-    </form>
+    </main>
   );
 };
 
