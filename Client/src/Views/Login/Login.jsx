@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import validation from "../../Components/Validation/Validation";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import SocialLoginOptions from "../../Components/SocialLoginOptions/SocialLoginOptions";
 
 const Form = () => {
   const navigate = useNavigate();
@@ -81,6 +82,7 @@ const Form = () => {
           <button className={style.boton} type="submit">
             LOG IN
           </button>
+          <SocialLoginOptions />
           <hr />
           <NavLink to="/signup">
             <button className={style.boton}>want to sign up?</button>

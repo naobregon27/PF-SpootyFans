@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/logoSpotiFans.svg";
 import style from "./SignUp.module.css";
 import axios from "axios";
+import SocialLoginOptions from "../../Components/SocialLoginOptions/SocialLoginOptions";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -132,6 +133,7 @@ const SignUp = () => {
           <button className={style.boton} type="submit">
             Submit
           </button>
+          <SocialLoginOptions />
           <hr />
           <NavLink to="/login">
             <button className={style.boton}>want to log in?</button>

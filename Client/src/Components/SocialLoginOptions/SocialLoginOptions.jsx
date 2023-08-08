@@ -9,14 +9,17 @@ export default function SocialLoginOptions() {
 
   const handleSuccess = async (credentialResponse) => {
     if (location === "/signup") {
-      const userRegistered = await handleSuccessRegister(credentialResponse);
-      if (userRegistered) navigate("/login");
+      await handleSuccessRegister(credentialResponse);
+      navigate("/login");
+
     } else if (location === "/login") {
       const userLogged = await handleSuccessLogin(credentialResponse);
       if (userLogged) {
         const { token } = userLogged;
         localStorage.setItem("token", token);
         navigate("/home");
+      } else {
+        navigate('/signup')
       }
     } else {
       console.error(
