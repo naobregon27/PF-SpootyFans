@@ -1,12 +1,28 @@
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
-import jwt_decode from "jwt-decode";
+import { useLocation, useNavigate } from "react-router-dom";
+import { handleSuccessRegister, handleSuccessLogin } from "./handleSuccess";
 
 export default function SocialLoginOptions() {
   const { VITE_GOOGLE_CLIENT_ID } = import.meta.env;
+  const location = useLocation().pathname;
+  const navigate = useNavigate();
 
-  const handleSuccess = (credentialResponse) => {
-    const decoded = jwt_decode(credentialResponse.credential);
-    console.log(decoded);
+  const handleSuccess = async (credentialResponse) => {
+    if (location === "/signup") {
+      const userRegistered = await handleSuccessRegister(credentialResponse);
+      if (userRegistered) navigate("/login");
+    } else if (location === "/login") {
+      const userLogged = await handleSuccessLogin(credentialResponse);
+      if (userLogged) {
+        const { token } = userLogged;
+        localStorage.setItem("token", token);
+        navigate("/home");
+      }
+    } else {
+      console.error(
+        "El componente SocialLoginOptions sólo puede ser usado en /login y /register"
+      );
+    }
   };
 
   const handleError = () => {

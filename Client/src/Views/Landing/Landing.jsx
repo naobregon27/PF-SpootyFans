@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { allSongs } from "../../Redux/actions";
 import landingImage from "../../assets/musicimg.png";
-import SocialLoginOptions from "../../Components/SocialLoginOptions/SocialLoginOptions";
 
 function Landing() {
   const dispatch = useDispatch();
@@ -39,7 +38,6 @@ function Landing() {
             >
               <button>Signup</button>
             </NavLink>
-            <SocialLoginOptions />
           </div>
         </div>
         <img className="w-70 max-ms:hidden" src={landingImage} alt="" />

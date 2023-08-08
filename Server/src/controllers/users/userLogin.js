@@ -3,18 +3,24 @@ const verifyPassword = require("../../utils/verifyPassword");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-const userLogin = async ({ username, password }) => {
+const userLogin = async ({ username, password, isThirdPartyLogin }) => {
   try {
-    if (!username || !password) throw new Error("Datos insuficientes.");
+    if (!username || (!password && !isThirdPartyLogin))
+      throw new Error("Datos insuficientes.");
 
     const userFound = await User.findOne({ where: { username } });
 
     if (!userFound)
       throw new Error(`El usuario con el username "${username}" no existe.`);
 
-    const passwordVerified = await verifyPassword(password, userFound.password);
+    if (!isThirdPartyLogin) {
+      const passwordVerified = await verifyPassword(
+        password,
+        userFound.password
+      );
 
-    if (!passwordVerified) throw new Error("Contraseña incorrecta.");
+      if (!passwordVerified) throw new Error("Contraseña incorrecta.");
+    }
 
     const payload = {
       userId: userFound.id,
