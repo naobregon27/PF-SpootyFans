@@ -10,9 +10,8 @@
 	background: linear-gradient(145deg, rgba(40, 152, 61, 0.736), #11d83c44);
 	backdrop-filter: blur(24px);
 	font-family: 'DK Lemon Yellow Sun', cursive;
-	font-size:22px;
+	font-size: 22px;
 	width: 300px;
-	height: 340px;
 	padding: 15px;
 	text-align: center;
 	position: relative;
@@ -36,9 +35,14 @@
   transform: scale(102.1%);
 }
 
+.title {
+	font-weight: bold;
+}
+
 .carta img {
   width: 160px;
   height: 160px;
+	margin: .5rem auto;
   border-radius: 5px;
 }
 

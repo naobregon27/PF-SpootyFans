@@ -1,0 +1,54 @@
+.pagination_container {
+  margin-top: 2rem;
+}
+
+.button {
+  margin: 0 0.75rem;
+  padding: 0 0.5rem;
+  font-size: 1.5rem;
+  font-family: 'DK Lemon Yellow Sun', cursive;
+  border: 2px dotted #07ab07d4;
+  border-radius: 10px;
+  background: linear-gradient(145deg, rgba(40, 152, 61, 0.736), #11d83c44);
+  transition: all 0.25s ease-in-out;
+}
+
+.button:hover {
+  color: rgb(4, 57, 48);
+  transform: scale(1.1);
+}
+
+.button_disabled {
+  margin: 0 0.75rem;
+  padding: 0 0.5rem;
+  font-size: 1.5rem;
+  font-family: 'DK Lemon Yellow Sun', cursive;
+  color: rgb(136, 136, 136);
+  border: 2px dotted rgb(136, 136, 136);
+  border-radius: 10px;
+  background: rgb(209, 209, 209);
+}
+
+.button_disabled:hover {
+  cursor: not-allowed;
+}
+
+.pages {
+  margin: 0 0.25rem;
+  font-size: 1.35rem;
+  font-family: 'DK Lemon Yellow Sun', cursive;
+  transition: all 0.25s ease-in-out;
+}
+
+.pages:hover {
+  position: relative;
+  top: -3px;
+  color: #07ab07d4;
+}
+
+.selected_page {
+  margin: 0 0.25rem;
+  font-size: 1.6rem;
+  font-family: 'DK Lemon Yellow Sun', cursive;
+  color: #07ab07d4;
+}

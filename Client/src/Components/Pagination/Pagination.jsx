@@ -1,6 +1,13 @@
 import React from 'react';
+import style from "./Pagination.module.css";
+import { useEffect } from "react";
 
-const Pagination = ({ currentPage, itemsPerPage, totalItems, onPageChange }) => {
+const Pagination = ({
+  currentPage,
+  itemsPerPage,
+  totalItems,
+  onPageChange,
+}) => {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   const handlePageChange = (pageNumber) => {
@@ -23,14 +30,20 @@ const Pagination = ({ currentPage, itemsPerPage, totalItems, onPageChange }) => 
     const links = [];
 
     links.push(
-      <button key="previous" onClick={handlePreviousPage} disabled={currentPage === 1}>
-        &lt;
+      <button
+        className={currentPage === 1 ? style.button_disabled : style.button}
+        key="previous"
+        onClick={handlePreviousPage}
+        disabled={currentPage === 1}
+      >
+        Prev
       </button>
     );
 
     for (let i = 1; i <= totalPages; i++) {
       links.push(
         <button
+          className={i === currentPage ? style.selected_page : style.pages}
           key={i}
           onClick={() => handlePageChange(i)}
           disabled={i === currentPage}
@@ -41,18 +54,27 @@ const Pagination = ({ currentPage, itemsPerPage, totalItems, onPageChange }) => 
     }
 
     links.push(
-      <button key="next" onClick={handleNextPage} disabled={currentPage === totalPages}>
-        &gt;
+      <button
+        className={
+          currentPage === totalPages ? style.button_disabled : style.button
+        }
+        key="next"
+        onClick={handleNextPage}
+        disabled={currentPage === totalPages}
+      >
+        Next
       </button>
     );
 
     return links;
   };
 
+  useEffect(() => {
+    handlePageChange(1);
+  }, [totalItems]);
+
   return (
-    <div className="pagination">
-      {renderPaginationLinks()}
-    </div>
+    <div className={style.pagination_container}>{renderPaginationLinks()}</div>
   );
 };
 
