@@ -1,4 +1,5 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import Landing from "./Views/Landing/Landing";
 import Form from "./Views/Login/Login";
 import Home from "./Views/Home/Home";
@@ -8,10 +9,24 @@ import Detail from "./Views/Detail/Detail";
 import NavBar from "./Components/NavBar/NavBar";
 
 function App() {
-  const location = useLocation();
+  const location = useLocation().pathname;
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (
+      !token &&
+      location !== "/" &&
+      location !== "/signup" &&
+      location !== "/login"
+    ) {
+      navigate("/");
+    }
+  }, [token, location, navigate]);
+
   return (
     <>
-      {location.pathname !== "/" && location.pathname !== "/form" ? (
+      {location !== "/" && location !== "/signup" && location !== "/login" ? (
         <NavBar />
       ) : null}
       <Routes>
