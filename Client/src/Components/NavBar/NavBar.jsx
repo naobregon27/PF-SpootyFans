@@ -33,14 +33,14 @@ function NavBar() {
       <NavLink to="/create">
         <button className={style.botonc}>Upload</button>
       </NavLink>
+      <NavLink to="/playlist">
+        <button className={style.botonc}>New playlist</button>
+      </NavLink>
       <NavLink to="/">
         <button className={style.botonc} onClick={handleClickLogout}>
           Logout
         </button>
       </NavLink>
-      <NavLink to="/playlist">
-         <button className={style.botonc}>New playlist</button>
-       </NavLink>
     </div>
   );
 }
