@@ -12,6 +12,7 @@ const Detail_playlist = () => {
 
   const [playlist, setPlaylist] = useState({});
   const [songToAdd, setSongToAdd] = useState("");
+  const [songToRemove, setSongToRemove] = useState("");
   const [rerender, setRerender] = useState(false);
 
   const getPlaylistDetail = async (playListId) => {
@@ -26,7 +27,6 @@ const Detail_playlist = () => {
         }
       );
       setPlaylist(data);
-     
     } catch (error) {
       console.error("Error fetching playlist:", error);
     }
@@ -35,31 +35,54 @@ const Detail_playlist = () => {
   useEffect(() => {
     if (id) {
       getPlaylistDetail(id);
-
-    };
-    
+    }
   }, [id, rerender]);
 
   const addSongToPlaylist = async () => {
     try {
-       
-       const token = localStorage.getItem("token");
-       await axios.post(
-          `http://localhost:3001/playlist/addSong`,
-          { playListId: Number(id), songId: Number(songToAdd) },
-          {
-             headers: {
-                "x-access-token": token,
-               },
-            }
-            );
-          
-            setSongToAdd("");
-            setRerender(!rerender);
-            //* cambia el estado y lo renderiza arriba en el array de dependencias (2do parametro)
-            console.log("info de la playlist ", playlist.Songs.map((song) => song.name));
+      const token = localStorage.getItem("token");
+      await axios.post(
+        `http://localhost:3001/playlist/addSong`,
+        { playListId: Number(id), songId: Number(songToAdd) },
+        {
+          headers: {
+            "x-access-token": token,
+          },
+        }
+      );
+
+      setSongToAdd("");
+      setRerender(!rerender);
+      //* cambia el estado y lo renderiza arriba en el array de dependencias (2do parametro)
+      console.log(
+        "info de la playlist ",
+        playlist.Songs.map((song) => song.name)
+      );
     } catch (error) {
       console.error("Error adding song to playlist:", error);
+    }
+  };
+
+  const removeSongFromPlaylist = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      await axios.put(
+        `http://localhost:3001/playlist/removeSong/`,
+        { playListId: Number(id), songId: Number(songToAdd) },
+        {
+          headers: {
+            "x-access-token": token,
+          },
+        }
+      );
+      setSongToRemove("");
+      setRerender(!rerender);
+      console.log(
+        "eliminada?",
+        playlist.Songs.map((song) => song.name)
+      );
+    } catch (error) {
+      alert("Error removing song from playlist:", error);
     }
   };
 
@@ -70,18 +93,12 @@ const Detail_playlist = () => {
     } else return;
   };
 
-
-
   return (
     <div className={style.mainContainer}>
-      
-
       <h1>{playlist.name && playlist.name}</h1>
 
       <div className="flex flex-col justify-center items-center">
-        <h2 >
-          Add Song to this Playlist
-        </h2>
+        <h2>What song do you want to add?</h2>
 
         <input list="brow" onChange={(e) => findSong(e.target.value)} />
         <datalist id="brow">
@@ -99,22 +116,48 @@ const Detail_playlist = () => {
         </div>
       </div>
 
-      
-      <div>
+      <div className="flex flex-col justify-center items-center">
         <h2>songs:</h2>
 
         <ul>
-    {playlist.Songs && playlist.Songs.length > 0 ? (
-      playlist.Songs.map((song) => (
-        <li key={song.id}>
-          <NavLink to={`/detail/${song.id}`}>{song.name}</NavLink>
-        </li>
-      ))
-    ) : (
-      <li>This playlist is empty</li>
-    )}
-  </ul>
-            
+          {playlist.Songs && playlist.Songs.length > 0 ? (
+            playlist.Songs.map((song) => (
+              <li key={song.id}>
+                <NavLink to={`/detail/${song.id}`}>{song.name}</NavLink>
+              </li>
+            ))
+          ) : (
+            <li>This playlist is empty</li>
+          )}
+        </ul>
+
+        <hr />
+
+        <div className="flex flex-col justify-center items-center">
+          <h2>What song do you want to remove?</h2>
+
+          <input list="brow" onChange={(e) => findSong(e.target.value)} />
+          <datalist id="brow">
+            {songs.map((song) => (
+              <option key={song.id} value={song.name}>
+                {song.name}
+              </option>
+            ))}
+          </datalist>
+
+          <div>
+            <button className={style.botonx} onClick={removeSongFromPlaylist}>
+              x
+            </button>
+          </div>
+        </div>
+
+        {/* <input
+          type="text"
+          value={songToRemove}
+          onChange={(e) => setSongToRemove(e.target.value)}
+        />
+        <button className={style.botonx} onClick={removeSongFromPlaylist}>Remove Song</button> */}
       </div>
     </div>
   );
