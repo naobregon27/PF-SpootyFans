@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import style from "./Form_song.module.css";
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 
 const FormSong = () => {
   const [soundFile, setSoundFile] = useState(null);
@@ -12,6 +13,29 @@ const FormSong = () => {
     imageUrl: "",
     isActive: true,
   });
+  const [preferenceId, setPreferenceId] = useState(null)
+  initMercadoPago('TEST-49489d9a-43ea-4810-a664-1a848029c094');
+
+  const createPreference = async()=>{
+    try{
+      const response = await axios.post("http://localhost:3001/pago/create_preference", {
+        description: "suscripcion",
+        price: Number(1),
+        quantity: Number(1),
+      });
+      const {id} = response.data;
+      return id;
+    }catch (error){
+      console.log(error);
+    }
+  };
+
+  const handleBuy = async()=>{
+    const id = await createPreference();
+    if(id){
+      setPreferenceId(id);
+    }
+  };
 
   const handleSoundChange = (e) => {
     setSoundFile(e.target.files[0]);
@@ -137,6 +161,10 @@ const FormSong = () => {
         </button>
         </div>
       </form>
+        <div >
+        <button onClick={handleBuy}>Upgrade to Premium</button>
+        {preferenceId && <Wallet initialization={{ preferenceId: preferenceId }} />}
+        </div>
     </>
   );
 };
