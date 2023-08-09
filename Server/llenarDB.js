@@ -1,18 +1,20 @@
 const { users, songs, playLists, categories } = require("./data");
 const { User, PlayList, Song, Category } = require("./src/db");
+const categoryRelationship = require('./src/helpers/categoryRelationship')
 
 module.exports = () => {
-  users.forEach(({ username, password, isPremium, isActive }) => {
+  users.forEach(({ username, password, email, isPremium, isActive }) => {
     const newUser = {
       username,
       password,
+      email,
       isPremium,
       isActive,
     };
     User.create(newUser);
   });
 
-  songs.forEach(({ name, genre, url, imageUrl, isActive }) => {
+  songs.forEach(async ({ name, genre, url, imageUrl, isActive }) => {
     const newSong = {
       name,
       genre,
@@ -20,7 +22,8 @@ module.exports = () => {
       imageUrl,
       isActive,
     };
-    Song.create(newSong);
+    const song = await Song.create(newSong);
+    await categoryRelationship(song)
   });
 
   playLists.forEach(({ name, likes }) => {

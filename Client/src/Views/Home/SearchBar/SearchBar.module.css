@@ -1,0 +1,37 @@
+.searchbar input {
+  font-family: "DK Lemon Yellow Sun", cursive;
+  font-weight: bold;
+  font-size: 24px;
+  background: rgba(230, 214, 214, 0.718);
+  outline: none;
+  width: 400px;
+  height: auto;
+  border-radius: 7px;
+  padding: 0.25rem 1rem;
+  color: #005c80;
+}
+.searchbar input::placeholder {
+  color: #005c80;
+}
+
+.buscar {
+  background-color: #1eae34d8;
+  border: 2.5px dotted #ceee2cd4;
+  font-size: 17px;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 7px;
+  margin: 0 0.5rem;
+  width: 3rem;
+  height: 3rem;
+  transition: all 0.15s ease-in-out;
+}
+
+.buscar:hover {
+  transform: scale(1.075);
+}
+
+.searchbar {
+  display: flex;
+  margin-top: 1em;
+}

@@ -18,8 +18,19 @@ module.exports = (sequelize) => {
     },
 
     password: {
-      type: DataTypes.STRING(),
+      type: DataTypes.STRING,
+    },
+
+    email: {
+      type: DataTypes.STRING,
+      unique: true,
       allowNull: false,
+      validate: {
+        isEmail: {
+          args: true,
+          msg: "Ingrese una dirección de correo electrónico válida.",
+        },
+      },
     },
 
     isPremium: {
