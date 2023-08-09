@@ -13,8 +13,7 @@ export const allSongs = () => {
     try {
       const { data } = await axios.get("http://localhost:3001/music/all", {
         headers: {
-          "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjExLCJ1c2VybmFtZSI6ImNhcmxhX21hcnRpbmV6IiwiZW1haWwiOiJjYXJsYW1hcnRpbmV6Nzg5QGV4YW1wbGUuY29tIiwiaXNBY3RpdmUiOnRydWUsImlzUHJlbWl1bSI6ZmFsc2UsImlhdCI6MTY5MTEwNjcyMiwiZXhwIjoxNjkxMTkzMTIyfQ.AH6qwnxkzpafMNEqpEHpcoUO4hIkgWfcsuBVCH_Skjw"
-
+          "x-access-token": token,
         },
       });
       const songs = data;
@@ -30,10 +29,10 @@ export const findSong = (name) => {
     const token = localStorage.getItem("token");
     try {
       const { data } = await axios.get(
-        `http://localhost:3001/music/?name=${name}`,
+        `http://localhost:3001/music?name=${name}`,
         {
           headers: {
-            "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjExLCJ1c2VybmFtZSI6ImNhcmxhX21hcnRpbmV6IiwiZW1haWwiOiJjYXJsYW1hcnRpbmV6Nzg5QGV4YW1wbGUuY29tIiwiaXNBY3RpdmUiOnRydWUsImlzUHJlbWl1bSI6ZmFsc2UsImlhdCI6MTY5MTEwNjcyMiwiZXhwIjoxNjkxMTkzMTIyfQ.AH6qwnxkzpafMNEqpEHpcoUO4hIkgWfcsuBVCH_Skjw"
+            "x-access-token": token,
           },
         }
       );
@@ -48,21 +47,29 @@ export const findSong = (name) => {
 export const searchId = (id) => {
   return async (dispatch) => {
     const token = localStorage.getItem("token");
-     try {
-        const response = await axios.get(`http://localhost:3001/music/detail/${id}`,
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/music/detail/${id}`,
         {
           headers: {
-            "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjExLCJ1c2VybmFtZSI6ImNhcmxhX21hcnRpbmV6IiwiZW1haWwiOiJjYXJsYW1hcnRpbmV6Nzg5QGV4YW1wbGUuY29tIiwiaXNBY3RpdmUiOnRydWUsImlzUHJlbWl1bSI6ZmFsc2UsImlhdCI6MTY5MTEwNjcyMiwiZXhwIjoxNjkxMTkzMTIyfQ.AH6qwnxkzpafMNEqpEHpcoUO4hIkgWfcsuBVCH_Skjw"
+            "x-access-token": token,
           },
         }
-        );
-        dispatch({
-           type: SEARCH_ID,
-           payload: response.data,
-        });
-        return response.data;
-     } catch (error) {
-        console.error(error);
-     }
+      );
+      dispatch({
+        type: SEARCH_ID,
+        payload: response.data,
+      });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
   };
 };
+
+export const filterByGenre = (payload) => {
+  return{
+    type:GET_SONGS_BY_GENRE,
+    payload
+  }
+}

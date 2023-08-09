@@ -1,8 +1,8 @@
-  /* .navbar {
+  .navbar {
     width: 100%;
     background-color: rgba(0, 0, 0, 0);
     padding: 10px;
-    margin-top: 2em;
+   
     margin-bottom: 2em;
   }
   
@@ -18,7 +18,7 @@
     border-radius: 8px;
     margin: 0 auto;
     max-width: 400px;
-    margin-top: 1em;
+    margin-top: em;
     justify-self: flex-start;
     margin-left: 5em;
     margin-right: 5em;
@@ -121,7 +121,7 @@
   cursor: pointer;
   border-radius: 100px;
   justify-content: center;
-} */
+}
 
 
 .navbar_container{

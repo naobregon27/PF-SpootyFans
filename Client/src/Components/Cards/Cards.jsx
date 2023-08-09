@@ -1,16 +1,14 @@
 import Card from "../Card/Card"
-import {useSelector} from "react-redux";
 
-const Cards = () => {
 
-    const songs = useSelector((state) => state.songs)
+const Cards = ({ songs }) => {
 
     return (
         <div>
             {songs.map((song) => {
                 return (
                     <Card 
-                   key = {song.id}
+                    key = {song.id}
                     id = {song.id}
                         name = {song.name}
                         image = {song.imageUrl}
