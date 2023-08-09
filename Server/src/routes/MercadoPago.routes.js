@@ -9,16 +9,14 @@ mercadoPagoRouter.get("/", function () {
 });
 
 mercadoPagoRouter.post("/create_preference", async (req, res) => {
-
-    const Order = await createOrder();
-
     try {
-        res.status(200).json(Order);
+        await createOrder(req, res);
     } catch (error) {
-        return res.status(404).send(error.massage);
+        console.log(error);
+        return res.status(500).json({
+            error: "Error creating preference"
+        });
     }
-
-    
 });
 
 //informacion de la compra

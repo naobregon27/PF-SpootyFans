@@ -1,34 +1,39 @@
+const mercadopago = require('mercadopago');
+const createOrder = async (req, res) => {
 
-const createOrder = async () => {
+    try {
+        const price = Number(req.body.price);
+        const quantity = Number(req.body.quantity);
+        const description = req.body.description;
 
-    let preference = {
-        items: [
-            {
-                title: req.body.description,
-                unit_price: Number(req.body.price),
-                quantity: Number(req.body.quantity),
-            }
-        ],
-        back_urls: {
-            "success": "http://localhost:3001/feedback",
-            "failure": "http://localhost:3001/feedback",
-            //"pending": "http://localhost:3001/feedback"
-        },
-        auto_return: "approved",
-    };
+        const preference = {
+            items: [
+                {
+                    title: description,
+                    unit_price: price,
+                    quantity: quantity,
+                }
+            ],
+            back_urls: {
+                "success": "http://localhost:3001/feedback",
+                "failure": "http://localhost:3001/feedback",
+                //"pending": "http://localhost:3001/feedback"
+            },
+            auto_return: "approved",
+        };
 
+        const response = await mercadopago.preferences.create(preference);
+        const preferenceId = response.body.id;
 
-    const result = await mercadopago.preferences.create(preference)
-        .then(function (response) {
-            res.json({
-                id: response.body.id
-            });
-        }).catch(function (error) {
-            console.log(error);
+        res.status(200).json({
+            id: preferenceId
         });
-
-
-    console.log(result)
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            error: "Error creating preference"
+        });
+    }
 }
 
 
