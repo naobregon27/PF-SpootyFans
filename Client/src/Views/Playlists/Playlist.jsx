@@ -3,8 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { allSongs } from '../../Redux/actions';
 import axios from 'axios';
 import style from "./Playlist.module.css";
+import { useNavigate , NavLink } from 'react-router-dom';
 
 const Playlist = () => {
+
+  const navigate = useNavigate();
 
   const songs = useSelector((state) => state.songsCopy)
 
@@ -39,13 +42,14 @@ const Playlist = () => {
   const createPlaylist = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.post(`http://localhost:3001/playlist`, { name: newPlaylist }, {
+      const {data} = await axios.post(`http://localhost:3001/playlist`, { name: newPlaylist }, {
         headers: {
           "x-access-token": token,
         },
       });
-      setPlaylists([...playlists, response.data]);
+      setPlaylists([...playlists, data]);
       setNewPlaylist('');
+      navigate(`/playlist/${data.id}`)
     } catch (error) {
       console.error('Error creating playlist:', error);
     }
@@ -70,7 +74,7 @@ const Playlist = () => {
   // const removeSongFromPlaylist = async () => {
   //   try {
   //     const token = localStorage.getItem("token");
-  //     await axios.put(`http://localhost:3001/playlist/removeSong`, { playListId: selectedPlaylist, songId: songToRemove }, {
+  //     await axios.put(`http://localhost:3001/playlist/removeSong/`, { playListId: selectedPlaylist, songId: songToRemove }, {
   //       headers: {
   //         "x-access-token": token,
   //       },
@@ -82,10 +86,10 @@ const Playlist = () => {
   //   }
   // };
 
-  const deletePlaylist = async (playlistId) => {
+  const deletePlaylist = async (playListId) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:3001//playlist/${playlistId}`, {
+      await axios.delete(`http://localhost:3001/playlist/${playListId}`, {
         headers: {
           "x-access-token": token,
         },
@@ -107,18 +111,8 @@ const Playlist = () => {
   return (
     <div className={style.mainContainer}>
       
-      <ul className="flex flex-col justify-center items-center">
-        <h2>My playlists:</h2>
-        {playlists.map((playlist) => (
-          <li key={playlist.id}>
-            {playlist.name}
-            <button className={style.botonx} onClick={() => deletePlaylist(playlist.id)}>Delete playlist</button>
-          </li>
-        ))}
-      </ul>
-
       <div>
-        <h2 className="flex flex-col justify-center items-center">or Create Playlist...</h2>
+        <h2 className="flex flex-col justify-center items-center">Create Playlist...</h2>
         <input
           type="text"
           value={newPlaylist}
@@ -126,6 +120,20 @@ const Playlist = () => {
         />
         <button className={style.boton} onClick={createPlaylist}>Create</button>
       </div>
+
+      <ul className="flex flex-col justify-center items-center">
+        <h2>My playlists:</h2>
+        {playlists.map((playlist) => (
+          <li key={playlist.id}>
+            <NavLink to={`/playlist/${playlist.id}`}>
+            {playlist.name}
+            </NavLink>
+            
+            <button className={style.botonx} onClick={() => deletePlaylist(playlist.id)}>x</button>
+          </li>
+        ))}
+      </ul>
+
 
       <div>
         <h2 className="flex flex-col justify-center items-center">Add Song to Playlist</h2>
