@@ -37,7 +37,6 @@ Esta ruta recibe los datos necesarios para crear un usuario.
 {
   "id": 11, // id del usuario creado
   "username": "usuario1", // nombre de usuario
-  "password": "$2b$10$vEseEaslQYZrFsEmrDyh6eHjNC1I4elKg5fdsZT6OfsYsFgf0u1YS", // contraseña encriptada
   "email": "usuario1@example.com", // email 
   "isActive": true, // indica si está activo
   "isPremium": false, // indica si es premium
@@ -71,6 +70,23 @@ Esta ruta cambia el valor de "isPremium" a su valor opuesto.
 ```json
 {
   "message": "Usuario modificado correctamente." // mensaje
+}
+```
+***
+**- [GET] - Get User By Id:**
+Esta ruta devuelve toda la información de un usuario. Aunque esta ruta es un poco diferente a las otras. Si en vez pasar una id por params, se envía la palabra "this", devuelve la información del usuario que tiene la sesión iniciada (la ruta sería "/user/info/this").
+**Ruta:** /user/info/:userId
+**Devuelve:**
+```json
+{
+  "id": 10, // id del usuario
+  "username": "juan_gonzalez", // nombre de usuario
+  "email": "juanPremium1@example.com", // email
+  "isPremium": true, // indica si es premium
+  "isActive": true, // indica si está activo
+  "isAdmin": false, // indica si es admin
+  "createdAt": "2023-08-10T13:03:35.000Z", // fecha de creación del usuario
+  "updatedAt": "2023-08-10T13:03:35.000Z" // fecha de actualización del usuario
 }
 ```
 
