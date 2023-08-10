@@ -191,30 +191,30 @@ module.exports = {
   ],
 
   categories: [
-    {
-      name: "Pop",
-      description:
-        "La música pop, también conocida simplemente como pop, es un género de música popular que tuvo su origen a finales de los años 1950 como una derivación del Pop tradicional, en combinación con otros géneros musicales que estaban de moda en aquel momento.​​",
-    },
-    {
-      name: "Rock",
-      description:
-        "El rock es un género musical que se caracteriza por utilizar instrumentos eléctricos como la guitarra eléctrica, el bajo y la batería, y suele incluir voces fuertes y enérgicas.",
-    },
-    {
-      name: "Hip-Hop",
-      description:
-        "El hip-hop es un género musical que combina música, rap y elementos de la cultura urbana. ",
-    },
-    {
-      name: "Electrónica",
-      description:
-        "La música electrónica es un género que utiliza principalmente equipos y tecnología electrónica para producir sonidos y ritmos.",
-    },
-    {
-      name: "Reggaetón",
-      description:
-        "El reggaetón es un género musical originario de Puerto Rico que combina influencias del reggae, dancehall, hip-hop y música latina.",
-    },
+    // {
+    //   name: "Pop",
+    //   description:
+    //     "La música pop, también conocida simplemente como pop, es un género de música popular que tuvo su origen a finales de los años 1950 como una derivación del Pop tradicional, en combinación con otros géneros musicales que estaban de moda en aquel momento.​​",
+    // },
+    // {
+    //   name: "Rock",
+    //   description:
+    //     "El rock es un género musical que se caracteriza por utilizar instrumentos eléctricos como la guitarra eléctrica, el bajo y la batería, y suele incluir voces fuertes y enérgicas.",
+    // },
+    // {
+    //   name: "Hip-Hop",
+    //   description:
+    //     "El hip-hop es un género musical que combina música, rap y elementos de la cultura urbana. ",
+    // },
+    // {
+    //   name: "Electrónica",
+    //   description:
+    //     "La música electrónica es un género que utiliza principalmente equipos y tecnología electrónica para producir sonidos y ritmos.",
+    // },
+    // {
+    //   name: "Reggaetón",
+    //   description:
+    //     "El reggaetón es un género musical originario de Puerto Rico que combina influencias del reggae, dancehall, hip-hop y música latina.",
+    // },
   ],
 };

@@ -1,9 +1,10 @@
 //import { songs } from "../../../Server/data";
-import { GET_ALL_SONGS, GET_SONGS_BY_NAME, SEARCH_ID, GET_SONGS_BY_GENRE } from "./actions";
+import { GET_ALL_SONGS, GET_SONGS_BY_NAME, SEARCH_ID, GET_SONGS_BY_GENRE, GET_ALL_CATEGORIES } from "./actions";
 
 const initialState = {
    songs: [],
    songsCopy: [],
+   categories: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -31,6 +32,22 @@ const reducer = (state = initialState, action) => {
             ...state,
             songsCopy: state.songs.filter((song) => song.genre === action.payload)
          }
+
+      case GET_ALL_CATEGORIES:
+         const genres = new Set()
+         genres.add("All")
+         action.payload.forEach((genre) => genres.add(genre.name))
+         const newGenres =  Array.from(genres).map((genresName) => {
+            return{
+               name:genresName
+            }
+         })
+
+         return{
+            ...state,
+            categories: newGenres
+         }
+      
 
       default:
          return { ...state };

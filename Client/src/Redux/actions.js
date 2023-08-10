@@ -5,6 +5,7 @@ export const GET_SONGS_BY_NAME = "GET_SONGS_BY_NAME";
 export const GET_SONGS_BY_ARTIST = "GET_SONGS_BY_ARTIST";
 export const GET_SONGS_BY_GENRE = "GET_SONGS_BY_GENRE";
 export const SEARCH_ID = "SEARCH_ID";
+export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES";
 
 //Trae todas las canciones dentro de la base de datos
 export const allSongs = () => {
@@ -66,6 +67,23 @@ export const searchId = (id) => {
     }
   };
 };
+
+export const allCategories = () =>{
+  return async  (dispatch) => {
+    const token = localStorage.getItem("token")
+    try {
+      const {data} = await axios.get("http://localhost:3001/category", {
+        headers: {
+          "x-access-token": token,
+        }
+      });
+      dispatch({type: GET_ALL_CATEGORIES, payload: data})
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+
 
 export const filterByGenre = (payload) => {
   return{
