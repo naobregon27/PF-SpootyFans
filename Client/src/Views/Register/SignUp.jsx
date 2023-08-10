@@ -10,7 +10,7 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [isChecked, setIsChecked] = useState(false);
+  // const [isChecked, setIsChecked] = useState(false);
   const [errors, setErrors] = useState({});
 
   const navigate = useNavigate();
@@ -34,8 +34,6 @@ const SignUp = () => {
         username,
         email,
         password,
-        isActive: true,
-        isPremium: true,
       });
 
       navigate("/login");
@@ -62,9 +60,9 @@ const SignUp = () => {
     if (password !== confirmPassword) {
       errors.confirmPassword = "Passwords do not match";
     }
-    if (!isChecked) {
-      errors.isChecked = "You must agree to the terms and conditions";
-    }
+    // if (!isChecked) {
+    //   errors.isChecked = "You must agree to the terms and conditions";
+    // }
     return errors;
   };
 
