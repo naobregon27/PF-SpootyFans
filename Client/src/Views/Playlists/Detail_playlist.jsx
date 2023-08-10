@@ -63,6 +63,23 @@ const Detail_playlist = () => {
     }
   };
 
+  const deleteSong = async (songId) =>{
+
+    try {
+      
+      const token = localStorage.getItem("token")
+      await axios.put(`http://localhost:3001/playlist/removeSong/`, { playListId: Number(id), songId: Number(songId) }, {
+      headers: {
+      "x-access-token": token,
+        }
+      })
+
+    } catch (error) {
+      onsole.error("Error deleting song!", error);
+    }
+
+    
+  }
 
   const changeNamePlaylist = async () => {
 
