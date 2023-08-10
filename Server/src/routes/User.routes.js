@@ -3,6 +3,7 @@ const userRegister = require("../controllers/users/userRegister");
 const userLogin = require("../controllers/users/userLogin");
 const authentication = require("../middlewares/authentication");
 const setPremium = require("../controllers/users/setPremium");
+const getUserById = require("../controllers/users/getUserById");
 
 userRouter.post("/register", async (req, res) => {
   const userData = req.body;
@@ -38,6 +39,20 @@ userRouter.put("/setPremium", authentication, async (req, res) => {
     return res
       .status(200)
       .json({ message: "Usuario modificado correctamente." });
+  }
+});
+
+userRouter.get("/info/:userId", authentication, async (req, res) => {
+  const { userId } = req.params;
+  const userFound = await getUserById({
+    thisUserId: req.user.userId,
+    otherUserId: userId,
+  });
+
+  if (userFound.error) {
+    return res.status(400).json({ error: userFound.error });
+  } else {
+    return res.status(200).json(userFound);
   }
 });
 
