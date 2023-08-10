@@ -63,7 +63,16 @@ Esta ruta recibe los datos necesarios para iniciar sesión con un usuario existe
   "token": "eyJhbGciOiJIUzI1..." // token de la sesión (24hs)
 }
 ```
-
+***
+**- [PUT] - Set Premium:**
+Esta ruta cambia el valor de "isPremium" a su valor opuesto.
+**Ruta:** /user/setPremium
+**Devuelve:**
+```json
+{
+  "message": "Usuario modificado correctamente." // mensaje
+}
+```
 
 ## Canciones:
 
