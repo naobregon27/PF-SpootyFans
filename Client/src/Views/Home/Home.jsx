@@ -12,14 +12,13 @@ import Card_playlists from '../../Components/Card_playlists/Card_playlists';
 function Home() {
   const dispatch = useDispatch();
   const songs = useSelector((state) => state.songsCopy);
-  const playLists = useSelector((state) => state.playListsCopy);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
 
   useEffect(() => {
     dispatch(allSongs());
+    
   }, [dispatch]);
-
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -35,7 +34,7 @@ function Home() {
         <SearchBar />
         <Filters />
       </div>
-      <Cards songs={currentItems} playlists={playLists}/>
+      <Cards songs={currentItems} />
       <div className={style.pagination_container}>
         <Pagination
           currentPage={currentPage}
@@ -44,7 +43,6 @@ function Home() {
           onPageChange={handlePageChange}
         />
       </div>
-
       <Card_playlists/>
     </div>
   );
