@@ -52,7 +52,18 @@ const userRegister = async ({
 
       if (!createdUser) throw new Error("Error al crear el usuario.");
 
-      return createdUser;
+      const userInfo = {
+        id: createdUser.id,
+        username: createdUser.username,
+        email: createdUser.email,
+        isPremium: createdUser.isPremium,
+        isActive: createdUser.isActive,
+        isAdmin: createdUser.isAdmin,
+        createdAt: createdUser.createdAt,
+        updatedAt: createdUser.updatedAt,
+      };
+
+      return userInfo;
     }
     const newUser = {
       username,
@@ -65,7 +76,18 @@ const userRegister = async ({
 
     if (!createdUser) throw new Error("Error al crear el usuario.");
 
-    return createdUser;
+    const userInfo = {
+      id: createdUser.id,
+      username: createdUser.username,
+      email: createdUser.email,
+      isPremium: createdUser.isPremium,
+      isActive: createdUser.isActive,
+      isAdmin: createdUser.isAdmin,
+      createdAt: createdUser.createdAt,
+      updatedAt: createdUser.updatedAt,
+    };
+
+    return userInfo;
   } catch (error) {
     return { error: error.message };
   }

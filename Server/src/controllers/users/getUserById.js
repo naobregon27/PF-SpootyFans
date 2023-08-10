@@ -9,7 +9,18 @@ const getUserById = async ({ thisUserId, otherUserId }) => {
       if (!userFound)
         throw new Error(`No se encontró el usuario con la id: ${thisUserId}`);
 
-      return userFound;
+      const userInfo = {
+        id: userFound.id,
+        username: userFound.username,
+        email: userFound.email,
+        isPremium: userFound.isPremium,
+        isActive: userFound.isActive,
+        isAdmin: userFound.isAdmin,
+        createdAt: userFound.createdAt,
+        updatedAt: userFound.updatedAt,
+      };
+
+      return userInfo;
     }
 
     const userFound = await User.findByPk(otherUserId);
@@ -17,7 +28,18 @@ const getUserById = async ({ thisUserId, otherUserId }) => {
     if (!userFound)
       throw new Error(`No se encontró el usuario con la id: ${thisUserId}`);
 
-    return userFound;
+    const userInfo = {
+      id: userFound.id,
+      username: userFound.username,
+      email: userFound.email,
+      isPremium: userFound.isPremium,
+      isActive: userFound.isActive,
+      isAdmin: userFound.isAdmin,
+      createdAt: userFound.createdAt,
+      updatedAt: userFound.updatedAt,
+    };
+
+    return userInfo;
   } catch (error) {
     return { error: error.message };
   }
