@@ -7,8 +7,10 @@ El token, al desencriptarse toma forma de un objeto similar a este:
       userId: 1, // id del usuario 
       username: 'Usuario1', // nombre del usuario
       email: 'usuario1@example.com', // email del usuario 
+      profileImageUrl: 'url/ejemplo/...' // imagen de perfil del usuario
       isActive: true, // indica si el usuario está activo 
       isPremium: true, // indica si el usuario es premium
+      isAdmin: false, // indica si el usuario tiene permisos de administrador
       iat: 1691087664, // fecha de creación del token (en ms)
       exp: 1691174064 // fecha de expiración del token (en ms)
     }
@@ -28,8 +30,6 @@ Esta ruta recibe los datos necesarios para crear un usuario.
   "username": "usuario1", // nombre de usuario
   "password": "password1", // contraseña 
   "email": "usuario1@example.com", // email 
-  "isActive": true, // indica si el usuario está activo
-  "isPremium": false // indica si el usuario es premium
 }
 ```
 **Devuelve:**
@@ -38,8 +38,10 @@ Esta ruta recibe los datos necesarios para crear un usuario.
   "id": 11, // id del usuario creado
   "username": "usuario1", // nombre de usuario
   "email": "usuario1@example.com", // email 
+  "profileImageUrl": "url/ejemplo/...", // imagen de perfil del usuario
   "isActive": true, // indica si está activo
   "isPremium": false, // indica si es premium
+  "isAdmin": false, // indica si el usuario tiene permisos de administrador 
   "updatedAt": "2023-08-03T20:21:49.401Z", // fecha de actualización del usuario
   "createdAt": "2023-08-03T20:21:49.401Z" // fecha de creación del usuario
 }
@@ -82,6 +84,7 @@ Esta ruta devuelve toda la información de un usuario. Aunque esta ruta es un po
   "id": 10, // id del usuario
   "username": "juan_gonzalez", // nombre de usuario
   "email": "juanPremium1@example.com", // email
+  "profileImageUrl": "url/ejemplo/...", // imagen de perfil del usuario
   "isPremium": true, // indica si es premium
   "isActive": true, // indica si está activo
   "isAdmin": false, // indica si es admin
