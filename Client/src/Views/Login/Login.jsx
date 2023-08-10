@@ -1,6 +1,7 @@
 import { useState } from "react";
 // import logo from "../../assets/logoSpotiFans.svg";
-import loginImg from "../../assets/loginImage.png";
+import dancehall from "../../assets/dancehall.png";
+import sitting from "../../assets/sitting.png";
 import { NavLink } from "react-router-dom";
 import validation from "../../Components/Validation/Validation";
 import axios from "axios";
@@ -48,7 +49,7 @@ const Form = () => {
             hopalternativoDeathmetalPoprockRagtimeDowntempoJazzfusionRockprogresivoHardrockReguetónclásicoPostrockTangoElectropopalternativoAmbientalblackmetalDancepopPostpunkrevivalJazzcontemporáneoReggaerootsElectroclashPopalternativoIndiefolkPsychedelicrockSoulalternativoBigbandTrapcoreElectrónicaexperimentalAmbientpopNeofolkFolkrockEDMalternativoRapcoreCumbiavilleraPopexperimentalNujazzMetalalternativoCountryalternativoSynthpopIndiepopPunkpopDarkambientMelodicdeathmetalR&BcontemporáneoNoiserock
          </p>
          <main className="grid grid-cols-2 max-md:flex max-md:justify-center max-md:items-center justify-center justify-items-center items-center place-items-center w-screen h-screen overflow-hidden font-custom absolute z-50">
-            <div className="flex flex-col justify-center items-center min-w-[22rem] w-[25rem] h-[30rem] backdrop-blur-[6px] shadow-xl rounded-[2rem] z-50">
+            <div className="flex flex-col justify-center items-center min-w-[22rem] w-[25rem] h-[30rem] backdrop-blur-[6px] max-md:backdrop-blur-[10px] shadow-xl rounded-[2rem] z-50">
                <h1 className="text-[3.5rem] mb-2 tracking-[2px]">Log in</h1>
                <form
                   className="flex flex-col justify-center items-center"
@@ -104,7 +105,7 @@ const Form = () => {
                <p className="m-[1rem] ">
                   Don't have an account?
                   <NavLink
-                     className="ml-5 text-[1.1rem] hover:text-[#ff50aa] duration-[.3s]"
+                     className="ml-5 text-[1.2rem] hover:text-[#ff50aa] duration-[.3s]"
                      to="/signup">
                      Sign Up
                   </NavLink>
@@ -112,7 +113,14 @@ const Form = () => {
             </div>
 
             <div className="h-screen flex justify-center items-center max-md:absolute max-md:w-[60rem] z-0">
-               <img className="w-[50rem]" src={loginImg} alt="" />
+               <img
+                  className="flex justify-center items-center w-[40rem] animate-transitionimageone  absolute"
+                  src={dancehall}
+               />
+               <img
+                  className="flex justify-center items-center w-[40rem] animate-transitionimagetwo absolute"
+                  src={sitting}
+               />
             </div>
          </main>
       </div>
