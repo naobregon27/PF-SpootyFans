@@ -28,6 +28,7 @@ const userLogin = async ({ username, password, isThirdPartyLogin }) => {
       email: userFound.email,
       isActive: userFound.isActive,
       isPremium: userFound.isPremium,
+      isAdmin: userFound.isAdmin,
     };
 
     const { SECRET_KEY } = process.env;
