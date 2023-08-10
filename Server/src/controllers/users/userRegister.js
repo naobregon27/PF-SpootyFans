@@ -7,24 +7,12 @@ const userRegister = async ({
   username,
   password,
   email,
-  isActive,
-  isPremium,
+  profileImageUrl,
   isThirdPartyLogin,
 }) => {
   try {
-    if (
-      !username ||
-      (!password && !isThirdPartyLogin) ||
-      !email ||
-      isActive === undefined ||
-      isPremium === undefined
-    )
+    if (!username || (!password && !isThirdPartyLogin) || !email)
       throw new Error("Datos insuficientes.");
-
-    if (typeof isActive !== "boolean" || typeof isPremium !== "boolean")
-      throw new Error(
-        'El tipo de dato de "isActive" o "isPremium" no era el esperado.'
-      );
 
     const existUser = await User.findOne({ where: { username } });
 
@@ -44,8 +32,6 @@ const userRegister = async ({
         username: validatedUsername,
         password: await passwordEncrypt(validatedPassword),
         email,
-        isActive,
-        isPremium,
       };
 
       const createdUser = await User.create(newUser);
@@ -56,6 +42,7 @@ const userRegister = async ({
         id: createdUser.id,
         username: createdUser.username,
         email: createdUser.email,
+        profileImageUrl: createdUser.profileImageUrl,
         isPremium: createdUser.isPremium,
         isActive: createdUser.isActive,
         isAdmin: createdUser.isAdmin,
@@ -65,11 +52,11 @@ const userRegister = async ({
 
       return userInfo;
     }
+
     const newUser = {
       username,
       email,
-      isActive,
-      isPremium,
+      profileImageUrl,
     };
 
     const createdUser = await User.create(newUser);
@@ -80,6 +67,7 @@ const userRegister = async ({
       id: createdUser.id,
       username: createdUser.username,
       email: createdUser.email,
+      profileImageUrl: createdUser.profileImageUrl,
       isPremium: createdUser.isPremium,
       isActive: createdUser.isActive,
       isAdmin: createdUser.isAdmin,

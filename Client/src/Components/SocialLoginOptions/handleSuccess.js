@@ -8,8 +8,7 @@ export const handleSuccessRegister = async (credentialResponse) => {
     const userData = {
       username,
       email: decoded.email,
-      isActive: true,
-      isPremium: false,
+      profileImageUrl: decoded.picture,
       isThirdPartyLogin: true,
     };
     const response = await axios.post(

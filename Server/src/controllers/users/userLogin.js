@@ -26,6 +26,7 @@ const userLogin = async ({ username, password, isThirdPartyLogin }) => {
       userId: userFound.id,
       username: userFound.username,
       email: userFound.email,
+      profileImageUrl: userFound.profileImageUrl,
       isActive: userFound.isActive,
       isPremium: userFound.isPremium,
       isAdmin: userFound.isAdmin,
