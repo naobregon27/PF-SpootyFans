@@ -19,15 +19,15 @@ musicRouter.get("/", authentication, async (req, res) => {
   const songs = await getSongByName(name);
 
   if (songs.error) {
-    res.status(400).json({ error: songs.error });
+    return res.status(400).json({ error: songs.error });
   } else {
-    res.status(200).json(songs);
+    return res.status(200).json(songs);
   }
 });
 
 musicRouter.get("/all", authentication, async (req, res) => {
   const songs = await Song.findAll();
-  res.status(200).json(songs);
+  return res.status(200).json(songs);
 });
 
 

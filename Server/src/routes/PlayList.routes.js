@@ -13,9 +13,9 @@ playListRouter.get("/", authentication, async (req, res) => {
   const playLists = await getAllPlayListsByUserId(userId);
 
   if (playLists.error) {
-    res.status(400).json({ error: playLists.error });
+    return res.status(400).json({ error: playLists.error });
   } else {
-    res.status(200).json(playLists);
+    return res.status(200).json(playLists);
   }
 });
 
@@ -24,9 +24,9 @@ playListRouter.post("/", authentication, async (req, res) => {
   const createdPlayList = await postPlayList({ ...req.body, userId });
 
   if (createdPlayList.error) {
-    res.status(400).json({ error: createdPlayList.error });
+    return res.status(400).json({ error: createdPlayList.error });
   } else {
-    res.status(200).json(createdPlayList);
+    return res.status(200).json(createdPlayList);
   }
 });
 
@@ -36,9 +36,9 @@ playListRouter.get("/:playListId", authentication, async (req, res) => {
   const playList = await getPlayListById(playListId);
 
   if (playList.error) {
-    res.status(400).json({ error: playList.error });
+    return res.status(400).json({ error: playList.error });
   } else {
-    res.status(200).json(playList);
+    return res.status(200).json(playList);
   }
 });
 
@@ -47,9 +47,11 @@ playListRouter.post("/addSong", authentication, async (req, res) => {
   const songAdded = await addSongToPlayList({ ...req.body, userId });
 
   if (songAdded.error) {
-    res.status(400).json({ error: songAdded.error });
+    return res.status(400).json({ error: songAdded.error });
   } else {
-    res.status(200).json({ message: "Canción añadida satisfactoriamente." });
+    return res
+      .status(200)
+      .json({ message: "Canción añadida satisfactoriamente." });
   }
 });
 
@@ -60,9 +62,11 @@ playListRouter.delete("/:playListId", authentication, async (req, res) => {
   const deletedPlayList = await deletePlayList({ playListId, userId });
 
   if (deletedPlayList.error) {
-    res.status(400).json({ error: deletedPlayList.error });
+    return res.status(400).json({ error: deletedPlayList.error });
   } else {
-    res.status(200).json({ message: "PlayList eliminada satisfactoriamente." });
+    return res
+      .status(200)
+      .json({ message: "PlayList eliminada satisfactoriamente." });
   }
 });
 
@@ -72,9 +76,11 @@ playListRouter.put("/removeSong", authentication, async (req, res) => {
   const removedSong = await removeSongFromPlayList({ ...req.body, userId });
 
   if (removedSong.error) {
-    res.status(400).json({ error: removedSong.error });
+    return res.status(400).json({ error: removedSong.error });
   } else {
-    res.status(200).json({ message: "Canción removida satisfactoriamente." });
+    return res
+      .status(200)
+      .json({ message: "Canción removida satisfactoriamente." });
   }
 });
 
@@ -88,9 +94,9 @@ playListRouter.put("/:playListId", authentication, async (req, res) => {
   });
 
   if (modifiedPlayList.error) {
-    res.status(400).json({ error: modifiedPlayList.message });
+    return res.status(400).json({ error: modifiedPlayList.message });
   } else {
-    res.status(200).json(modifiedPlayList);
+    return res.status(200).json(modifiedPlayList);
   }
 });
 
