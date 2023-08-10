@@ -12,8 +12,8 @@ const Detail_playlist = () => {
 
   const [playlist, setPlaylist] = useState({});
   const [songToAdd, setSongToAdd] = useState("");
-  const [songToRemove, setSongToRemove] = useState("");
   const [rerender, setRerender] = useState(false);
+  const [changeName, setChangeName] = useState("");
 
   const getPlaylistDetail = async (playListId) => {
     try {
@@ -36,7 +36,7 @@ const Detail_playlist = () => {
     if (id) {
       getPlaylistDetail(id);
     }
-  }, [id, rerender]);
+  }, [id, rerender, playlist.name, playlist.Songs]);
 
   const addSongToPlaylist = async () => {
     try {
@@ -63,28 +63,25 @@ const Detail_playlist = () => {
     }
   };
 
-  const removeSongFromPlaylist = async () => {
+
+  const changeNamePlaylist = async () => {
+
     try {
+      const playListId = Number(id);
       const token = localStorage.getItem("token");
-      await axios.put(
-        `http://localhost:3001/playlist/removeSong/`,
-        { playListId: Number(id), songId: Number(songToAdd) },
-        {
-          headers: {
-            "x-access-token": token,
-          },
-        }
-      );
-      setSongToRemove("");
-      setRerender(!rerender);
-      console.log(
-        "eliminada?",
-        playlist.Songs.map((song) => song.name)
-      );
-    } catch (error) {
-      alert("Error removing song from playlist:", error);
+      await axios.put(`http://localhost:3001/playlist/${playListId}`, {newName: changeName}, {
+      headers:{
+        "x-access-token": token,
+      }
+    })
+    setPlaylist({name: changeName})
+    alert("Name changed!")
+  } catch (error) {
+      console.error("Error changing playlist name", error);
     }
-  };
+
+    
+  }
 
   const findSong = (name) => {
     if (name) {
@@ -97,7 +94,11 @@ const Detail_playlist = () => {
     <div className={style.mainContainer}>
       <h1>{playlist.name && playlist.name}</h1>
 
-      <div className="flex flex-col justify-center items-center">
+      <h3 className="flex flex-col justify-center items-center text-black font-bold">Want to change the name? Write it down!</h3>
+      <input onChange={(e) => setChangeName(e.target.value)} />
+      <button className={style.boton} onClick={changeNamePlaylist}>Change Name</button>
+
+      <div className="flex flex-col justify-center items-center text-black font-bold">
         <h2>What song do you want to add?</h2>
 
         <input list="brow" onChange={(e) => findSong(e.target.value)} />
@@ -117,47 +118,21 @@ const Detail_playlist = () => {
       </div>
 
       <div className="flex flex-col justify-center items-center">
-        <h2>songs:</h2>
+        <h2 className="flex flex-col justify-center items-center text-black font-bold">songs:</h2>
 
         <ul>
           {playlist.Songs && playlist.Songs.length > 0 ? (
             playlist.Songs.map((song) => (
               <li key={song.id}>
                 <NavLink to={`/detail/${song.id}`}>{song.name}</NavLink>
+
+                <button className={style.botonx} onClick={() => deleteSong(song.id)}>x</button>
               </li>
             ))
           ) : (
             <li>This playlist is empty</li>
           )}
         </ul>
-
-        <hr />
-
-        <div className="flex flex-col justify-center items-center">
-          <h2>What song do you want to remove?</h2>
-
-          <input list="brow" onChange={(e) => findSong(e.target.value)} />
-          <datalist id="brow">
-            {songs.map((song) => (
-              <option key={song.id} value={song.name}>
-                {song.name}
-              </option>
-            ))}
-          </datalist>
-
-          <div>
-            <button className={style.botonx} onClick={removeSongFromPlaylist}>
-              x
-            </button>
-          </div>
-        </div>
-
-        {/* <input
-          type="text"
-          value={songToRemove}
-          onChange={(e) => setSongToRemove(e.target.value)}
-        />
-        <button className={style.botonx} onClick={removeSongFromPlaylist}>Remove Song</button> */}
       </div>
     </div>
   );
