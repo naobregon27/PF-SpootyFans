@@ -2,20 +2,24 @@ import React, { useEffect, useState } from 'react';
 import Cards from '../../Components/Cards/Cards';
 import { useDispatch, useSelector } from 'react-redux';
 import {allSongs} from "../../Redux/actions";
+import {allPlayLists} from "../../Redux/actions";
 import Pagination from "../../Components/Pagination/Pagination"
 import Filters from "./Filters/Filters";
 import SearchBar from "./SearchBar/SearchBar";
 import style from "./Home.module.css";
+import Card_playlists from '../../Components/Card_playlists/Card_playlists';
 
 function Home() {
   const dispatch = useDispatch();
   const songs = useSelector((state) => state.songsCopy);
+  const playLists = useSelector((state) => state.playListsCopy);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
 
   useEffect(() => {
     dispatch(allSongs());
   }, [dispatch]);
+
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -31,7 +35,7 @@ function Home() {
         <SearchBar />
         <Filters />
       </div>
-      <Cards songs={currentItems} />
+      <Cards songs={currentItems} playlists={playLists}/>
       <div className={style.pagination_container}>
         <Pagination
           currentPage={currentPage}
@@ -40,6 +44,8 @@ function Home() {
           onPageChange={handlePageChange}
         />
       </div>
+
+      <Card_playlists/>
     </div>
   );
 }

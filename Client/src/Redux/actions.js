@@ -5,6 +5,7 @@ export const GET_SONGS_BY_NAME = "GET_SONGS_BY_NAME";
 export const GET_SONGS_BY_ARTIST = "GET_SONGS_BY_ARTIST";
 export const GET_SONGS_BY_GENRE = "GET_SONGS_BY_GENRE";
 export const SEARCH_ID = "SEARCH_ID";
+export const GET_ALL_PLAYLISTS = "GET_ALL_PLAYLISTS";
 
 //Trae todas las canciones dentro de la base de datos
 export const allSongs = () => {
@@ -20,6 +21,23 @@ export const allSongs = () => {
       dispatch({ type: GET_ALL_SONGS, payload: songs });
     } catch (error) {
       console.error("Error while fetching songs:", error.message);
+    }
+  };
+};
+
+export const allPlayLists = () => {
+  return async function (dispatch) {
+    const token = localStorage.getItem("token");
+    try {
+      const { data } = await axios.get("http://localhost:3001/playlist", {
+        headers: {
+          "x-access-token": token,
+        },
+      });
+      const playLists = data;
+      dispatch({ type: GET_ALL_PLAYLISTS, payload: playLists });
+    } catch (error) {
+      console.error("Error while fetching playlists:", error.message);
     }
   };
 };
@@ -68,8 +86,8 @@ export const searchId = (id) => {
 };
 
 export const filterByGenre = (payload) => {
-  return{
-    type:GET_SONGS_BY_GENRE,
-    payload
-  }
-}
+  return {
+    type: GET_SONGS_BY_GENRE,
+    payload,
+  };
+};

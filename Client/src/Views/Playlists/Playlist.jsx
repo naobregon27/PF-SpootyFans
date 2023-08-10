@@ -122,7 +122,7 @@ const Playlist = () => {
       </ul>
 
 
-      <div>
+      {/* <div>
         <h1 className="flex flex-col justify-center items-center text-black font-bold"> Let´s add some songs!</h1>
         <h2 className="flex flex-col justify-center items-center">You wanna add a song?</h2>
 
@@ -154,7 +154,7 @@ const Playlist = () => {
         <hr/>
       
       </div>
-      <button className={style.boton} onClick={addSongToPlaylist}>Add Song</button>
+      <button className={style.boton} onClick={addSongToPlaylist}>Add Song</button> */}
     </div>
   );
 };

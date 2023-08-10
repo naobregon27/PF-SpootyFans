@@ -109,6 +109,11 @@ const Detail_playlist = () => {
 
   return (
     <div className={style.mainContainer}>
+      <div className="flex flex-col justify-center items-center">
+      <NavLink to="/playlist">
+        <button className="flex flex-col justify-center items-center text-black font-bold" style={{ border: '2px solid black' }}>Back</button>
+      </NavLink>
+      </div>
       <h1>{playlist.name && playlist.name}</h1>
 
       <h3 className="flex flex-col justify-center items-center text-black font-bold">Want to change the name? Write it down!</h3>

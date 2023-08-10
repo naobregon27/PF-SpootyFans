@@ -1,9 +1,11 @@
 //import { songs } from "../../../Server/data";
-import { GET_ALL_SONGS, GET_SONGS_BY_NAME, SEARCH_ID, GET_SONGS_BY_GENRE } from "./actions";
+import { GET_ALL_SONGS, GET_SONGS_BY_NAME, SEARCH_ID, GET_SONGS_BY_GENRE, GET_ALL_PLAYLISTS } from "./actions";
 
 const initialState = {
    songs: [],
+   playLists: [],
    songsCopy: [],
+   playlistsCopy: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -14,7 +16,8 @@ const reducer = (state = initialState, action) => {
          
          // case GET_SONGS_BY_NAME:
          // return {...state, songsCopy: action.payload};
-      
+      case GET_ALL_PLAYLISTS:
+         return { ...state, playLists: action.payload, playlistsCopy: action.payload };
       case SEARCH_ID:
          return{
             ...state,
