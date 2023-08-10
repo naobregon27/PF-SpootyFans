@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Cards from '../../Components/Cards/Cards';
 import { useDispatch, useSelector } from 'react-redux';
-import {allSongs, allCategories} from "../../Redux/actions";
+import {allSongs, allPlayLists, allCategories} from "../../Redux/actions";
 import Pagination from "../../Components/Pagination/Pagination"
 import Filters from "./Filters/Filters";
 import SearchBar from "./SearchBar/SearchBar";
 import style from "./Home.module.css";
+import Card_playlists from '../../Components/Card_playlists/Card_playlists';
 
 function Home() {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ function Home() {
           onPageChange={handlePageChange}
         />
       </div>
+      <Card_playlists/>
     </div>
   );
 }
