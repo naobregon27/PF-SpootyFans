@@ -13,6 +13,7 @@ const Detail_playlist = () => {
   const [playlist, setPlaylist] = useState({});
   const [songToAdd, setSongToAdd] = useState("");
   const [rerender, setRerender] = useState(false);
+  const [changeName, setChangeName] = useState("");
 
   const getPlaylistDetail = async (playListId) => {
     try {
@@ -26,7 +27,6 @@ const Detail_playlist = () => {
         }
       );
       setPlaylist(data);
-     
     } catch (error) {
       console.error("Error fetching playlist:", error);
     }
@@ -35,34 +35,66 @@ const Detail_playlist = () => {
   useEffect(() => {
     if (id) {
       getPlaylistDetail(id);
-
-    };
-    
-  }, [id, rerender]);
+    }
+  }, [id, rerender, playlist.name, playlist.Songs]);
 
   const addSongToPlaylist = async () => {
     try {
-       
-       const token = localStorage.getItem("token");
-       await axios.post(
-          `http://localhost:3001/playlist/addSong`,
-          { playListId: Number(id), songId: Number(songToAdd) },
-          {
-             headers: {
-                "x-access-token": token,
-               },
-            }
-            );
-          
-            setSongToAdd("");
-            setRerender(!rerender);
-            //* cambia el estado y lo renderiza arriba en el array de dependencias (2do parametro)
-            console.log("info de la playlist ", playlist.Songs.map((song) => song.name));
+      const token = localStorage.getItem("token");
+      await axios.post(
+        `http://localhost:3001/playlist/addSong`,
+        { playListId: Number(id), songId: Number(songToAdd) },
+        {
+          headers: {
+            "x-access-token": token,
+          },
+        }
+      );
+
+      setSongToAdd("");
+      setRerender(!rerender);
+      //* cambia el estado y lo renderiza arriba en el array de dependencias (2do parametro)
     } catch (error) {
       console.error("Error adding song to playlist:", error);
     }
   };
 
+  const changeNamePlaylist = async () => {
+
+    try {
+      const playListId = Number(id);
+      const token = localStorage.getItem("token");
+      await axios.put(`http://localhost:3001/playlist/${playListId}`, {newName: changeName}, {
+      headers:{
+        "x-access-token": token,
+      }
+    })
+    setPlaylist({name: changeName})
+    alert("Name changed!")
+  } catch (error) {
+      console.error("Error changing playlist name", error);
+    }
+
+    
+  }
+
+  const deleteSong = async (songId) =>{
+
+    try {
+      
+      const token = localStorage.getItem("token")
+      await axios.put(`http://localhost:3001/playlist/removeSong/`, { playListId: Number(id), songId: Number(songId) }, {
+      headers: {
+      "x-access-token": token,
+        }
+      })
+
+    } catch (error) {
+      onsole.error("Error deleting song!", error);
+    }
+
+    
+  }
   const findSong = (name) => {
     if (name) {
       const songFilter = songs.find((song) => song.name === name);
@@ -70,18 +102,16 @@ const Detail_playlist = () => {
     } else return;
   };
 
-
-
   return (
     <div className={style.mainContainer}>
-      
-
       <h1>{playlist.name && playlist.name}</h1>
 
+      <h3>Want to change the name? Write it down!</h3>
+      <input onChange={(e) => setChangeName(e.target.value)} />
+      <button className={style.boton} onClick={changeNamePlaylist}>Change Name</button>
+
       <div className="flex flex-col justify-center items-center">
-        <h2 >
-          Add Song to this Playlist
-        </h2>
+        <h2>Add Song to this Playlist</h2>
 
         <input list="brow" onChange={(e) => findSong(e.target.value)} />
         <datalist id="brow">
@@ -99,22 +129,22 @@ const Detail_playlist = () => {
         </div>
       </div>
 
-      
       <div>
         <h2>songs:</h2>
 
         <ul>
-    {playlist.Songs && playlist.Songs.length > 0 ? (
-      playlist.Songs.map((song) => (
-        <li key={song.id}>
-          <NavLink to={`/detail/${song.id}`}>{song.name}</NavLink>
-        </li>
-      ))
-    ) : (
-      <li>This playlist is empty</li>
-    )}
-  </ul>
-            
+          {playlist.Songs && playlist.Songs.length > 0 ? (
+            playlist.Songs.map((song) => (
+              <li key={song.id}>
+                <NavLink to={`/detail/${song.id}`}>{song.name}</NavLink>
+
+                <button className={style.botonx} onClick={() => deleteSong(song.id)}>x</button>
+              </li>
+            ))
+          ) : (
+            <li>This playlist is empty</li>
+          )}
+        </ul>
       </div>
     </div>
   );
