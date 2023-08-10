@@ -1,10 +1,17 @@
 import style from "./Filters.module.css";
-import {filterByGenre, allSongs} from "../../../Redux/actions";
-import { useDispatch } from "react-redux";
+import {filterByGenre, allSongs, allCategories} from "../../../Redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const Filters = () => {
 
   const dispatch = useDispatch();
+
+  const genres = useSelector((state) => state.categories);
+
+  useEffect(() => {
+    dispatch(allCategories())
+  },[dispatch])
 
   const handleGenre = (event) => {
     event.target.value === "All" ? dispatch(allSongs()) 
@@ -15,12 +22,14 @@ const Filters = () => {
       <div className={style.filters}>
         <div className={style.filter}>
           <select className={style.select} onChange={handleGenre}>
-            <option value="All">All Genres</option>
-            <option value="Pop">Pop</option>
-            <option value="Rock">Rock</option>
-            <option value="Hip-Hop">Hip-Hop</option>
-            <option value="Electronic">Electronic</option>
-            <option value="Reggaeton">Reggaeton</option>
+            <option value="">Select Genre</option>
+            {genres.map((genre) => {
+                return(
+                  <option key={genre.name} value={genre.name}>
+                  {genre.name}
+                  </option>
+                )
+            })}
           </select>
         </div>
       </div>

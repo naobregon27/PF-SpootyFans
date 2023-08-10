@@ -2,8 +2,13 @@ import { useState } from "react";
 import axios from "axios";
 import style from "./Form_song.module.css";
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+import { useSelector } from "react-redux";
+
+
 
 const FormSong = () => {
+  const genres = useSelector((state) => state.categories)
+  const newGenres = genres.filter((genre) => genre.name !== "All")
   const [soundFile, setSoundFile] = useState(null);
   const [imagedFile, setImageFile] = useState(null);
   const [data, setData] = useState({
@@ -146,14 +151,27 @@ const FormSong = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="genre">Genre:</label>
+        <label htmlFor="genre">Genre:</label>
+          <select onChange={handleGenreChange}>
+            <option value="">Select Genre</option>
+            {newGenres.map((genre) => {
+              return(
+                <option key={genre.name} value={genre.name}>
+                  {genre.name}
+                </option>
+              )
+            })}
+          </select>
+
+
+          {/* <label htmlFor="genre">Genre:</label>
           <input
             className={style.datos}
             type="text"
             id="genre"
             value={data.genre}
             onChange={handleGenreChange}
-          />
+          /> */}
         </div>
         <button className={style.boton}
         type="button" onClick={up}>

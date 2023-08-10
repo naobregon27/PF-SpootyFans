@@ -41,7 +41,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         songsCopy: action.payload,
       };
-
+      
     case GET_SONGS_BY_GENRE:
       return {
         ...state,
@@ -64,6 +64,7 @@ const reducer = (state = initialState, action) => {
     default:
       return { ...state };
   }
+
 };
 
 export default reducer;

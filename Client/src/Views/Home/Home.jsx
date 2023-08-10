@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Cards from '../../Components/Cards/Cards';
 import { useDispatch, useSelector } from 'react-redux';
-import {allSongs} from "../../Redux/actions";
-import {allPlayLists} from "../../Redux/actions";
+import {allSongs, allPlayLists, allCategories} from "../../Redux/actions";
 import Pagination from "../../Components/Pagination/Pagination"
 import Filters from "./Filters/Filters";
 import SearchBar from "./SearchBar/SearchBar";
