@@ -54,10 +54,32 @@ const Detail_playlist = () => {
       setSongToAdd("");
       setRerender(!rerender);
       //* cambia el estado y lo renderiza arriba en el array de dependencias (2do parametro)
+      console.log(
+        "info de la playlist ",
+        playlist.Songs.map((song) => song.name)
+      );
     } catch (error) {
       console.error("Error adding song to playlist:", error);
     }
   };
+
+  const deleteSong = async (songId) =>{
+
+    try {
+      
+      const token = localStorage.getItem("token")
+      await axios.put(`http://localhost:3001/playlist/removeSong/`, { playListId: Number(id), songId: Number(songId) }, {
+      headers: {
+      "x-access-token": token,
+        }
+      })
+
+    } catch (error) {
+      onsole.error("Error deleting song!", error);
+    }
+
+    
+  }
 
   const changeNamePlaylist = async () => {
 
@@ -78,23 +100,6 @@ const Detail_playlist = () => {
     
   }
 
-  const deleteSong = async (songId) =>{
-
-    try {
-      
-      const token = localStorage.getItem("token")
-      await axios.put(`http://localhost:3001/playlist/removeSong/`, { playListId: Number(id), songId: Number(songId) }, {
-      headers: {
-      "x-access-token": token,
-        }
-      })
-
-    } catch (error) {
-      onsole.error("Error deleting song!", error);
-    }
-
-    
-  }
   const findSong = (name) => {
     if (name) {
       const songFilter = songs.find((song) => song.name === name);
@@ -106,12 +111,12 @@ const Detail_playlist = () => {
     <div className={style.mainContainer}>
       <h1>{playlist.name && playlist.name}</h1>
 
-      <h3>Want to change the name? Write it down!</h3>
+      <h3 className="flex flex-col justify-center items-center text-black font-bold">Want to change the name? Write it down!</h3>
       <input onChange={(e) => setChangeName(e.target.value)} />
       <button className={style.boton} onClick={changeNamePlaylist}>Change Name</button>
 
-      <div className="flex flex-col justify-center items-center">
-        <h2>Add Song to this Playlist</h2>
+      <div className="flex flex-col justify-center items-center text-black font-bold">
+        <h2>What song do you want to add?</h2>
 
         <input list="brow" onChange={(e) => findSong(e.target.value)} />
         <datalist id="brow">
@@ -129,8 +134,8 @@ const Detail_playlist = () => {
         </div>
       </div>
 
-      <div>
-        <h2>songs:</h2>
+      <div className="flex flex-col justify-center items-center">
+        <h2 className="flex flex-col justify-center items-center text-black font-bold">songs:</h2>
 
         <ul>
           {playlist.Songs && playlist.Songs.length > 0 ? (
