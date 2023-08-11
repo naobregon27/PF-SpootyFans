@@ -17,8 +17,8 @@ function SearchBar() {
    };
 
    return (
-      <div className="flex flex-row w-fit justify-center h-fit">
-         <div className="flex flex-row justify-around rounded-[5rem] h-fit w-fit bg-white border">
+      <div className="flex flex-row w-fit justify-center h-fit ">
+         <div className="flex flex-row justify-around rounded-[5rem] h-fit w-fit bg-white border shadow-xl">
             <input
 				className=" border border-black w-[15rem] h-[3rem] rounded-l-[5rem] border-none focus:outline-none pl-5"
                type="text"
