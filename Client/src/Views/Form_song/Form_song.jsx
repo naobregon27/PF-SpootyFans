@@ -27,7 +27,7 @@ const FormSong = () => {
     try {
       const response = await spotyFansApi.post("/pago/create_preference", {
         description: "suscripcion",
-        price: Number(1),
+        price: Number(1000),
         quantity: Number(1),
       });
       const { id } = response.data;
