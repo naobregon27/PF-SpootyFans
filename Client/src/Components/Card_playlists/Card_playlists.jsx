@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { allSongs } from '../../Redux/actions';
 import axios from 'axios';
+import style from './Card_playlists.module.css';
 import { useNavigate, NavLink } from 'react-router-dom';
 
 const Card_playlists = () => {
@@ -48,18 +49,18 @@ const Card_playlists = () => {
   // Resto del código...
 
   return (
-    <div >
+    <div className={style.mainContainer}>
       {/* ... (otros elementos del componente) */}
       
-      <ul className="flex flex-col justify-center items-center z-50">
-        <h2 className="text-[2rem] p-5">My playlists:</h2>
+      <ul className="flex flex-col justify-center items-center">
+        <h2>My playlists:</h2>
         {playlists.map((playlist) => (
           <li key={playlist.id}>
-            <NavLink to={`/playlist/${playlist.id}`}>
+            <NavLink className={style.playlists} to={`/playlist/${playlist.id}`}>
               {playlist.name}
             </NavLink>
             
-            <button onClick={() => deletePlaylist(playlist.id)}>x</button>
+            <button className={style.botonx} onClick={() => deletePlaylist(playlist.id)}>x</button>
           </li>
         ))}
       </ul>
