@@ -7,29 +7,22 @@ const userRegister = async ({
   username,
   password,
   email,
-  isActive,
-  isPremium,
+  profileImageUrl,
   isThirdPartyLogin,
 }) => {
   try {
-    if (
-      !username ||
-      (!password && !isThirdPartyLogin) ||
-      !email ||
-      isActive === undefined ||
-      isPremium === undefined
-    )
+    if (!username || (!password && !isThirdPartyLogin) || !email)
       throw new Error("Datos insuficientes.");
 
-    if (typeof isActive !== "boolean" || typeof isPremium !== "boolean")
-      throw new Error(
-        'El tipo de dato de "isActive" o "isPremium" no era el esperado.'
-      );
+    const existUser = isThirdPartyLogin
+      ? await User.findOne({ where: { email } })
+      : await User.findOne({ where: { username } });
 
-    const existUser = await User.findOne({ where: { username } });
-
-    if (existUser)
+    if (existUser && !isThirdPartyLogin)
       throw new Error(`El usario con el nombre "${username}" ya existe.`);
+
+    if (existUser && isThirdPartyLogin)
+      throw new Error(`El usario con el email "${email}" ya existe.`);
 
     if (!isThirdPartyLogin) {
       const validatedUsername = validateUsername(username);
@@ -44,28 +37,50 @@ const userRegister = async ({
         username: validatedUsername,
         password: await passwordEncrypt(validatedPassword),
         email,
-        isActive,
-        isPremium,
       };
 
       const createdUser = await User.create(newUser);
 
       if (!createdUser) throw new Error("Error al crear el usuario.");
 
-      return createdUser;
+      const userInfo = {
+        id: createdUser.id,
+        username: createdUser.username,
+        email: createdUser.email,
+        profileImageUrl: createdUser.profileImageUrl,
+        isPremium: createdUser.isPremium,
+        isActive: createdUser.isActive,
+        isAdmin: createdUser.isAdmin,
+        createdAt: createdUser.createdAt,
+        updatedAt: createdUser.updatedAt,
+      };
+
+      return userInfo;
     }
+
     const newUser = {
       username,
       email,
-      isActive,
-      isPremium,
+      profileImageUrl,
     };
 
     const createdUser = await User.create(newUser);
 
     if (!createdUser) throw new Error("Error al crear el usuario.");
 
-    return createdUser;
+    const userInfo = {
+      id: createdUser.id,
+      username: createdUser.username,
+      email: createdUser.email,
+      profileImageUrl: createdUser.profileImageUrl,
+      isPremium: createdUser.isPremium,
+      isActive: createdUser.isActive,
+      isAdmin: createdUser.isAdmin,
+      createdAt: createdUser.createdAt,
+      updatedAt: createdUser.updatedAt,
+    };
+
+    return userInfo;
   } catch (error) {
     return { error: error.message };
   }

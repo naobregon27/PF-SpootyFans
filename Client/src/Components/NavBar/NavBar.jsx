@@ -36,6 +36,9 @@ function NavBar() {
       <NavLink to="/playlist">
         <button className={style.botonc}>New playlist</button>
       </NavLink>
+      <NavLink to="/profile">
+        <button className={style.botonc}>Profile</button>
+      </NavLink>
       <NavLink to="/">
         <button className={style.botonc} onClick={handleClickLogout}>
           Logout

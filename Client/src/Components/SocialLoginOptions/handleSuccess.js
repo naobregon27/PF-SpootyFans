@@ -8,8 +8,7 @@ export const handleSuccessRegister = async (credentialResponse) => {
     const userData = {
       username,
       email: decoded.email,
-      isActive: true,
-      isPremium: false,
+      profileImageUrl: decoded.picture,
       isThirdPartyLogin: true,
     };
     const response = await axios.post(
@@ -21,7 +20,7 @@ export const handleSuccessRegister = async (credentialResponse) => {
       return true;
     }
   } catch (error) {
-    console.error(error.message);
+    console.error(error.response.data);
   }
 };
 
@@ -43,6 +42,6 @@ export const handleSuccessLogin = async (credentialResponse) => {
       return response.data;
     }
   } catch (error) {
-    console.error(error.message);
+    console.error(error.response.data);
   }
 };

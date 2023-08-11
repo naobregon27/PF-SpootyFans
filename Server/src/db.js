@@ -3,11 +3,9 @@ require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
 
-const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+const { DB_URL } = process.env;
 
-const sequelize = new Sequelize("spotyfans", DB_USER, DB_PASSWORD, {
-  host: DB_HOST,
-  dialect: "mariadb",
+const sequelize = new Sequelize(DB_URL, {
   logging: false,
   native: false,
 });
