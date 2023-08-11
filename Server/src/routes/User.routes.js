@@ -4,6 +4,7 @@ const userLogin = require("../controllers/users/userLogin");
 const authentication = require("../middlewares/authentication");
 const setPremium = require("../controllers/users/setPremium");
 const getUserById = require("../controllers/users/getUserById");
+const putUsername = require("../controllers/users/putUsername");
 
 userRouter.post("/register", async (req, res) => {
   const userData = req.body;
@@ -53,6 +54,18 @@ userRouter.get("/info/:userId", authentication, async (req, res) => {
     return res.status(400).json({ error: userFound.error });
   } else {
     return res.status(200).json(userFound);
+  }
+});
+
+userRouter.put("/newUsername", authentication, async (req, res) => {
+  const { userId } = req.user;
+  const { newUsername } = req.body;
+  const userModified = await putUsername({ userId, newUsername });
+
+  if (userModified.error) {
+    return res.status(400).json({ error: userModified.error });
+  } else {
+    return res.status(200).json(userModified);
   }
 });
 
