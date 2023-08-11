@@ -14,10 +14,15 @@ const userRegister = async ({
     if (!username || (!password && !isThirdPartyLogin) || !email)
       throw new Error("Datos insuficientes.");
 
-    const existUser = await User.findOne({ where: { username } });
+    const existUser = isThirdPartyLogin
+      ? await User.findOne({ where: { email } })
+      : await User.findOne({ where: { username } });
 
-    if (existUser)
+    if (existUser && !isThirdPartyLogin)
       throw new Error(`El usario con el nombre "${username}" ya existe.`);
+
+    if (existUser && isThirdPartyLogin)
+      throw new Error(`El usario con el email "${email}" ya existe.`);
 
     if (!isThirdPartyLogin) {
       const validatedUsername = validateUsername(username);

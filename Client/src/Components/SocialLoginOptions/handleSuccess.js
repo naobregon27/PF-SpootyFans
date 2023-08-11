@@ -20,7 +20,7 @@ export const handleSuccessRegister = async (credentialResponse) => {
       return true;
     }
   } catch (error) {
-    console.error(error.message);
+    console.error(error.response.data);
   }
 };
 
@@ -42,6 +42,6 @@ export const handleSuccessLogin = async (credentialResponse) => {
       return response.data;
     }
   } catch (error) {
-    console.error(error.message);
+    console.error(error.response.data);
   }
 };
