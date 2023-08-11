@@ -1,9 +1,9 @@
 import Card from "../Card/Card";
-import style from "./Cards.module.css";
+// import style from "./Cards.module.css";
 
 const Cards = ({ songs }) => {
   return (
-    <div className={style.cards_container}>
+    <div className=" flex flex-row max-md:flex-col justify-center items-center gap-5 w-screen mt-[1rem] mb-[2rem]">
       {songs.map((song) => {
         return (
           <Card
