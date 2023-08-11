@@ -5,7 +5,7 @@ import {allSongs, allPlayLists, allCategories} from "../../Redux/actions";
 import Pagination from "../../Components/Pagination/Pagination"
 import Filters from "./Filters/Filters";
 import SearchBar from "./SearchBar/SearchBar";
-import style from "./Home.module.css";
+// import style from "./Home.module.css";
 import Card_playlists from '../../Components/Card_playlists/Card_playlists';
 
 function Home() {
@@ -28,13 +28,14 @@ function Home() {
   const currentItems = songs.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
-    <div className={style.home_container}>
-      <div className={style.search_options_container}>
+    <div>
+      <div className="flex flex-row justify-center items-center gap-5 p-5">
         <SearchBar />
         <Filters />
       </div>
+
       <Cards songs={currentItems} />
-      <div className={style.pagination_container}>
+      <div>
         <Pagination
           currentPage={currentPage}
           itemsPerPage={itemsPerPage}
