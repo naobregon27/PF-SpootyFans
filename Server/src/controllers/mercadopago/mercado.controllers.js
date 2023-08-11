@@ -7,19 +7,25 @@ const createOrder = async (req, res) => {
         const description = req.body.description;
 
         const preference = {
-            items: [
-                {
-                    title: description,
-                    unit_price: price,
-                    quantity: quantity,
-                }
-            ],
-            back_urls: {
-                "success": "http://localhost:3001/feedback",
-                "failure": "http://localhost:3001/feedback",
-                //"pending": "http://localhost:3001/feedback"
+          items: [
+            {
+              title: description,
+              unit_price: price,
+              quantity: quantity,
             },
-            auto_return: "approved",
+          ],
+          back_urls: {
+            // local
+            // success: "http://localhost:5173/create",
+            //   failure: "http://localhost:5173/home",
+
+            // deploy
+            success: "pf-spooty-fans-two.vercel.app/create",
+            failure: "pf-spooty-fans-two.vercel.app/home",
+
+            //"pending": "http://localhost:3001/feedback"
+          },
+          auto_return: "approved",
         };
 
         const response = await mercadopago.preferences.create(preference);
