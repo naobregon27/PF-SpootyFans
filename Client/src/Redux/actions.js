@@ -1,4 +1,4 @@
-import axios from "axios";
+import { spotyFansApi } from "../../services/apiConfig";
 
 export const GET_ALL_SONGS = "GET_ALL_SONGS";
 export const GET_SONGS_BY_NAME = "GET_SONGS_BY_NAME";
@@ -11,7 +11,7 @@ export const allSongs = () => {
   return async function (dispatch) {
     const token = localStorage.getItem("token");
     try {
-      const { data } = await axios.get("http://localhost:3001/music/all", {
+      const { data } = await spotyFansApi.get("/music/all", {
         headers: {
           "x-access-token": token,
         },
@@ -28,14 +28,11 @@ export const findSong = (name) => {
   return async function (dispatch) {
     const token = localStorage.getItem("token");
     try {
-      const { data } = await axios.get(
-        `http://localhost:3001/music?name=${name}`,
-        {
-          headers: {
-            "x-access-token": token,
-          },
-        }
-      );
+      const { data } = await spotyFansApi.get(`/music?name=${name}`, {
+        headers: {
+          "x-access-token": token,
+        },
+      });
       const songByName = data;
       dispatch({ type: GET_SONGS_BY_NAME, payload: songByName });
     } catch (error) {
@@ -48,14 +45,11 @@ export const searchId = (id) => {
   return async (dispatch) => {
     const token = localStorage.getItem("token");
     try {
-      const response = await axios.get(
-        `http://localhost:3001/music/detail/${id}`,
-        {
-          headers: {
-            "x-access-token": token,
-          },
-        }
-      );
+      const response = await spotyFansApi.get(`/music/detail/${id}`, {
+        headers: {
+          "x-access-token": token,
+        },
+      });
       dispatch({
         type: SEARCH_ID,
         payload: response.data,
@@ -68,8 +62,8 @@ export const searchId = (id) => {
 };
 
 export const filterByGenre = (payload) => {
-  return{
-    type:GET_SONGS_BY_GENRE,
-    payload
-  }
-}
+  return {
+    type: GET_SONGS_BY_GENRE,
+    payload,
+  };
+};

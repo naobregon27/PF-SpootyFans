@@ -1,5 +1,5 @@
 import jwt_decode from "jwt-decode";
-import axios from "axios";
+import { spotyFansApi } from "../../../services/apiConfig";
 
 export const handleSuccessRegister = async (credentialResponse) => {
   try {
@@ -12,10 +12,7 @@ export const handleSuccessRegister = async (credentialResponse) => {
       isPremium: false,
       isThirdPartyLogin: true,
     };
-    const response = await axios.post(
-      "http://localhost:3001/user/register",
-      userData
-    );
+    const response = await spotyFansApi.post("/user/register", userData);
 
     if (response.status === 200) {
       return true;
@@ -34,10 +31,7 @@ export const handleSuccessLogin = async (credentialResponse) => {
       email: decoded.email,
       isThirdPartyLogin: true,
     };
-    const response = await axios.post(
-      "http://localhost:3001/user/login",
-      userData
-    );
+    const response = await spotyFansApi.post("/user/login", userData);
 
     if (response.status === 200) {
       return response.data;

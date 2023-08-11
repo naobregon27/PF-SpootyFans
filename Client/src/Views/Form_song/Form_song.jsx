@@ -1,5 +1,9 @@
 import { useState } from "react";
-import axios from "axios";
+import {
+  spotyFansApi,
+  postMusicApi,
+  postImageApi,
+} from "../../../services/apiConfig";
 import style from "./Form_song.module.css";
 
 const FormSong = () => {
@@ -37,10 +41,7 @@ const FormSong = () => {
 
   const postData = async (postData) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3001/music/upload/url",
-        postData
-      );
+      const response = await spotyFansApi.post("/music/upload/url", postData);
       console.log(response.data);
     } catch (error) {
       console.log(error);
@@ -56,17 +57,14 @@ const FormSong = () => {
       formSound.append("file", soundFile);
       formImage.append("multipartFile", imagedFile);
 
-      const responseSound = await axios.post(
-        "http://localhost:4001/postmusic",
-        formSound
-      );
+      const responseSound = await postMusicApi.post("/postmusic", formSound);
       console.log(
         "URL del archivo musical cargado:",
         responseSound.data.fileUrl
       );
 
-      const responseImage = await axios.post(
-        "https://postimagemicroservice-production.up.railway.app/cloudinary/upload",
+      const responseImage = await postImageApi.post(
+        "/cloudinary/upload",
         formImage
       );
       console.log(
@@ -92,49 +90,51 @@ const FormSong = () => {
   return (
     <>
       <form className={style.mainContainer}>
-      <div className={style.form}>
-               <h2>good luck...</h2>
-        <div className="form-group">
-          <label htmlFor="file">Choose the audio file</label>
-          <input 
-            className={`${style.datos} ${style['datos-btn']}`}
-            type="file" 
-            id="file" 
-            onChange={handleSoundChange} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="exampleFormControlFile1">Choose the album cover</label>
-          <input
-            className={`${style.datos} ${style['datos-btn']}`}
-            type="file"
-            id="exampleFormControlFile1"
-            onChange={handleImageChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="name">Name of the song:</label>
-          <input
-            className={style.datos}
-            type="text"
-            id="name"
-            value={data.name}
-            onChange={handleNameChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="genre">Genre:</label>
-          <input
-            className={style.datos}
-            type="text"
-            id="genre"
-            value={data.genre}
-            onChange={handleGenreChange}
-          />
-        </div>
-        <button className={style.boton}
-        type="button" onClick={up}>
-          Upload your song!
-        </button>
+        <div className={style.form}>
+          <h2>good luck...</h2>
+          <div className="form-group">
+            <label htmlFor="file">Choose the audio file</label>
+            <input
+              className={`${style.datos} ${style["datos-btn"]}`}
+              type="file"
+              id="file"
+              onChange={handleSoundChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="exampleFormControlFile1">
+              Choose the album cover
+            </label>
+            <input
+              className={`${style.datos} ${style["datos-btn"]}`}
+              type="file"
+              id="exampleFormControlFile1"
+              onChange={handleImageChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="name">Name of the song:</label>
+            <input
+              className={style.datos}
+              type="text"
+              id="name"
+              value={data.name}
+              onChange={handleNameChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="genre">Genre:</label>
+            <input
+              className={style.datos}
+              type="text"
+              id="genre"
+              value={data.genre}
+              onChange={handleGenreChange}
+            />
+          </div>
+          <button className={style.boton} type="button" onClick={up}>
+            Upload your song!
+          </button>
         </div>
       </form>
     </>

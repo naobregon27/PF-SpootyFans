@@ -3,9 +3,9 @@ import style from "./Login.module.css";
 import logo from "../../assets/logoSpotiFans.svg";
 import { Link } from "react-router-dom";
 import validation from "../../Components/Validation/Validation";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import SocialLoginOptions from "../../Components/SocialLoginOptions/SocialLoginOptions";
+import { spotyFansApi } from "../../../services/apiConfig";
 
 const Form = () => {
   const navigate = useNavigate();
@@ -26,10 +26,7 @@ const Form = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:3001/user/login",
-        userData
-      );
+      const response = await spotyFansApi.post("/user/login", userData);
 
       if (response.status === 200) {
         const { token } = response.data;

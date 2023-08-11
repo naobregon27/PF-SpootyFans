@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logoSpotiFans.svg";
 import style from "./SignUp.module.css";
-import axios from "axios";
 import SocialLoginOptions from "../../Components/SocialLoginOptions/SocialLoginOptions";
+import { spotyFansApi } from "../../../services/apiConfig";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -17,10 +17,7 @@ const SignUp = () => {
 
   const createUser = async (signUp) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3001/user/register",
-        signUp
-      );
+      const response = await spotyFansApi.post("/user/register", signUp);
       alert("User created successfully");
     } catch (error) {
       console.error(error);
