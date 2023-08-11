@@ -21,7 +21,7 @@ const FormSong = () => {
     isActive: true,
   });
   const [preferenceId, setPreferenceId] = useState(null);
-  initMercadoPago("TEST-49489d9a-43ea-4810-a664-1a848029c094");
+  initMercadoPago("TEST-3d3eb094-96e5-4717-9901-cd82fa0a11e4");
 
   const createPreference = async () => {
     try {
