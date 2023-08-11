@@ -1,7 +1,8 @@
 import { useState } from "react";
-import style from "./Login.module.css";
-import logo from "../../assets/logoSpotiFans.svg";
-import { Link } from "react-router-dom";
+// import logo from "../../assets/logoSpotiFans.svg";
+import dancehall from "../../assets/dancehall.png";
+import sitting from "../../assets/sitting.png";
+import { NavLink } from "react-router-dom";
 import validation from "../../Components/Validation/Validation";
 import { useNavigate } from "react-router-dom";
 import SocialLoginOptions from "../../Components/SocialLoginOptions/SocialLoginOptions";
@@ -39,50 +40,91 @@ const Form = () => {
   };
 
   return (
-    <main className={style.mainContainer}>
-      <img className={style.logo} src={logo}></img>
-      <div className={style.log}>
-        <div className={style.title_container}>
-          <h1 className={style.title}>Login</h1>
-          <Link to="/signup" className={style.to_signup}>
-            or SignUp?
-          </Link>
-        </div>
-        <form onSubmit={handleSubmit} className={style.form_container}>
-          <label>
-            <input
-              className={style.datos}
-              onChange={handleChange}
-              value={userData.username}
-              type="text"
-              name="username"
-              placeholder="Username"
-            />
-            <p>{errors.username}</p>
-          </label>
+    <div className="flex flex-col items-center justify-center w-screen h-screen bg-slate-200 font-custom overflow-hidden">
+      <p className="w-full min-w-full m-0 break-words text-[5.8rem] select-none leading-[.8] text-white blur-[2px]">
+        ClásicaRockPopHipHopJazzBluesReggaeTrapmetalElectrónicaRapR&BCountryEDMFunkMetalAmbientElectropopHardstyleChillwaveDancehallDubstepTechnoFlamencoSoulReguetónTrapCumbiaAlternativaDiscoSkaFolkIndieGospelPostpunkSalsaSambaSynthwaveVallenatoPunkFunkMetalcoreBluegrassGrimeMerengueIndustrialNeosoulRancheraNoisepopChiptuneSwingProgressivehouseNewageCelticSkapunkExperimentalPsytranceGrungeFadoJungleKpopR&BalternativoElectroswingReggaetónespañolTriphopDrumandbassRockalternativoBachataGaragerockChansonTranceDreampopAmericanaJpopPowermetalCountrypopSertanejoMerengueurbanoTraplatinoElectrohousePopunkHip
+        hopalternativoDeathmetalPoprockRagtimeDowntempoJazzfusionRockprogresivoHardrockReguetónclásicoPostrockTangoElectropopalternativoAmbientalblackmetalDancepopPostpunkrevivalJazzcontemporáneoReggaerootsElectroclashPopalternativoIndiefolkPsychedelicrockSoulalternativoBigbandTrapcoreElectrónicaexperimentalAmbientpopNeofolkFolkrockEDMalternativoRapcoreCumbiavilleraPopexperimentalNujazzMetalalternativoCountryalternativoSynthpopIndiepopPunkpopDarkambientMelodicdeathmetalR&BcontemporáneoNoiserock
+      </p>
+      <main className="grid grid-cols-2 max-md:flex max-md:justify-center max-md:items-center justify-center justify-items-center items-center place-items-center w-screen h-screen overflow-hidden font-custom absolute z-50">
+        <div className="flex flex-col justify-center items-center min-w-[22rem] w-[25rem] h-[30rem] backdrop-blur-[6px] max-md:backdrop-blur-[10px] shadow-xl rounded-[2rem] z-50">
+          <h1 className="text-[3.5rem] mb-2 tracking-[2px]">Log in</h1>
+          <form
+            className="flex flex-col justify-center items-center"
+            onSubmit={handleSubmit}
+          >
+            <label className="flex flex-col justify-center items-center pb-[1.4rem]">
+              <input
+                className="border w-[20rem] max-md:w-[18rem] h-[1rem] rounded-[5rem] p-5"
+                onChange={handleChange}
+                value={userData.username}
+                type="text"
+                name="username"
+                placeholder="Username..."
+              />
+              <p className="text-[.9rem] text-red-600 mt-[.3rem]">
+                {errors.username}
+              </p>
+            </label>
 
-          <label>
-            <input
-              className={style.datos}
-              onChange={handleChange}
-              value={userData.password}
-              type="password"
-              name="password"
-              placeholder="Password"
-            />
-            <p>{errors.p}</p>
-          </label>
-          {/* <div>
+            <label className="flex flex-col justify-center items-center pb-[1rem]">
+              <input
+                className="border w-[20rem] max-md:w-[18rem] h-[1rem] rounded-[5rem] p-5"
+                onChange={handleChange}
+                value={userData.password}
+                type="password"
+                name="password"
+                placeholder="Password..."
+              />
+              <p className="text-[.9rem] text-red-600 text-center mt-[.3rem]">
+                {errors.p}
+              </p>
+            </label>
+            {/* <div>
             <input type="checkbox" name="rememberMe" id="rememberMe"></input>
             <label htmlFor="rememberMe"> Remember me</label>
           </div> */}
-          <button className={style.boton} type="submit">
-            Login
-          </button>
-        </form>
-        <SocialLoginOptions />
-      </div>
-    </main>
+
+            {Object.keys(errors).length === 0 ? (
+              <button
+                className="flex flex-col justify-center items-center bg-white border w-[7rem] h-[2.3rem] rounded-[5rem] mt-2 mb-5 hover:scale-[1.1] hover:bg-black hover:text-white  duration-[.3s]"
+                type="submit"
+              >
+                Log in
+              </button>
+            ) : (
+              <button
+                className="flex flex-col justify-center items-center bg-white border w-[7rem] h-[2.3rem] rounded-[5rem] mt-2 mb-5 hover:blur-sm cursor-not-allowed duration-[.3s]"
+                type="submit"
+              >
+                Log in
+              </button>
+            )}
+          </form>
+          <p className="text-[.9rem]">or Sign In with</p>
+          <SocialLoginOptions />
+          <p className="m-[1rem] ">
+            Don't have an account?
+            <NavLink
+              className="ml-5 text-[1.2rem] hover:text-[#ff50aa] duration-[.3s]"
+              to="/signup"
+            >
+              Sign Up
+            </NavLink>
+          </p>
+        </div>
+
+        <div className="h-screen flex justify-center items-center max-md:absolute max-md:w-[60rem] z-0">
+          <img
+            className="flex justify-center items-center w-[40rem] animate-transitionimageone  absolute"
+            src={dancehall}
+          />
+          <img
+            className="flex justify-center items-center w-[40rem] animate-transitionimagetwo absolute"
+            src={sitting}
+          />
+        </div>
+      </main>
+    </div>
   );
 };
 

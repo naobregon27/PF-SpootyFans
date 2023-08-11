@@ -1,0 +1,51 @@
+.main_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80vh;
+  padding: 1rem;
+  font-family: "DK Lemon Yellow Sun", cursive;
+}
+
+.profile_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 60%;
+  height: 100%;
+  background-color: rgba(23, 181, 12, 0.359);
+  border: 6px inset #0cd924;
+  border-radius: 11px;
+}
+
+.username_container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.username {
+  font-size: 2rem;
+}
+
+.tags_container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.profile_image {
+  width: 96px;
+  border-radius: 5px;
+}
+
+.edit_username {
+  font-size: 1.5rem;
+}
+
+.edit_username:hover {
+  cursor: pointer;
+  color: rgb(167, 166, 166);
+}

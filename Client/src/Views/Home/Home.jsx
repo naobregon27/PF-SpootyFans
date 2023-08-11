@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Cards from '../../Components/Cards/Cards';
 import { useDispatch, useSelector } from 'react-redux';
-import {allSongs} from "../../Redux/actions";
+import {allSongs, allPlayLists, allCategories} from "../../Redux/actions";
 import Pagination from "../../Components/Pagination/Pagination"
 import Filters from "./Filters/Filters";
 import SearchBar from "./SearchBar/SearchBar";
-import style from "./Home.module.css";
+// import style from "./Home.module.css";
+import Card_playlists from '../../Components/Card_playlists/Card_playlists';
 
 function Home() {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ function Home() {
 
   useEffect(() => {
     dispatch(allSongs());
+    
   }, [dispatch]);
 
   const handlePageChange = (pageNumber) => {
@@ -26,13 +28,14 @@ function Home() {
   const currentItems = songs.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
-    <div className={style.home_container}>
-      <div className={style.search_options_container}>
+    <div>
+      <div className="flex flex-row justify-center items-center gap-5 p-5">
         <SearchBar />
         <Filters />
       </div>
+
       <Cards songs={currentItems} />
-      <div className={style.pagination_container}>
+      <div>
         <Pagination
           currentPage={currentPage}
           itemsPerPage={itemsPerPage}
@@ -40,6 +43,7 @@ function Home() {
           onPageChange={handlePageChange}
         />
       </div>
+      <Card_playlists/>
     </div>
   );
 }

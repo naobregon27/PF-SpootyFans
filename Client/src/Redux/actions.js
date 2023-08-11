@@ -5,6 +5,8 @@ export const GET_SONGS_BY_NAME = "GET_SONGS_BY_NAME";
 export const GET_SONGS_BY_ARTIST = "GET_SONGS_BY_ARTIST";
 export const GET_SONGS_BY_GENRE = "GET_SONGS_BY_GENRE";
 export const SEARCH_ID = "SEARCH_ID";
+export const GET_ALL_PLAYLISTS = "GET_ALL_PLAYLISTS";
+export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES";
 
 //Trae todas las canciones dentro de la base de datos
 export const allSongs = () => {
@@ -20,6 +22,23 @@ export const allSongs = () => {
       dispatch({ type: GET_ALL_SONGS, payload: songs });
     } catch (error) {
       console.error("Error while fetching songs:", error.message);
+    }
+  };
+};
+
+export const allPlayLists = () => {
+  return async function (dispatch) {
+    const token = localStorage.getItem("token");
+    try {
+      const { data } = await spotyFansApi.get("/playlist", {
+        headers: {
+          "x-access-token": token,
+        },
+      });
+      const playLists = data;
+      dispatch({ type: GET_ALL_PLAYLISTS, payload: playLists });
+    } catch (error) {
+      console.error("Error while fetching playlists:", error.message);
     }
   };
 };
@@ -55,6 +74,22 @@ export const searchId = (id) => {
         payload: response.data,
       });
       return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+export const allCategories = () => {
+  return async (dispatch) => {
+    const token = localStorage.getItem("token");
+    try {
+      const { data } = await spotyFansApi.get("/category", {
+        headers: {
+          "x-access-token": token,
+        },
+      });
+      dispatch({ type: GET_ALL_CATEGORIES, payload: data });
     } catch (error) {
       console.error(error);
     }

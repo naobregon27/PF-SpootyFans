@@ -1,12 +1,16 @@
 import { useState } from "react";
+import style from "./Form_song.module.css";
+import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import { useSelector } from "react-redux";
 import {
   spotyFansApi,
   postMusicApi,
   postImageApi,
 } from "../../../services/apiConfig";
-import style from "./Form_song.module.css";
 
 const FormSong = () => {
+  const genres = useSelector((state) => state.categories);
+  const newGenres = genres.filter((genre) => genre.name !== "All");
   const [soundFile, setSoundFile] = useState(null);
   const [imagedFile, setImageFile] = useState(null);
   const [data, setData] = useState({
@@ -16,6 +20,29 @@ const FormSong = () => {
     imageUrl: "",
     isActive: true,
   });
+  const [preferenceId, setPreferenceId] = useState(null);
+  initMercadoPago("TEST-49489d9a-43ea-4810-a664-1a848029c094");
+
+  const createPreference = async () => {
+    try {
+      const response = await spotyFansApi.post("/pago/create_preference", {
+        description: "suscripcion",
+        price: Number(1),
+        quantity: Number(1),
+      });
+      const { id } = response.data;
+      return id;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleBuy = async () => {
+    const id = await createPreference();
+    if (id) {
+      setPreferenceId(id);
+    }
+  };
 
   const handleSoundChange = (e) => {
     setSoundFile(e.target.files[0]);
@@ -124,19 +151,37 @@ const FormSong = () => {
           </div>
           <div className="form-group">
             <label htmlFor="genre">Genre:</label>
-            <input
-              className={style.datos}
-              type="text"
-              id="genre"
-              value={data.genre}
-              onChange={handleGenreChange}
-            />
+            <select onChange={handleGenreChange}>
+              <option value="">Select Genre</option>
+              {newGenres.map((genre) => {
+                return (
+                  <option key={genre.name} value={genre.name}>
+                    {genre.name}
+                  </option>
+                );
+              })}
+            </select>
+
+            {/* <label htmlFor="genre">Genre:</label>
+          <input
+            className={style.datos}
+            type="text"
+            id="genre"
+            value={data.genre}
+            onChange={handleGenreChange}
+          /> */}
           </div>
           <button className={style.boton} type="button" onClick={up}>
             Upload your song!
           </button>
         </div>
       </form>
+      <div>
+        <button onClick={handleBuy}>Upgrade to Premium</button>
+        {preferenceId && (
+          <Wallet initialization={{ preferenceId: preferenceId }} />
+        )}
+      </div>
     </>
   );
 };

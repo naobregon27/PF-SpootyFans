@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { allSongs } from "../../Redux/actions";
 import style from "./Playlist.module.css";
+import { useNavigate, NavLink } from "react-router-dom";
 import { spotyFansApi } from "../../../services/apiConfig";
 
 const Playlist = () => {
+  const navigate = useNavigate();
+
   const songs = useSelector((state) => state.songsCopy);
 
   const dispatch = useDispatch();
@@ -38,7 +41,7 @@ const Playlist = () => {
   const createPlaylist = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await spotyFansApi.post(
+      const { data } = await spotyFansApi.post(
         `/playlist`,
         { name: newPlaylist },
         {
@@ -47,8 +50,9 @@ const Playlist = () => {
           },
         }
       );
-      setPlaylists([...playlists, response.data]);
+      setPlaylists([...playlists, data]);
       setNewPlaylist("");
+      navigate(`/playlist/${data.id}`);
     } catch (error) {
       console.error("Error creating playlist:", error);
     }
@@ -74,25 +78,10 @@ const Playlist = () => {
     console.log(selectedPlaylist, songToAdd);
   };
 
-  // const removeSongFromPlaylist = async () => {
-  //   try {
-  //     const token = localStorage.getItem("token");
-  //     await axios.put(`http://localhost:3001/playlist/removeSong`, { playListId: selectedPlaylist, songId: songToRemove }, {
-  //       headers: {
-  //         "x-access-token": token,
-  //       },
-  //     });
-  //     setSongToRemove('');
-  //     setSelectedPlaylist('');
-  //   } catch (error) {
-  //     alert('Error removing song from playlist:', error);
-  //   }
-  // };
-
-  const deletePlaylist = async (playlistId) => {
+  const deletePlaylist = async (playListId) => {
     try {
       const token = localStorage.getItem("token");
-      await spotyFansApi.delete(`/playlist/${playlistId}`, {
+      await spotyFansApi.delete(`/playlist/${playListId}`, {
         headers: {
           "x-access-token": token,
         },
@@ -112,24 +101,9 @@ const Playlist = () => {
 
   return (
     <div className={style.mainContainer}>
-      <ul className="flex flex-col justify-center items-center">
-        <h2>My playlists:</h2>
-        {playlists.map((playlist) => (
-          <li key={playlist.id}>
-            {playlist.name}
-            <button
-              className={style.botonx}
-              onClick={() => deletePlaylist(playlist.id)}
-            >
-              Delete playlist
-            </button>
-          </li>
-        ))}
-      </ul>
-
       <div>
-        <h2 className="flex flex-col justify-center items-center">
-          or Create Playlist...
+        <h2 className="flex flex-col justify-center items-center text-black font-bold">
+          Create a new Playlist...
         </h2>
         <input
           type="text"
@@ -141,10 +115,30 @@ const Playlist = () => {
         </button>
       </div>
 
-      <div>
-        <h2 className="flex flex-col justify-center items-center">
-          Add Song to Playlist
-        </h2>
+      <ul className="flex flex-col justify-center items-center">
+        <h2>My playlists:</h2>
+        {playlists.map((playlist) => (
+          <li key={playlist.id}>
+            <NavLink
+              className={style.playlists}
+              to={`/playlist/${playlist.id}`}
+            >
+              {playlist.name}
+            </NavLink>
+
+            <button
+              className={style.botonx}
+              onClick={() => deletePlaylist(playlist.id)}
+            >
+              x
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      {/* <div>
+        <h1 className="flex flex-col justify-center items-center text-black font-bold"> Let´s add some songs!</h1>
+        <h2 className="flex flex-col justify-center items-center">You wanna add a song?</h2>
 
         <input list="brow" onChange={(e) => findSong(e.target.value)} />
         <datalist id="brow">
@@ -157,7 +151,7 @@ const Playlist = () => {
       </div>
 
       <div>
-        <h2 className="flex flex-col justify-center items-center">Playlist</h2>
+        <h2 className="flex flex-col justify-center items-center">To what playlist?</h2>
         <select
           value={selectedPlaylist}
           onChange={(e) => setSelectedPlaylist(e.target.value)}
@@ -169,18 +163,10 @@ const Playlist = () => {
             </option>
           ))}
         </select>
-        <hr />
-
-        {/* <input
-          type="text"
-          value={songToRemove}
-          onChange={(e) => setSongToRemove(e.target.value)}
-        />
-        <button className={style.botonx} onClick={removeSongFromPlaylist}>Remove Song</button> */}
+        <hr/>
+      
       </div>
-      <button className={style.boton} onClick={addSongToPlaylist}>
-        Add Song
-      </button>
+      <button className={style.boton} onClick={addSongToPlaylist}>Add Song</button> */}
     </div>
   );
 };

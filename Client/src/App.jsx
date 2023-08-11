@@ -8,6 +8,8 @@ import FormSong from "./Views/Form_song/Form_song";
 import Detail from "./Views/Detail/Detail";
 import NavBar from "./Components/NavBar/NavBar";
 import Playlist from "./Views/Playlists/Playlist";
+import Detail_playlist from "./Views/Playlists/Detail_playlist"
+import Profile from "./Views/Profile/Profile";
 
 function App() {
   const location = useLocation().pathname;
@@ -38,6 +40,8 @@ function App() {
         <Route path="/create" element={<FormSong />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/playlist" element={<Playlist />} />
+        <Route path="/playlist/:id" element={<Detail_playlist />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </>
   );
