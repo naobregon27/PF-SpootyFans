@@ -2,7 +2,7 @@ import jwt_decode from "jwt-decode";
 import style from "./Profile.module.css";
 import { AiFillEdit } from "react-icons/ai";
 import { useState } from "react";
-import axios from "axios";
+import { spotyFansApi } from "../../../services/apiConfig";
 
 export default function Profile() {
   const token = localStorage.getItem("token");
@@ -19,8 +19,8 @@ export default function Profile() {
   const handleClickSave = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.put(
-        "http://localhost:3001/user/newUsername",
+      const response = await spotyFansApi.put(
+        "/user/newUsername",
         { newUsername: usernameValue },
         {
           headers: {

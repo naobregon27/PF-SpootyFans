@@ -1,14 +1,16 @@
 import { useState } from "react";
-import axios from "axios";
 import style from "./Form_song.module.css";
-import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { useSelector } from "react-redux";
-
-
+import {
+  spotyFansApi,
+  postMusicApi,
+  postImageApi,
+} from "../../../services/apiConfig";
 
 const FormSong = () => {
-  const genres = useSelector((state) => state.categories)
-  const newGenres = genres.filter((genre) => genre.name !== "All")
+  const genres = useSelector((state) => state.categories);
+  const newGenres = genres.filter((genre) => genre.name !== "All");
   const [soundFile, setSoundFile] = useState(null);
   const [imagedFile, setImageFile] = useState(null);
   const [data, setData] = useState({
@@ -18,26 +20,26 @@ const FormSong = () => {
     imageUrl: "",
     isActive: true,
   });
-  const [preferenceId, setPreferenceId] = useState(null)
-  initMercadoPago('TEST-49489d9a-43ea-4810-a664-1a848029c094');
+  const [preferenceId, setPreferenceId] = useState(null);
+  initMercadoPago("TEST-49489d9a-43ea-4810-a664-1a848029c094");
 
-  const createPreference = async()=>{
-    try{
-      const response = await axios.post("http://localhost:3001/pago/create_preference", {
+  const createPreference = async () => {
+    try {
+      const response = await spotyFansApi.post("/pago/create_preference", {
         description: "suscripcion",
         price: Number(1),
         quantity: Number(1),
       });
-      const {id} = response.data;
+      const { id } = response.data;
       return id;
-    }catch (error){
+    } catch (error) {
       console.log(error);
     }
   };
 
-  const handleBuy = async()=>{
+  const handleBuy = async () => {
     const id = await createPreference();
-    if(id){
+    if (id) {
       setPreferenceId(id);
     }
   };
@@ -66,10 +68,7 @@ const FormSong = () => {
 
   const postData = async (postData) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3001/music/upload/url",
-        postData
-      );
+      const response = await spotyFansApi.post("/music/upload/url", postData);
       console.log(response.data);
     } catch (error) {
       console.log(error);
@@ -85,17 +84,14 @@ const FormSong = () => {
       formSound.append("file", soundFile);
       formImage.append("multipartFile", imagedFile);
 
-      const responseSound = await axios.post(
-        "http://localhost:4001/postmusic",
-        formSound
-      );
+      const responseSound = await postMusicApi.post("/postmusic", formSound);
       console.log(
         "URL del archivo musical cargado:",
         responseSound.data.fileUrl
       );
 
-      const responseImage = await axios.post(
-        "https://postimagemicroservice-production.up.railway.app/cloudinary/upload",
+      const responseImage = await postImageApi.post(
+        "/cloudinary/upload",
         formImage
       );
       console.log(
@@ -121,50 +117,52 @@ const FormSong = () => {
   return (
     <>
       <form className={style.mainContainer}>
-      <div className={style.form}>
-               <h2>good luck...</h2>
-        <div className="form-group">
-          <label htmlFor="file">Choose the audio file</label>
-          <input 
-            className={`${style.datos} ${style['datos-btn']}`}
-            type="file" 
-            id="file" 
-            onChange={handleSoundChange} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="exampleFormControlFile1">Choose the album cover</label>
-          <input
-            className={`${style.datos} ${style['datos-btn']}`}
-            type="file"
-            id="exampleFormControlFile1"
-            onChange={handleImageChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="name">Name of the song:</label>
-          <input
-            className={style.datos}
-            type="text"
-            id="name"
-            value={data.name}
-            onChange={handleNameChange}
-          />
-        </div>
-        <div className="form-group">
-        <label htmlFor="genre">Genre:</label>
-          <select onChange={handleGenreChange}>
-            <option value="">Select Genre</option>
-            {newGenres.map((genre) => {
-              return(
-                <option key={genre.name} value={genre.name}>
-                  {genre.name}
-                </option>
-              )
-            })}
-          </select>
+        <div className={style.form}>
+          <h2>good luck...</h2>
+          <div className="form-group">
+            <label htmlFor="file">Choose the audio file</label>
+            <input
+              className={`${style.datos} ${style["datos-btn"]}`}
+              type="file"
+              id="file"
+              onChange={handleSoundChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="exampleFormControlFile1">
+              Choose the album cover
+            </label>
+            <input
+              className={`${style.datos} ${style["datos-btn"]}`}
+              type="file"
+              id="exampleFormControlFile1"
+              onChange={handleImageChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="name">Name of the song:</label>
+            <input
+              className={style.datos}
+              type="text"
+              id="name"
+              value={data.name}
+              onChange={handleNameChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="genre">Genre:</label>
+            <select onChange={handleGenreChange}>
+              <option value="">Select Genre</option>
+              {newGenres.map((genre) => {
+                return (
+                  <option key={genre.name} value={genre.name}>
+                    {genre.name}
+                  </option>
+                );
+              })}
+            </select>
 
-
-          {/* <label htmlFor="genre">Genre:</label>
+            {/* <label htmlFor="genre">Genre:</label>
           <input
             className={style.datos}
             type="text"
@@ -172,17 +170,18 @@ const FormSong = () => {
             value={data.genre}
             onChange={handleGenreChange}
           /> */}
-        </div>
-        <button className={style.boton}
-        type="button" onClick={up}>
-          Upload your song!
-        </button>
+          </div>
+          <button className={style.boton} type="button" onClick={up}>
+            Upload your song!
+          </button>
         </div>
       </form>
-        <div >
+      <div>
         <button onClick={handleBuy}>Upgrade to Premium</button>
-        {preferenceId && <Wallet initialization={{ preferenceId: preferenceId }} />}
-        </div>
+        {preferenceId && (
+          <Wallet initialization={{ preferenceId: preferenceId }} />
+        )}
+      </div>
     </>
   );
 };
