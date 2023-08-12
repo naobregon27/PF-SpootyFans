@@ -3,7 +3,7 @@ import Card from "../Card/Card";
 
 const Cards = ({ songs }) => {
   return (
-    <div className=" flex flex-row max-md:flex-col justify-center items-center gap-5 w-screen mt-[1rem] mb-[2rem]">
+    <div className=" flex flex-row max-md:flex-col justify-center items-center gap-5 w-screen mt-[2rem] mb-[2rem]">
       {songs.map((song) => {
         return (
           <Card

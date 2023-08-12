@@ -1,7 +1,6 @@
 .mainContainer{
     border-radius: 11px;
     background: transparent;
-    width: 100%;
     height: fit-content;
     padding: 2em;
     margin: auto;
@@ -15,6 +14,8 @@
     font-family: DK Lemon Yellow Sun;
     font-size: xx-large;
     font-weight:500;
+
+    border: #dd0f0f;
   }
   .boton {
       margin-top: 1rem;

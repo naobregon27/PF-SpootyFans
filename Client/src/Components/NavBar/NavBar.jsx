@@ -17,7 +17,7 @@ function NavBar() {
    };
 
    return (
-      <div className="absolute z-[999] h-0 bg-white">
+      <div className="absolute z-[999] h-0 w-screen max-w-full bg-white font-custom">
          <div className="flex flex-col justify-between items-center relative h-[5rem] top-[-3.4rem] hover:top-0 hover:bg-black hover:text-white hover:shadow-2xl duration-[.3s]">
             {/* <img
                className=""
@@ -62,6 +62,8 @@ function NavBar() {
             </div>
 				<div className="flex justify-center items-center w-full h-fit cursor-pointer">
 					<IconArrowDown/>
+               {/* HOVER TO OPEN MENU
+					<IconArrowDown/> */}
 				</div>
          </div>
       </div>

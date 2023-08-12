@@ -27,18 +27,23 @@ function Home() {
    const currentItems = songs.slice(indexOfFirstItem, indexOfLastItem);
 
    return (
-      <div className="flex flex-col items-center w-screen h-screen bg-slate-200 font-custom overflow-hidden">
-         <p className="w-full min-w-screen m-0 break-words text-[5.8rem] select-none leading-[.8] text-white blur-[3px]">
+      <div className=" flex flex-col items-center w-screen max-w-full h-screen bg-slate-200 font-custom overflow-x-hidden absolute">
+
+         <p className="w-screen min-w-screen overflow-clip bg-fixed m-0 break-words text-[5.8rem] select-none leading-[.8] text-white blur-[3px] fixed inset-0 z-0">
             ClásicaRockPopHipHopJazzBluesReggaeTrapmetalElectrónicaRapR&BCountryEDMFunkMetalAmbientElectropopHardstyleChillwaveDancehallDubstepTechnoFlamencoSoulReguetónTrapCumbiaAlternativaDiscoSkaFolkIndieGospelPostpunkSalsaSambaSynthwaveVallenatoPunkFunkMetalcoreBluegrassGrimeMerengueIndustrialNeosoulRancheraNoisepopChiptuneSwingProgressivehouseNewageCelticSkapunkExperimentalPsytranceGrungeFadoJungleKpopR&BalternativoElectroswingReggaetónespañolTriphopDrumandbassRockalternativoBachataGaragerockChansonTranceDreampopAmericanaJpopPowermetalCountrypopSertanejoMerengueurbanoTraplatinoElectrohousePopunkHip
             hopalternativoDeathmetalPoprockRagtimeDowntempoJazzfusionRockprogresivoHardrockReguetónclásicoPostrockTangoElectropopalternativoAmbientalblackmetalDancepopPostpunkrevivalJazzcontemporáneoReggaerootsElectroclashPopalternativoIndiefolkPsychedelicrockSoulalternativoBigbandTrapcoreElectrónicaexperimentalAmbientpopNeofolkFolkrockEDMalternativoRapcoreCumbiavilleraPopexperimentalNujazzMetalalternativoCountryalternativoSynthpopIndiepopPunkpopDarkambientMelodicdeathmetalR&BcontemporáneoNoiserock
          </p>
-         <div className="max-md:flex max-md:justify-center max-md:items-center justify-center justify-items-center items-center place-items-center w-screen h-screen overflow-hidden font-custom absolute mt-5 z-10">
-            <div className="flex flex-row justify-center items-center gap-5 p-5">
+
+         <div className="max-md:flex max-md:justify-center max-md:items-center justify-center justify-items-center items-center place-items-center overflow-hidden font-custom absolute mt-5 z-10">
+            
+            <div className="flex flex-row justify-center items-center gap-5 mt-3">
+
                <SearchBar />
                <Filters />
-            </div>
 
+            </div >
             <Cards songs={currentItems} />
+
             <div>
                <Pagination
                   currentPage={currentPage}
