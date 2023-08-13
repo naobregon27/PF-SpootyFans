@@ -20,7 +20,7 @@ function SearchBar() {
       <div className="flex flex-row w-fit justify-center h-fit">
          <div className="flex flex-row justify-around rounded-[5rem] h-fit w-fit bg-white border shadow-xl">
             <input
-				className=" border border-black w-[15rem] h-[3rem] rounded-l-[5rem] border-none focus:outline-none"
+				className=" border border-black w-[15rem] h-[3rem] rounded-l-[5rem] p-5 border-none focus:outline-none"
                type="text"
                value={searchTerm}
                onChange={handleChange}
