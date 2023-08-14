@@ -74,7 +74,7 @@ const Pagination = ({
    }, [totalItems]);
 
    return (
-      <div className="flex flex-row w-screen justify-center items-center gap-1">
+      <div className="flex flex-row w-screen max-w-full justify-center items-center">
 			<div className="flex flex-row gap-1">
          {renderPaginationLinks()}
 			</div>

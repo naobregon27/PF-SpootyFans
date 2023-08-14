@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import style from "./Form_song.module.css";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { useSelector } from "react-redux";
@@ -7,10 +7,16 @@ import {
   postMusicApi,
   postImageApi,
 } from "../../../services/apiConfig";
+import { useLocation } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 const FormSong = () => {
+  const token = localStorage.getItem("token");
+  const {userId} = jwt_decode(token);
+  const location = useLocation();
   const genres = useSelector((state) => state.categories);
   const newGenres = genres.filter((genre) => genre.name !== "All");
+  const [userData, setUserData] = useState({isPremium: false });
   const [soundFile, setSoundFile] = useState(null);
   const [imagedFile, setImageFile] = useState(null);
   const [data, setData] = useState({
@@ -21,7 +27,44 @@ const FormSong = () => {
     isActive: true,
   });
   const [preferenceId, setPreferenceId] = useState(null);
-  initMercadoPago("TEST-3d3eb094-96e5-4717-9901-cd82fa0a11e4");
+  initMercadoPago("TEST-49489d9a-43ea-4810-a664-1a848029c094");
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const status = queryParams.get("status");
+
+    const fetchUserData = async () => {
+      const userResponse = await getUser();
+      if (!userResponse.error) {
+        setUserData({ isPremium: userResponse.data.isPremium });
+      } else {
+        console.log("Error al obtener la información del usuario:", userResponse.error);
+      }
+    };
+
+    if (status === "approved") {
+      fetchUserData();
+      if (userId !== null) {
+        alert("payment received, welcome to premium")
+        changeStatusUser();
+      }
+    } else if (status === "null") {
+      alert("failed payment");
+    }
+  }, [location.search, userId]);
+
+  useEffect(() => {
+
+    const fetchUserData = async () => {
+      const userResponse = await getUser();
+      if (!userResponse.error) {
+        setUserData({ id: userResponse.data.id, isPremium: userResponse.data.isPremium });
+      } else {
+        console.log("Error al obtener la información del usuario:", userResponse.error);
+      }
+    };
+    fetchUserData();
+  }, [location.search]);
 
   const createPreference = async () => {
     try {
@@ -64,6 +107,32 @@ const FormSong = () => {
       ...data,
       genre: e.target.value,
     });
+  };
+
+  const changeStatusUser = async () => {
+    try {
+      await spotyFansApi.put("/user/setPremium",{},{
+        headers: {
+          "x-access-token": token,
+        },
+      });
+      window.location.href = "http://localhost:5173/create";
+    } catch (error) {
+      console.error("Error changing user type", error);
+    }
+  }
+
+  const getUser = async()=>{
+    try{
+      const response = await spotyFansApi.get(`/user/info/${userId}`, {
+        headers: {
+          "x-access-token": token,
+        },
+      });
+      return response;
+    }catch (error){
+      console.log(error);
+    }
   };
 
   const postData = async (postData) => {
@@ -171,16 +240,23 @@ const FormSong = () => {
             onChange={handleGenreChange}
           /> */}
           </div>
-          <button className={style.boton} type="button" onClick={up}>
+          <button
+            className={style.boton}
+            type="button"
+            onClick={up}
+            disabled={!userData.isPremium}>
             Upload your song!
           </button>
+            {!userData.isPremium && (
+            <h2>You must be Premium to upload songs.</h2>
+            )}
         </div>
       </form>
       <div>
-        <button onClick={handleBuy}>Upgrade to Premium</button>
-        {preferenceId && (
-          <Wallet initialization={{ preferenceId: preferenceId }} />
-        )}
+      {!userData.isPremium && (
+          <button onClick={handleBuy}>Upgrade to Premium</button>
+          )}
+          {preferenceId && <Wallet initialization={{ preferenceId: preferenceId }} />}
       </div>
     </>
   );

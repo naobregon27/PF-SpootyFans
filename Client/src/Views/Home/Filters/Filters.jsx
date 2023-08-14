@@ -20,7 +20,7 @@ const Filters = () => {
    return (
       <div>
          <select
-            className="flex flex-row justify-center items-center font-custom p-3 h-[3.1rem] w-[10rem] bg-transparent border rounded-[5rem] outline-"
+            className="bg-white flex flex-row justify-center items-center font-custom p-3 h-[3.1rem] w-[10rem] bg-transparent border rounded-[5rem] outline-none"
             onChange={handleGenre}>
             <option selected disabled>Select Genre</option>
             {genres.map((genre) => {
