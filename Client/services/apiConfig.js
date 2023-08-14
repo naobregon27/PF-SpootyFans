@@ -6,8 +6,8 @@ export const spotyFansApi = axios.create({
 });
 
 export const postMusicApi = axios.create({
-  // baseURL: "spotyfans-microservice-production.up.railway.app",
-  baseURL: "http://localhost:4001",
+  baseURL: "spotyfans-microservice-production.up.railway.app",
+  // baseURL: "http://localhost:4001",
 });
 
 export const postImageApi = axios.create({
