@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { allSongs } from "../../Redux/actions";
+import { allSongs, setCurrentSongUrls } from "../../Redux/actions";
 import { useNavigate } from "react-router-dom";
 import {IconArrowDown} from '@tabler/icons-react'
 
@@ -14,6 +14,7 @@ function NavBar() {
 
    const handleClickLogout = () => {
       localStorage.removeItem("token");
+      dispatch(setCurrentSongUrls([]));
    };
 
    return (

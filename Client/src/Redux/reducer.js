@@ -6,6 +6,9 @@ import {
   GET_SONGS_BY_GENRE,
   GET_ALL_PLAYLISTS,
   GET_ALL_CATEGORIES,
+  PLAY_MUSIC, 
+  PAUSE_MUSIC,
+  SET_CURRENT_SONG_URLS,
 } from "./actions";
 
 const initialState = {
@@ -14,6 +17,9 @@ const initialState = {
   songsCopy: [],
   playlistsCopy: [],
   categories: [],
+  isPlaying: false,
+  currentSongUrl: "",
+  currentSongUrls: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -61,6 +67,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         categories: newGenres,
       };
+    case PLAY_MUSIC:
+      return { ...state, isPlaying: true };
+    case PAUSE_MUSIC:
+      return { ...state, isPlaying: false };
+    case SET_CURRENT_SONG_URLS:
+        return {
+          ...state,
+          currentSongUrls: action.payload,
+        };
+
     default:
       return { ...state };
   }
