@@ -4,10 +4,13 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { spotyFansApi } from "../../../services/apiConfig";
+import { useDispatch } from "react-redux";
+import { setCurrentSongUrls } from "../../Redux/actions";
 
 const Detail_playlist = () => {
   const { id } = useParams();
-
+  const dispatch = useDispatch();
+  const [selectedSongs, setSelectedSongs] = useState([]);
   const songs = useSelector((state) => state.songsCopy);
 
   const [playlist, setPlaylist] = useState({});
@@ -49,6 +52,7 @@ const Detail_playlist = () => {
       );
 
       setSongToAdd("");
+      document.getElementById("songInput").value = "";
       setRerender(!rerender);
       //* cambia el estado y lo renderiza arriba en el array de dependencias (2do parametro)
       console.log(
@@ -101,7 +105,19 @@ const Detail_playlist = () => {
     if (name) {
       const songFilter = songs.find((song) => song.name === name);
       setSongToAdd(songFilter.id);
-    } else return;
+    } else {
+      setSongToAdd(""); // Si no hay nombre, resetea songToAdd a un valor vacío
+    }
+  };
+
+  const playSelectedSongs = () => {
+    const songUrls = playlist.Songs
+      ? playlist.Songs.map((song) => song.url)
+      : [];
+  
+    const updatedSelectedSongs = [...selectedSongs, ...songUrls];
+    setSelectedSongs(updatedSelectedSongs);
+    dispatch(setCurrentSongUrls(updatedSelectedSongs));
   };
 
   return (
@@ -129,7 +145,7 @@ const Detail_playlist = () => {
       <div className="flex flex-col justify-center items-center text-black font-bold">
         <h2>What song do you want to add?</h2>
 
-        <input list="brow" onChange={(e) => findSong(e.target.value)} />
+        <input id="songInput" list="brow" onChange={(e) => findSong(e.target.value)} />
         <datalist id="brow">
           {songs.map((song) => (
             <option key={song.id} value={song.name}>
@@ -168,6 +184,13 @@ const Detail_playlist = () => {
             <li>This playlist is empty</li>
           )}
         </ul>
+        {playlist.Songs && playlist.Songs.length > 0 && (
+          <button className={style.botonx}
+            onClick={() => playSelectedSongs()} 
+          >
+            Play
+          </button>
+        )}
       </div>
     </div>
   );
