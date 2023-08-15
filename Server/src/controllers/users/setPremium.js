@@ -1,4 +1,5 @@
 const { User } = require("../../db");
+const emailer = require("../../../nodemailer/emailer")
 
 const setPremium = async (userId) => {
   try {
@@ -15,6 +16,8 @@ const setPremium = async (userId) => {
     );
 
     if (!userModified) throw new Error("Error al modificar el usuario.");
+
+    emailer.sendMailPremium(userModified);
 
     return "Usuario modificado correctamente.";
   } catch (error) {
