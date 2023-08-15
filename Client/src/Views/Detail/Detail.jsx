@@ -1,9 +1,7 @@
 import ReactAudioPlayer from "react-audio-player";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import style from "./Detail.module.css";
-
+import { spotyFansApi } from "../../../services/apiConfig";
 
 const Detail = () => {
   const { id } = useParams();
@@ -11,14 +9,11 @@ const Detail = () => {
   const getSongDetail = async (songId) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(
-        `http://localhost:3001/music/detail/${songId}`,
-        {
-          headers: {
-            "x-access-token": token,
-          },
-        }
-      );
+      const response = await spotyFansApi.get(`/music/detail/${songId}`, {
+        headers: {
+          "x-access-token": token,
+        },
+      });
 
       if (response.status === 200) {
         const { url, name, genre, imageUrl } = response.data;
@@ -41,25 +36,33 @@ const Detail = () => {
     return <h1>No hay ID</h1>;
   }
   return (
-       <div className={style.detalles}>
-    <>
-      <h2 className={style.titulo}>{songDetail.name}</h2>
-      <h3><u>Género:</u> {songDetail.genre}</h3>
-      <img
-      className={style.album}
-        src={songDetail.imageUrl}
-        alt={`Imagen de la canción ${songDetail.name}`}
-      />
-         
-          <div className="hr">
-            <span></span>
-          </div>
-       
+    <div className="flex flex-col justify-center items-center font-custom relative w-screen top-[8rem]  ">
+      <div className="flex flex-row items-center w-[50rem] max-md:w-fit max-md:h-fit shadow-2xl rounded-[1.5rem] max-md:flex-col max-md:max-w-xs">
+        <div className="p-7 bg-slate-100 rounded-l-[1.5rem] max-md:bg-transparent">
+          <img
+            className="max-w-[15rem] max-md:w-fit max-md:shadow-2xl"
+            src={songDetail.imageUrl}
+            alt={`Imagen de la canción ${songDetail.name}`}
+          />
+        </div>
 
-      <ReactAudioPlayer className={style.song} src={songDetail.url} controls />
-    </>
+        <div className="flex flex-col justify-center items-center w-[30rem] h-[14rem] ml-[1rem] max-md:ml-0">
+          <div className="">
+            <h className="text-[2rem] leading-7 overflow-hidden">
+              {songDetail.name}
+            </h>
+            <h3 className="ml-[.2rem]">{songDetail.genre}</h3>
+
+            <ReactAudioPlayer
+              className="w-[25rem] max-md:max-w-[18rem]"
+              src={songDetail.url}
+              controls
+              controlsList="nodownload"
+            />
+          </div>
+        </div>
+      </div>
     </div>
-   
   );
 };
 

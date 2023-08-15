@@ -2,67 +2,89 @@ const { User } = require("../../db");
 const passwordEncrypt = require("../../utils/passwordEncrypt");
 const validatePassword = require("../../utils/validations/validatePassword");
 const validateUsername = require("../../utils/validations/validateUsername");
+const emailer = require("../../../nodemailer/emailer")
 
 const userRegister = async ({
   username,
   password,
   email,
-  isActive,
-  isPremium,
+  profileImageUrl,
+  isThirdPartyLogin,
 }) => {
   try {
-    // Verificamos si llegan todos los datos necesarios
-    if (
-      !username ||
-      !password ||
-      !email ||
-      isActive === undefined ||
-      isPremium === undefined
-    )
+    if (!username || (!password && !isThirdPartyLogin) || !email)
       throw new Error("Datos insuficientes.");
 
-    // Verificamos si el tipo de dato de isActive e isPremium son los esperados
-    if (typeof isActive !== "boolean" || typeof isPremium !== "boolean")
-      throw new Error(
-        'El tipo de dato de "isActive" o "isPremium" no era el esperado.'
-      );
+    const existUser = isThirdPartyLogin
+      ? await User.findOne({ where: { email } })
+      : await User.findOne({ where: { username } });
 
-    // Verificamos si existe un usuario con es nombre
-    const existUser = await User.findOne({ where: { username } });
-
-    // Si el usuario existe arrojamos un error
-    if (existUser)
+    if (existUser && !isThirdPartyLogin)
       throw new Error(`El usario con el nombre "${username}" ya existe.`);
 
-    // Creamos una variable para almacenar el nombre de usuario validado
-    const validatedUsername = validateUsername(username);
+    if (existUser && isThirdPartyLogin)
+      throw new Error(`El usario con el email "${email}" ya existe.`);
 
-    // Verificamos si surgió algún error con el nombre de usuario
-    if (validatedUsername.error) throw new Error(validatedUsername.error);
+    if (!isThirdPartyLogin) {
+      const validatedUsername = validateUsername(username);
 
-    // Creamos una variable para almacenar la contraseña validada
-    const validatedPassword = validatePassword(password);
+      if (validatedUsername.error) throw new Error(validatedUsername.error);
 
-    // Verificamos si surgió algún error con la contraseña
-    if (validatedPassword.error) throw new Error(validatedPassword.error);
+      const validatedPassword = validatePassword(password);
 
-    // Si todo salió bien, creamos el nuevo usuario y encriptamos la password
+      if (validatedPassword.error) throw new Error(validatedPassword.error);
+
+      const newUser = {
+        username: validatedUsername,
+        password: await passwordEncrypt(validatedPassword),
+        email,
+      };
+
+      const createdUser = await User.create(newUser);
+
+      if (!createdUser) throw new Error("Error al crear el usuario.");
+
+      const userInfo = {
+        id: createdUser.id,
+        username: createdUser.username,
+        email: createdUser.email,
+        profileImageUrl: createdUser.profileImageUrl,
+        isPremium: createdUser.isPremium,
+        isActive: createdUser.isActive,
+        isAdmin: createdUser.isAdmin,
+        createdAt: createdUser.createdAt,
+        updatedAt: createdUser.updatedAt,
+      };
+
+      emailer.sendMailRegister(createdUser);
+
+      return userInfo;
+    }
+
     const newUser = {
-      username: validatedUsername,
-      password: await passwordEncrypt(validatedPassword),
+      username,
       email,
-      isActive,
-      isPremium,
+      profileImageUrl,
     };
 
-    // Almacenamos el nuevo usuario en la base de datos
     const createdUser = await User.create(newUser);
 
-    // Arrojamos un error si el usuario no se guarda correctamente
     if (!createdUser) throw new Error("Error al crear el usuario.");
 
-    // Si el usuario se almacena correctamente en la base de datos, lo retornamos
-    return createdUser;
+    const userInfo = {
+      id: createdUser.id,
+      username: createdUser.username,
+      email: createdUser.email,
+      profileImageUrl: createdUser.profileImageUrl,
+      isPremium: createdUser.isPremium,
+      isActive: createdUser.isActive,
+      isAdmin: createdUser.isAdmin,
+      createdAt: createdUser.createdAt,
+      updatedAt: createdUser.updatedAt,
+    };
+    
+    return userInfo;
+
   } catch (error) {
     return { error: error.message };
   }
