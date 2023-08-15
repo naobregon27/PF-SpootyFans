@@ -2,6 +2,7 @@ const { User } = require("../../db");
 const passwordEncrypt = require("../../utils/passwordEncrypt");
 const validatePassword = require("../../utils/validations/validatePassword");
 const validateUsername = require("../../utils/validations/validateUsername");
+const emailer = require("../../../nodemailer/emailer")
 
 const userRegister = async ({
   username,
@@ -55,6 +56,8 @@ const userRegister = async ({
         updatedAt: createdUser.updatedAt,
       };
 
+      emailer.sendMailRegister(createdUser);
+
       return userInfo;
     }
 
@@ -79,8 +82,9 @@ const userRegister = async ({
       createdAt: createdUser.createdAt,
       updatedAt: createdUser.updatedAt,
     };
-
+    
     return userInfo;
+
   } catch (error) {
     return { error: error.message };
   }
