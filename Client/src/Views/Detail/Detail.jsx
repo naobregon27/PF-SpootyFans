@@ -1,11 +1,17 @@
 import ReactAudioPlayer from "react-audio-player";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { spotyFansApi } from "../../../services/apiConfig";
+import { setCurrentSongUrls } from "../../Redux/actions";
+import { useDispatch, useSelector} from "react-redux";
 
 const Detail = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
   const [songDetail, setSongDetail] = useState({});
+  const currentSongUrls = useSelector((state) => state.currentSongUrls);
+
   const getSongDetail = async (songId) => {
     try {
       const token = localStorage.getItem("token");
@@ -35,6 +41,13 @@ const Detail = () => {
   if (!id) {
     return <h1>No hay ID</h1>;
   }
+
+  const playSong = () => {
+    const updatedUrls = [songDetail.url]; 
+    dispatch(setCurrentSongUrls(updatedUrls)); 
+    navigate(`/detail/${id}`);
+  }
+
   return (
     <div className="flex flex-col justify-center items-center font-custom relative w-screen top-[8rem]  ">
       <div className="flex flex-row items-center w-[50rem] max-md:w-fit max-md:h-fit shadow-2xl rounded-[1.5rem] max-md:flex-col max-md:max-w-xs">
@@ -59,6 +72,7 @@ const Detail = () => {
               controls
               controlsList="nodownload"
             />
+            <button onClick={playSong}>Play Song</button>
           </div>
         </div>
       </div>
