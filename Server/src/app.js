@@ -20,9 +20,9 @@ app.use('/', routes);
 
 //mercadopago
 
-mercadopago.configure({
-	access_token: ACCESS_TOKEN,
-});
+// mercadopago.configure({
+// 	access_token: ACCESS_TOKEN,
+// });
 
 
 module.exports = app
