@@ -13,6 +13,7 @@ const Cards = ({ songs }) => {
             image={song.imageUrl}
             genre={song.genre}
             url={song.url}
+            averageRating={song.averageRating}
           />
         );
       })}

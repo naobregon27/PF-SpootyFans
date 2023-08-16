@@ -1,6 +1,10 @@
 const musicRouter = require('express').Router();
 const multer = require('multer');
-const { postMusic, searchId } = require("../controllers/music/music.controller"); // Importa directamente el controlador y su función
+const {
+  postMusic,
+  searchId,
+  rateSong
+} = require("../controllers/music/music.controller"); 
 const getSongByName = require("../helpers/getMusicByName");
 const {Song} = require("../db")
 const categoryRelationship = require('../helpers/categoryRelationship')
@@ -29,6 +33,9 @@ musicRouter.get("/all", authentication, async (req, res) => {
   const songs = await Song.findAll();
   return res.status(200).json(songs);
 });
+
+
+musicRouter.post("/rate", rateSong);
 
 
 module.exports = musicRouter;
