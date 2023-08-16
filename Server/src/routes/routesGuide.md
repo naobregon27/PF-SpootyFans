@@ -75,6 +75,16 @@ Esta ruta cambia el valor de "isPremium" a su valor opuesto.
 }
 ```
 ***
+**- [PUT] - Set Active:**
+Esta ruta cambia el valor de "isActive" a su valor opuesto.  
+**Ruta:** /user/setActive/:userId  
+**Devuelve:**  
+```json
+{
+  "message": "El usuario se ha modificado satisfactoriamente." // mensaje
+}
+```
+***
 **- [GET] - Get User By Id:**
 Esta ruta devuelve toda la información de un usuario. Aunque esta ruta es un poco diferente a las otras. Si en vez pasar una id por params, se envía la palabra "this", devuelve la información del usuario que tiene la sesión iniciada (la ruta sería "/user/info/this").  
 **Ruta:** /user/info/:userId  
@@ -108,6 +118,11 @@ Esta ruta cambia el nombre de usuario del usuario que tiene la sesión iniciada.
   "message": "Usuario modificado correctamente." // mensaje
 }
 ```
+***
+**- [GET] - Get All Users:**
+Esta ruta devuelve un array de objetos con todos los usuarios almacenados en la base de datos.  
+**Ruta:** /user  
+**Devuelve:**  Arreglo de objetos (los objetos tienen la misma forma de los que devuelve la ruta get user by id).
 ## Canciones:
 
  **- [GET] - Music Detail (id):**
