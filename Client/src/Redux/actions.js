@@ -7,6 +7,9 @@ export const GET_SONGS_BY_GENRE = "GET_SONGS_BY_GENRE";
 export const SEARCH_ID = "SEARCH_ID";
 export const GET_ALL_PLAYLISTS = "GET_ALL_PLAYLISTS";
 export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES";
+export const PLAY_MUSIC = "PLAY_MUSIC";
+export const PAUSE_MUSIC = "PAUSE_MUSIC";
+export const SET_CURRENT_SONG_URLS = "SET_CURRENT_SONG_URLS";
 
 //Trae todas las canciones dentro de la base de datos
 export const allSongs = () => {
@@ -102,3 +105,16 @@ export const filterByGenre = (payload) => {
     payload,
   };
 };
+
+export const playMusic = () => ({
+  type: PLAY_MUSIC,
+});
+
+export const pauseMusic = () => ({
+  type: PAUSE_MUSIC,
+});
+
+export const setCurrentSongUrls = (urls) => ({
+  type: SET_CURRENT_SONG_URLS,
+  payload: urls,
+});
