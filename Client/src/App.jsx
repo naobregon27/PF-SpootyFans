@@ -10,12 +10,25 @@ import NavBar from "./Components/NavBar/NavBar";
 import Playlist from "./Views/Playlists/Playlist";
 import Detail_playlist from "./Views/Playlists/Detail_playlist"
 import Profile from "./Views/Profile/Profile";
-import "./global.css"
+import { useDispatch, useSelector } from "react-redux";
+import { pauseMusic } from "./Redux/actions";
+import AudioPlayerGlobal from "./Components/AudioPlayerGlobal/AudioPlayerGlobal";
+import "global.css"
 
 function App() {
+  const isPlaying = useSelector(state => state.isPlaying);
+  const currentSongUrls = useSelector(state => state.currentSongUrls);
+  const dispatch = useDispatch();
   const location = useLocation().pathname;
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (isPlaying) {
+      // Pausar la música cuando cambias de ruta
+      dispatch(pauseMusic());
+    }
+  }, [location, isPlaying, dispatch]);
 
   useEffect(() => {
     if (
@@ -44,6 +57,23 @@ function App() {
         <Route path="/playlist/:id" element={<Detail_playlist />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
+      {(location !== "/" && location !== "/signup" && location !== "/login" && currentSongUrls.length > 0) && (
+        <div
+          style={{
+            position: "fixed",
+            bottom: 0,
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: "20%",
+            backgroundColor: "#f0f0f0",
+            padding: "2px",
+            boxShadow: "0px -2px 5px rgba(0, 0, 0, 0.1)",
+            marginTop: "10px", 
+          }}
+        >
+          <AudioPlayerGlobal />
+        </div>
+      )}
     </>
   );
 }
