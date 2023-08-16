@@ -10,6 +10,7 @@ import NavBar from "./Components/NavBar/NavBar";
 import Playlist from "./Views/Playlists/Playlist";
 import Detail_playlist from "./Views/Playlists/Detail_playlist"
 import Profile from "./Views/Profile/Profile";
+import "./global.css"
 
 function App() {
   const location = useLocation().pathname;
