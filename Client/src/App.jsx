@@ -13,7 +13,7 @@ import Profile from "./Views/Profile/Profile";
 import { useDispatch, useSelector } from "react-redux";
 import { pauseMusic } from "./Redux/actions";
 import AudioPlayerGlobal from "./Components/AudioPlayerGlobal/AudioPlayerGlobal";
-import "global.css"
+import "./global.css"
 
 function App() {
   const isPlaying = useSelector(state => state.isPlaying);
