@@ -103,6 +103,13 @@ const FormSong = () => {
     });
   };
 
+  const handleArtistChange = (e) => {
+    setData({
+      ...data,
+      artist: e.target.value,
+    });
+  };
+
   const handleGenreChange = (e) => {
     setData({
       ...data,
@@ -217,6 +224,16 @@ const FormSong = () => {
               id="name"
               value={data.name}
               onChange={handleNameChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="artist">Artist:</label>
+            <input
+              className={style.datos}
+              type="text"
+              id="artist"
+              value={data.artist}
+              onChange={handleArtistChange}
             />
           </div>
           <div className="form-group">

@@ -10,6 +10,7 @@ const Cards = ({ songs }) => {
             key={song.id}
             id={song.id}
             name={song.name}
+            artist={song.artist}
             image={song.imageUrl}
             genre={song.genre}
             url={song.url}

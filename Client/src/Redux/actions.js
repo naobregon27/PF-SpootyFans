@@ -63,6 +63,23 @@ export const findSong = (name) => {
   };
 };
 
+export const findSongByArtist = (artist) => {
+  return async function (dispatch) {
+    const token = localStorage.getItem("token");
+    try {
+      const { data } = await spotyFansApi.get(`/music?artist=${artist}`, {
+        headers: {
+          "x-access-token": token,
+        },
+      });
+      const songByName = data;
+      dispatch({ type: GET_SONGS_BY_ARTIST, payload: songByName });
+    } catch (error) {
+      console.error("Error while finding song:", error.message);
+    }
+  };
+};
+
 export const searchId = (id) => {
   return async (dispatch) => {
     const token = localStorage.getItem("token");

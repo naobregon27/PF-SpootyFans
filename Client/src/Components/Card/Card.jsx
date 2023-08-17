@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import styles from "./Card.module.css";
 import React from "react";
 
-const Card = ({ id, name, genre, url, image, averageRating }) => {
+const Card = ({ id, name, artist, genre, url, image, averageRating }) => {
 
    
    
@@ -35,6 +35,7 @@ const Card = ({ id, name, genre, url, image, averageRating }) => {
                {name}
             </h3>
             {/* <h3 className="w-full text-center p-1">{genre}</h3> */}
+            <h3>{artist}</h3>
             <h3>{genre}</h3>
             
             <form className={styles.clasificacion}>{renderStars()}</form>
