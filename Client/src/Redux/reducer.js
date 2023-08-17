@@ -5,6 +5,7 @@ import {
   GET_SONGS_BY_ARTIST,
   SEARCH_ID,
   GET_SONGS_BY_GENRE,
+  GET_SONGS_BY_RATING,
   GET_ALL_PLAYLISTS,
   GET_ALL_CATEGORIES,
   PLAY_MUSIC, 
@@ -72,16 +73,24 @@ const reducer = (state = initialState, action) => {
         ...state,
         categories: newGenres,
       };
+
     case PLAY_MUSIC:
       return { ...state, isPlaying: true };
+
     case PAUSE_MUSIC:
       return { ...state, isPlaying: false };
+
     case SET_CURRENT_SONG_URLS:
         return {
           ...state,
           currentSongUrls: action.payload,
         };
 
+    case GET_SONGS_BY_RATING:
+      return{
+        ...state,
+        songsCopy: state.songs.filter((song) => song.averageRating === Number(action.payload)),
+      }
     default:
       return { ...state };
   }

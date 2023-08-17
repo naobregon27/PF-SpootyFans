@@ -32,7 +32,7 @@ const Detail = ({averageRating}) => {
             checked={averageRating === i}
             onClick={() => handleRating(event.target.value)}
           />
-          <label htmlFor={`radio${i}`}>★</label>
+          <label className={styles.label} htmlFor={`radio${i}`}>★</label>
         </React.Fragment>
       );
     }

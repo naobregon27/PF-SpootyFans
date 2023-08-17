@@ -4,6 +4,7 @@ export const GET_ALL_SONGS = "GET_ALL_SONGS";
 export const GET_SONGS_BY_NAME = "GET_SONGS_BY_NAME";
 export const GET_SONGS_BY_ARTIST = "GET_SONGS_BY_ARTIST";
 export const GET_SONGS_BY_GENRE = "GET_SONGS_BY_GENRE";
+export const GET_SONGS_BY_RATING = "GET_SONGS_BY_RATING";
 export const SEARCH_ID = "SEARCH_ID";
 export const GET_ALL_PLAYLISTS = "GET_ALL_PLAYLISTS";
 export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES";
@@ -28,6 +29,14 @@ export const allSongs = () => {
     }
   };
 };
+
+export const allSongsRating = (payload) => {
+  return {
+    type: GET_SONGS_BY_RATING,
+    payload,
+  }
+}
+
 
 export const allPlayLists = () => {
   return async function (dispatch) {
