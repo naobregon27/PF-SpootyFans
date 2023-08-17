@@ -14,9 +14,10 @@ module.exports = () => {
     User.create(newUser);
   });
 
-  songs.forEach(async ({ name, genre, url, imageUrl, isActive, averageRating }) => {
+  songs.forEach(async ({ name, artist, genre, url, imageUrl, isActive, averageRating }) => {
     const newSong = {
       name,
+      artist,
       genre,
       url,
       imageUrl,

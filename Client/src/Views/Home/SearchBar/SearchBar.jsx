@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { findSong } from "../../../Redux/actions";
+import { findSong, findSongByArtist } from "../../../Redux/actions";
 import { IconSearch } from '@tabler/icons-react';
 
 function SearchBar() {
@@ -14,6 +14,7 @@ function SearchBar() {
 
    const handleSearch = () => {
       dispatch(findSong(searchTerm));
+      dispatch(findSongByArtist(searchTerm));
    };
 
    return (

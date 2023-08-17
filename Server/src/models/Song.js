@@ -19,6 +19,11 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
 
+      artist: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+
       genre: {
         type: DataTypes.STRING,
         allowNull: false,

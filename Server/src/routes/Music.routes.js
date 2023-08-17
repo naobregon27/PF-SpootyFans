@@ -5,7 +5,7 @@ const {
   searchId,
   rateSong
 } = require("../controllers/music/music.controller"); 
-const getSongByName = require("../helpers/getMusicByName");
+const {getSongByNameAndArtist} = require("../helpers/getMusicByName");
 const {Song} = require("../db")
 const categoryRelationship = require('../helpers/categoryRelationship')
 const authentication = require("../middlewares/authentication");
@@ -19,16 +19,18 @@ musicRouter.get("/detail/:id", authentication, searchId);
 musicRouter.post("/upload/url", upload.single("file"), postMusic);
 
 musicRouter.get("/", authentication, async (req, res) => {
-  const { name } = req.query;
+  const { name, artist } = req.query;
 
-  const songs = await getSongByName(name);
+  const songs = await getSongByNameAndArtist(name, artist);
 
   if (songs.error) {
     return res.status(400).json({ error: songs.error });
   } else {
     return res.status(200).json(songs);
   }
+
 });
+
 
 musicRouter.get("/all", authentication, async (req, res) => {
   const songs = await Song.findAll();

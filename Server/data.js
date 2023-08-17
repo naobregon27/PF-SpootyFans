@@ -75,6 +75,7 @@ module.exports = {
   songs: [
     {
       name: "Despacito",
+      artist: "Luis Fonsi",
       genre: "Reggaeton",
       url: "https://res.cloudinary.com/dlhpctfa3/video/upload/v1691015595/audiofiles/j8e6ddz3b21d1ikmhqgs.mp3",
       imageUrl:
@@ -84,6 +85,7 @@ module.exports = {
     },
     {
       name: "La Cumparsita",
+      artist: "Matos Rodriguez",
       genre: "Tango",
       url: "https://res.cloudinary.com/dlhpctfa3/video/upload/v1691016115/audiofiles/op3zas9dijvlwczh420y.mp3",
       imageUrl:
@@ -93,6 +95,7 @@ module.exports = {
     },
     {
       name: "Bohemian Rhapsody",
+      artist: "Queen",
       genre: "Rock",
       url: "https://res.cloudinary.com/dlhpctfa3/video/upload/v1691016394/audiofiles/cgmpz5ppilitylgcr5cm.mp3",
       imageUrl:
@@ -102,6 +105,7 @@ module.exports = {
     },
     {
       name: "Shape of You",
+      artist: "Ed Sheeran",
       genre: "Pop",
       url: "https://res.cloudinary.com/dlhpctfa3/video/upload/v1691016445/audiofiles/oizvx6htolosyb4puajz.mp3",
       imageUrl:
@@ -111,6 +115,7 @@ module.exports = {
     },
     {
       name: "Thriller",
+      artist: "Michael Jackson",
       genre: "Pop",
       url: "https://res.cloudinary.com/dlhpctfa3/video/upload/v1691016568/audiofiles/oiokqeterawhdmy3wiht.mp3",
       imageUrl:
@@ -120,6 +125,7 @@ module.exports = {
     },
     {
       name: "Levels",
+      artist: "Avicii",
       genre: "Electronic",
       url: "https://res.cloudinary.com/dlhpctfa3/video/upload/v1691016637/audiofiles/bbniocbmxifsxjopnius.mp3",
       imageUrl:
@@ -129,6 +135,7 @@ module.exports = {
     },
     {
       name: "Imagine",
+      artist:"John Lennon",
       genre: "Pop",
       url: "https://res.cloudinary.com/dlhpctfa3/video/upload/v1691016842/audiofiles/zuc2sekbvplyqobvbsl0.mp3",
       imageUrl:
@@ -138,6 +145,7 @@ module.exports = {
     },
     {
       name: "Happy",
+      artist: "Pharrell Williams",
       genre: "Pop",
       url: "https://res.cloudinary.com/dlhpctfa3/video/upload/v1691016881/audiofiles/yiywhxbfmbjrfohdbpn0.mp3",
       imageUrl:
@@ -147,6 +155,7 @@ module.exports = {
     },
     {
       name: "Stairway to Heaven",
+      artist: "Led Zeppelin",
       genre: "Rock",
       url: "https://res.cloudinary.com/dlhpctfa3/video/upload/v1691016925/audiofiles/fw2ol1azepgjhc5q8vqb.mp3",
       imageUrl:

@@ -1,16 +1,27 @@
 const { Song } = require("../db");
 const { Op } = require("sequelize");
 
-const getSongByName = async (songName) => {
+const getSongByNameAndArtist = async (songName, songArtist) => {
   try {
-    if (!songName) throw new Error("Nombre inválido");
+    if (!songName && !songArtist) throw new Error("Nombre o artista inválido");
+
+    const buscarpor = {};
+
+    if (songName) {
+      buscarpor.name = { [Op.like]: `%${songName}%` };
+    }
+
+    if (songArtist) {
+      buscarpor.artist = { [Op.like]: `%${songArtist}%` };
+    }
 
     const songsFound = await Song.findAll({
-      where: { name: { [Op.like]: `%${songName}%` } },
+      where: buscarpor,
     });
 
+
     if (songsFound.length === 0)
-      throw new Error("No se encontraron canciones con ese nombre");
+      throw new Error("No se encontraron canciones con ese nombre o de ese artista");
 
     return songsFound;
   } catch (error) {
@@ -18,4 +29,4 @@ const getSongByName = async (songName) => {
   }
 };
 
-module.exports = getSongByName;
+module.exports = {getSongByNameAndArtist}
