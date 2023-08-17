@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  sequelize.define("User", {
+  const User = sequelize.define("User", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -57,5 +57,9 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: false,
     },
-  });
+  },{ timestamps: false });
+  User.associate = (models) => {
+    User.hasMany(models.Rating, { foreignKey: "userId" });
+  };
+  return User;
 };

@@ -1,6 +1,7 @@
-const {Song} = require('../../db')
+const {Song, Rating} = require('../../db')
 const categoryRelationship = require('../../helpers/categoryRelationship')
 const validateParams = require('../../utils/validationsPostMusic/validateDate')
+
 
 const postMusic = async (req, res) => {
   const {url, name, genre, imageUrl, isActive} = req.body
@@ -40,10 +41,58 @@ const searchId = async(req, res)=>{
  } catch (error) {
   res.status(400).json({ error: error.message });
  }
+};
 
-}
+const rateSong = async (req, res) => {
+  const { userId, stars, idSong } = req.body;
+
+  try {
+    if(userId === undefined || stars === undefined || idSong === undefined) {  
+
+      return res.status(400).json({ message: "VEO QUE ANDAS ESCASO DE DATOS" });
+
+    }
+
+    const existingRating = await Rating.findOne({
+      where: { userId: userId, idSong: idSong  },
+    });
+    
+    if (existingRating) {
+      return res.status(400).json({ message: "You have already rated this song" });
+    }
+
+    await Rating.create({ userId: userId, idSong: idSong, stars: stars });
+
+    //*actualizar la calificacion promedio de la canción
+    
+    //const song = await Song.findByPk(idSong);
+    const ratings = await Rating.findAll({ where: { idSong: idSong } });
+
+    let totalRating = 0;
+    for (const r of ratings) {
+      totalRating += r.stars ;
+    }
+    
+    //song.averageRating = Math.floor(totalRating / ratings.length); 
+    const average = Math.floor(totalRating / ratings.length)
+
+    await Song.update({averageRating: average}, {where:{id: idSong}})
+    
+    //await song.save();
+    
+
+    res.status(201).json({ message: "Thanks for the rating" });
+  } catch (error) {
+    console.error("an error ocurred", error);
+    res.status(500).json({ message: "internal error" });
+  }
+};
+
+
+
 
 module.exports = {
   postMusic,
-  searchId
+  searchId,
+  rateSong,
 };

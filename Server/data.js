@@ -80,6 +80,7 @@ module.exports = {
       imageUrl:
         "https://res.cloudinary.com/ddapzcwlm/image/upload/v1691018245/fuderhxwimnyvvfdrqlt.jpg",
       isActive: true,
+      averageRating: 2
     },
     {
       name: "La Cumparsita",
@@ -88,6 +89,7 @@ module.exports = {
       imageUrl:
         "https://res.cloudinary.com/ddapzcwlm/image/upload/v1691018425/w29ujd3xfzlldb6a6mrx.jpg",
       isActive: true,
+      averageRating: 4
     },
     {
       name: "Bohemian Rhapsody",
@@ -96,6 +98,7 @@ module.exports = {
       imageUrl:
         "https://res.cloudinary.com/ddapzcwlm/image/upload/v1691019356/oqkjw5dpm2cxfl7bnt95.jpg",
       isActive: true,
+      averageRating: 3
     },
     {
       name: "Shape of You",
@@ -104,6 +107,7 @@ module.exports = {
       imageUrl:
         "https://res.cloudinary.com/ddapzcwlm/image/upload/v1691019393/e8tsvtacyu0zuuqegxub.jpg",
       isActive: true,
+      averageRating: 4
     },
     {
       name: "Thriller",
@@ -112,6 +116,7 @@ module.exports = {
       imageUrl:
         "https://res.cloudinary.com/ddapzcwlm/image/upload/v1691019424/qukel6k3xviefyeqi9uv.jpg",
       isActive: true,
+      averageRating: 5
     },
     {
       name: "Levels",
@@ -120,6 +125,7 @@ module.exports = {
       imageUrl:
         "https://res.cloudinary.com/ddapzcwlm/image/upload/v1691019451/slnyodklicqewgnm97yi.jpg",
       isActive: true,
+      averageRating: 1
     },
     {
       name: "Imagine",
@@ -128,6 +134,7 @@ module.exports = {
       imageUrl:
         "https://res.cloudinary.com/ddapzcwlm/image/upload/v1691019485/vtxwb1wnf6pb9yjkcbwj.jpg",
       isActive: true,
+      averageRating: 4
     },
     {
       name: "Happy",
@@ -136,6 +143,7 @@ module.exports = {
       imageUrl:
         "https://res.cloudinary.com/ddapzcwlm/image/upload/v1691019519/ow2xf4sj0ujmlsyno9ki.jpg",
       isActive: true,
+      averageRating: 3
     },
     {
       name: "Stairway to Heaven",
@@ -144,8 +152,10 @@ module.exports = {
       imageUrl:
         "https://res.cloudinary.com/ddapzcwlm/image/upload/v1691019554/pmk3v20tiv0iwiwga38i.jpg",
       isActive: true,
+      averageRating: 5
     },
   ],
+
 
   playLists: [
     {
@@ -217,4 +227,53 @@ module.exports = {
     //     "El reggaetón es un género musical originario de Puerto Rico que combina influencias del reggae, dancehall, hip-hop y música latina.",
     // },
   ],
+
+  rating: [
+    {
+      idSong:1,
+      userId: 4,
+      stars: 2,
+    },
+    {
+      idSong:2,
+      userId: 5,
+      stars: 4,
+    },
+    {
+      idSong:3,
+      userId: 4,
+      stars: 1,
+    },
+    {
+      idSong:4,
+      userId: 4,
+      stars: 3,
+    },
+    {
+      idSong:5,
+      userId: 4,
+      stars: 2,
+    },
+    {
+      idSong:6,
+      userId: 4,
+      stars: 4,
+    },
+    {
+      idSong:7,
+      userId: 4,
+      stars: 3,
+    },
+    {
+      idSong:8,
+      userId: 4,
+      stars: 2,
+    },
+    {
+      idSong:9,
+      userId: 4,
+      stars: 5,
+    },
+  ],
+
 };
