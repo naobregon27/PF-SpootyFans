@@ -43,13 +43,12 @@ const searchId = async(req, res)=>{
  }
 };
 
-const rateSong = async (req, res) => {
-  const { userId, stars, idSong } = req.body;
-
+const rateSong = async ({stars, idSong, userId}) => {
+  
   try {
     if(userId === undefined || stars === undefined || idSong === undefined) {  
 
-      return res.status(400).json({ message: "VEO QUE ANDAS ESCASO DE DATOS" });
+      throw new Error("VEO QUE ANDAS ESCASO DE DATOS") ;
 
     }
 
@@ -58,7 +57,7 @@ const rateSong = async (req, res) => {
     });
     
     if (existingRating) {
-      return res.status(400).json({ message: "You have already rated this song" });
+      throw new Error("You have already rated this song") ;
     }
 
     await Rating.create({ userId: userId, idSong: idSong, stars: stars });
@@ -81,10 +80,9 @@ const rateSong = async (req, res) => {
     //await song.save();
     
 
-    res.status(201).json({ message: "Thanks for the rating" });
+    return ("Thanks for the rating") ;
   } catch (error) {
-    console.error("an error ocurred", error);
-    res.status(500).json({ message: "internal error" });
+    return  {error: error.message} 
   }
 };
 

@@ -106,6 +106,22 @@ export const filterByGenre = (payload) => {
   };
 };
 
+export const setRating = (stars, idSong) =>{
+  return async () => {
+    const token = localStorage.getItem("token");
+    try {
+      const rate = await spotyFansApi.post(`/music/rate`, {idSong,stars}, {
+        headers: {
+          "x-access-token": token,
+        },
+      });
+      alert("Thanks for your rate!")
+    } catch (error) {
+      alert("You have already rated this song");
+    }
+  };
+}
+
 export const playMusic = () => ({
   type: PLAY_MUSIC,
 });

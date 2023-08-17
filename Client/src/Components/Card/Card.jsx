@@ -3,6 +3,10 @@ import styles from "./Card.module.css";
 import React from "react";
 
 const Card = ({ id, name, genre, url, image, averageRating }) => {
+
+   
+   
+
    const renderStars = () => {
       const stars = [];
       for (let i = 1; i <= 5; i++) {
@@ -14,8 +18,10 @@ const Card = ({ id, name, genre, url, image, averageRating }) => {
               name={`estrellas${id}`}
               value={i}
               checked={averageRating === i}
+              
             />
             <label htmlFor={`radio${i}`}>★</label>
+            
           </React.Fragment>
         );
       }
@@ -32,6 +38,7 @@ const Card = ({ id, name, genre, url, image, averageRating }) => {
             <h3>{genre}</h3>
             
             <form className={styles.clasificacion}>{renderStars()}</form>
+            
             
          </div>
          <span className=" whitespace-nowrap flex justify-center items-center m-2 h-0 w-[8rem] bg-black hover:h-[2rem] hover:rounded-[.5rem] delay-150 duration-[.3s]">

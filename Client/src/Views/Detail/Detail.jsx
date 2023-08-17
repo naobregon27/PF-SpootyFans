@@ -2,7 +2,7 @@ import ReactAudioPlayer from "react-audio-player";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { spotyFansApi } from "../../../services/apiConfig";
-import { setCurrentSongUrls } from "../../Redux/actions";
+import { setCurrentSongUrls, setRating } from "../../Redux/actions";
 import { useDispatch, useSelector} from "react-redux";
 import React from "react";
 import styles from "./Detail.module.css";
@@ -13,6 +13,11 @@ const Detail = ({averageRating}) => {
   const { id } = useParams();
   const [songDetail, setSongDetail] = useState({});
   const currentSongUrls = useSelector((state) => state.currentSongUrls);
+
+
+  const handleRating = (value) => {
+    dispatch(setRating(value, id))
+  }
 
   const renderStars = () => {
     const stars = [];
@@ -25,6 +30,7 @@ const Detail = ({averageRating}) => {
             name={`estrellas${id}`}
             value={i}
             checked={averageRating === i}
+            onClick={() => handleRating(event.target.value)}
           />
           <label htmlFor={`radio${i}`}>★</label>
         </React.Fragment>
