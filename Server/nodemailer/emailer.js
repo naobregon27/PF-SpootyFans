@@ -86,7 +86,7 @@ const sendMailPremium = async (user) => {
     const transporter = createTransporter();
     const info = await transporter.sendMail({
       from: `" SpootyFans" <${USER_NODEMAILER}>`,
-      to: `${user.email}`,
+      to: `${user}`,
       subject: "Congratulations, your song has been released!",
       text: "We wish you luck with this new release, it´s so good!!"
     });

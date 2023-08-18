@@ -1,11 +1,11 @@
 const {Song, Rating} = require('../../db')
 const categoryRelationship = require('../../helpers/categoryRelationship')
 const validateParams = require('../../utils/validationsPostMusic/validateDate')
+const emailer = require("../../../nodemailer/emailer")
 
 
 const postMusic = async (req, res) => {
-  const { url, name, genre, imageUrl, isActive, artist } = req.body;
-
+  const { url, name, genre, imageUrl, isActive, artist, email} = req.body;
   try {
     validateParams({
       url,
@@ -25,6 +25,7 @@ const postMusic = async (req, res) => {
       artist,
     });
     await categoryRelationship(song);
+    emailer.sendMailSong(email);
     res.status(201).json(song);
   } catch (error) {
     res.status(404).json(error);
