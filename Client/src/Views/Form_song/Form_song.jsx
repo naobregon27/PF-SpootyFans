@@ -29,7 +29,7 @@ const FormSong = () => {
   });
   const [preferenceId, setPreferenceId] = useState(null);
   initMercadoPago("TEST-49489d9a-43ea-4810-a664-1a848029c094");
-  console.log(token);
+  
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const status = queryParams.get("status");
