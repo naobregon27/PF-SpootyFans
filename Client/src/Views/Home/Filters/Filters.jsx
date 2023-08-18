@@ -25,15 +25,15 @@ const Filters = () => {
    };
 
    return (
-      <div class=" flex flex-row items-center rounded-[5rem]">
+      <div class=" flex flex-row items-center gap-5 rounded-[5rem]">
          
          <select
-            className= "bg-white flex flex-row justify-center items-center font-custom p-3 h-[3.1rem] w-[10rem] bg-transparent border rounded-[5rem] outline-none"
+            className= "flex flex-row justify-center items-center font-custom p-3 h-[3.1rem] w-[10rem] bg-[#00000020] backdrop-blur-[7px] border border-[#ffffff20] cursor-pointer text-white rounded-[5rem] outline-none"
             onChange={handleGenre}>
             <option selected disabled>Select Genre</option>
             {genres.map((genre) => {
                return (
-                  <option className="text-[.9rem]" key={genre.name} value={genre.name}>
+                  <option className="text-[.9rem] text-black" key={genre.name} value={genre.name}>
                      {genre.name}
                   </option>
                );
@@ -41,12 +41,12 @@ const Filters = () => {
          </select>
          
          <select
-            className="bg-white flex flex-row justify-center items-center font-custom p-3 h-[3.1rem] w-[10rem] bg-transparent border rounded-[5rem] outline-none"
+            className="flex flex-row justify-center items-center font-custom p-3 h-[3.1rem] w-[10rem] bg-[#00000020] backdrop-blur-[7px] border border-[#ffffff20] cursor-pointer text-white rounded-[5rem] outline-none"
             onChange={handleRating}>
             <option selected disabled>Filter by Rating</option>
             {rating.map((rate) => {
                return (
-                  <option className="text-[.9rem]"key={rate} value={rate}>
+                  <option className="text-[.9rem] text-black"key={rate} value={rate}>
                      stars: {rate}
                   </option>
                );

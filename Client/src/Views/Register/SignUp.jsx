@@ -64,24 +64,11 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-screen h-screen bg-slate-200 font-custom overflow-hidden">
-      <p className="w-full min-w-full m-0 break-words text-[5.8rem] select-none leading-[.8] text-white blur-[2px]">
-        ClásicaRockPopHipHopJazzBluesReggaeTrapmetalElectrónicaRapR&BCountryEDMFunkMetalAmbientElectropopHardstyleChillwaveDancehallDubstepTechnoFlamencoSoulReguetónTrapCumbiaAlternativaDiscoSkaFolkIndieGospelPostpunkSalsaSambaSynthwaveVallenatoPunkFunkMetalcoreBluegrassGrimeMerengueIndustrialNeosoulRancheraNoisepopChiptuneSwingProgressivehouseNewageCelticSkapunkExperimentalPsytranceGrungeFadoJungleKpopR&BalternativoElectroswingReggaetónespañolTriphopDrumandbassRockalternativoBachataGaragerockChansonTranceDreampopAmericanaJpopPowermetalCountrypopSertanejoMerengueurbanoTraplatinoElectrohousePopunkHip
-        hopalternativoDeathmetalPoprockRagtimeDowntempoJazzfusionRockprogresivoHardrockReguetónclásicoPostrockTangoElectropopalternativoAmbientalblackmetalDancepopPostpunkrevivalJazzcontemporáneoReggaerootsElectroclashPopalternativoIndiefolkPsychedelicrockSoulalternativoBigbandTrapcoreElectrónicaexperimentalAmbientpopNeofolkFolkrockEDMalternativoRapcoreCumbiavilleraPopexperimentalNujazzMetalalternativoCountryalternativoSynthpopIndiepopPunkpopDarkambientMelodicdeathmetalR&BcontemporáneoNoiserock
-      </p>
-      <main className="grid grid-cols-2 max-md:flex max-md:justify-center max-md:items-center justify-center justify-items-center items-center place-items-center w-screen h-screen overflow-hidden font-custom absolute z-50">
-        <div className="h-screen flex justify-center items-center max-md:absolute max-md:w-[60rem] z-0">
-          <img
-            className="flex justify-center items-center w-[40rem] animate-transitionimageone  absolute"
-            src={ballet}
-          />
-          <img
-            className="flex justify-center items-center w-[40rem] animate-transitionimagetwo absolute"
-            src={runner}
-          />
-        </div>
+    <div className="flex flex-col items-center justify-center w-screen h-screen bg-transparent font-custom overflow-hidden text-white">
+    
+      <main className="flex flex-col justify-center items-center backdrop-blur-[6px] bg-[#ffffff10] shadow-inner shadow-white rounded-[2rem]">
 
-        <div className="flex flex-col justify-center items-center min-w-[22rem] w-[25rem] h-fit backdrop-blur-[6px] max-md:backdrop-blur-[10px] shadow-xl rounded-[2rem] z-50">
+        <div className="flex flex-col justify-center items-center min-w-[22rem] w-[25rem] h-fit max-md:backdrop-blur-[10px] shadow-xl rounded-[2rem] z-50">
           <div>
             <h1 className="text-[3.5rem] mb-2 mt-3 tracking-[2px]">Sign Up</h1>
           </div>
@@ -92,7 +79,7 @@ const SignUp = () => {
           >
             <label className="flex flex-col justify-center items-center pb-[1rem]">
               <input
-                className="border w-[20rem] max-md:w-[18rem] h-[1rem] rounded-[5rem] p-5"
+                className="border bg-[#ffffff05] w-[20rem] h-[1rem] rounded-[5rem] p-5 placeholder:text-[#ffffff70] text-white focus:scale-[1.1] focus:bg-[#ffffff10] focus:shadow-[0px_13px_36px_0px_#000] duration-[.3s] outline-none"
                 type="text"
                 value={username}
                 placeholder="Username"
@@ -107,7 +94,7 @@ const SignUp = () => {
 
             <label className="flex flex-col justify-center items-center pb-[1rem]">
               <input
-                className="border w-[20rem] max-md:w-[18rem] h-[1rem] rounded-[5rem] p-5"
+                className="border bg-[#ffffff05] w-[20rem] h-[1rem] rounded-[5rem] p-5 placeholder:text-[#ffffff70] text-white focus:scale-[1.1] focus:bg-[#ffffff10] focus:shadow-[0px_13px_36px_0px_#000] duration-[.3s] outline-none"
                 type="email"
                 value={email}
                 placeholder="Email"
@@ -122,7 +109,7 @@ const SignUp = () => {
 
             <label className="flex flex-col justify-center items-center pb-[1rem]">
               <input
-                className="border w-[20rem] max-md:w-[18rem] h-[1rem] rounded-[5rem] p-5"
+                className="border bg-[#ffffff05] w-[20rem] h-[1rem] rounded-[5rem] p-5 placeholder:text-[#ffffff70] text-white focus:scale-[1.1] focus:bg-[#ffffff10] focus:shadow-[0px_13px_36px_0px_#000] duration-[.3s] outline-none"
                 type="password"
                 value={password}
                 placeholder="Password"
@@ -137,7 +124,7 @@ const SignUp = () => {
 
             <label className="flex flex-col justify-center items-center pb-[1rem]">
               <input
-                className="border w-[20rem] max-md:w-[18rem] h-[1rem] rounded-[5rem] p-5"
+                className="border bg-[#ffffff05] w-[20rem] h-[1rem] rounded-[5rem] p-5 placeholder:text-[#ffffff70] text-white focus:scale-[1.1] focus:bg-[#ffffff10] focus:shadow-[0px_13px_36px_0px_#000] duration-[.3s] outline-none"
                 type="password"
                 value={confirmPassword}
                 placeholder="Confirm Password"
@@ -150,7 +137,7 @@ const SignUp = () => {
               )}
             </label>
             <button
-              className="flex flex-col justify-center items-center bg-white border w-[7rem] h-[2.3rem] rounded-[5rem] mt-2 mb-5  hover:scale-[1.1] hover:bg-black hover:text-[#fff] duration-[.3s]"
+              className="flex flex-col justify-center items-center bg-transparent border w-[7rem] h-[2.3rem] rounded-[5rem] mt-2 mb-5 hover:scale-[1.1] hover:bg-white hover:text-black duration-[.3s]"
               type="submit"
             >
               Submit
@@ -163,7 +150,7 @@ const SignUp = () => {
           <p className="m-[1rem]">
             Not the first time here?
             <NavLink
-              className="ml-5 text-[1.2rem] hover:text-[#ff50aa] duration-[.3s]"
+              className="ml-5 text-[1.2rem] animate-multicolor_text duration-[.3s]"
               to="/login"
             >
               Login

@@ -38,14 +38,15 @@ const Form = () => {
 
    return (
       <div className="flex flex-col items-center justify-center w-screen h-screen bg-transparent font-custom overflow-hidden text-white">
-         <div className="flex flex-col justify-center items-center min-w-[22rem] w-[25rem] h-[30rem] backdrop-blur-[6px] bg-[#ffffff10] shadow-inner shadow-white rounded-[2rem] hover:backdrop-blur-[10px] hover:scale-[1.05] duration-[.3s]">
+
+         <div className="flex flex-col justify-center items-center min-w-[22rem] w-[25rem] h-[30rem] backdrop-blur-[6px] bg-[#ffffff10] shadow-inner shadow-white rounded-[2rem]">
             <h1 className="text-[3.5rem] mb-2 tracking-[2px]">Log in</h1>
             <form
                className="flex flex-col justify-center items-center"
                onSubmit={handleSubmit}>
                <label className="flex flex-col justify-center items-center pb-[1.4rem]">
                   <input
-                     className="border bg-[#ffffff05] w-[20rem] h-[1rem] rounded-[5rem] p-5 placeholder:text-[#ffffff70] text-white focus:bg-transparent"
+                     className="border bg-[#ffffff05] w-[20rem] h-[1rem] rounded-[5rem] p-5 placeholder:text-[#ffffff70] text-white focus:scale-[1.1] focus:bg-[#ffffff10] focus:shadow-[0px_13px_36px_0px_#000] duration-[.3s] outline-none"
                      onChange={handleChange}
                      value={userData.username}
                      type="text"
@@ -60,7 +61,7 @@ const Form = () => {
 
                <label className="flex flex-col justify-center items-center pb-[1rem]">
                   <input
-                     className="border bg-[#ffffff05] w-[20rem] h-[1rem] rounded-[5rem] p-5 placeholder:text-[#ffffff70] text-white"
+                     className="border bg-[#ffffff05] w-[20rem] h-[1rem] rounded-[5rem] p-5 placeholder:text-[#ffffff70] text-white focus:scale-[1.1] focus:bg-[#ffffff10] focus:shadow-[0px_13px_36px_0px_#000] duration-[.3s] outline-none"
                      onChange={handleChange}
                      value={userData.password}
                      type="password"
