@@ -1,7 +1,7 @@
 import { io } from "socket.io-client"
 import { useState, useEffect } from "react"
 import { LiMensaje, UlMensajes } from "./plantillachat.jsx";
-
+import style from "./chat.module.css";
 const socket = io('http://localhost:3002');
 
 function Chat() {

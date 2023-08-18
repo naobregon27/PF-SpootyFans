@@ -4,10 +4,9 @@ import { useState, useEffect } from "react";
 import { spotyFansApi } from "../../../services/apiConfig";
 import { setCurrentSongUrls, setRating } from "../../Redux/actions";
 import { useDispatch, useSelector} from "react-redux";
-import Chat from "../Chat/Chat";
 import React from "react";
 import styles from "./Detail.module.css";
-
+import Chat from "../Chat/Chat";
 
 const Detail = ({averageRating}) => {
   const dispatch = useDispatch();
@@ -78,15 +77,14 @@ const Detail = ({averageRating}) => {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center font-custom relative w-screen top-[8rem]  ">
-      <div className="flex flex-row items-center w-[50rem] max-md:w-fit max-md:h-fit shadow-2xl rounded-[1.5rem] max-md:flex-col max-md:max-w-xs">
-        <div className="p-7 bg-slate-100 rounded-l-[1.5rem] max-md:bg-transparent">
+    <div className="flex flex-col justify-center items-center font-custom w-screen h-screen text-white">
+      <div className=" flex flex-col justify-center items-center shadow-inner shadow-white p-5 rounded-[2rem] bg-[#ffffff10] backdrop-blur-[6px] font-custom overflow-x-hidden absolute text-white">
+       
           <img
-            className="max-w-[15rem] max-md:w-fit max-md:shadow-2xl"
+            className="w-[15rem] rounded-[1.5rem]"
             src={songDetail.imageUrl}
             alt={`Imagen de la canción ${songDetail.name}`}
           />
-        </div>
 
         <div className="flex flex-col justify-center items-center w-[30rem] h-[14rem] ml-[1rem] max-md:ml-0">
           <div className="">
@@ -95,19 +93,23 @@ const Detail = ({averageRating}) => {
             </h>
             <h3 className="ml-[.2rem]">{songDetail.genre}</h3>
 
+          <div className="">
             <form className={styles.clasificacion}>!ereh gnos siht etaR {renderStars()}</form>
+          </div>
 
-            <ReactAudioPlayer
+            {/* <ReactAudioPlayer
               className="w-[25rem] max-md:max-w-[18rem]"
               src={songDetail.url}
               controls
               controlsList="nodownload"
-            />
+            /> */}
+
             <button onClick={playSong}>Play Song</button>
           </div>
         </div>
-      </div>
-      <Chat className="chat" />
+        <Chat className="chat" />
+        </div>
+      
     </div>
   );
 };
