@@ -29,35 +29,35 @@ function NavBar() {
             <div className="flex justify-around items-center font-custom w-screen mt-4">
                <NavLink to="/home">
                   <button
-                     className="flex flex-row border-transparent border-b-2 hover:border-white hover:border-b-2 duration-[.3s]"
+                     className="flex flex-row border-transparent border-b-2 text-[1.3rem] hover:border-white hover:border-b-2 duration-[.3s]"
                      onClick={handleRerender}>
-                     Home <IconHome/>
+                     Home<p className="opacity-0">o</p><IconHome />
                   </button>
                </NavLink>
 
                <NavLink to="/create">
-                  <button className="flex flex-row border-transparent border-b-2 hover:border-white hover:border-b-2 duration-[.3s]">
-                     Upload <IconCloudUpload/>
+                  <button className="flex flex-row border-transparent border-b-2 text-[1.3rem] hover:border-white hover:border-b-2 duration-[.3s]">
+                     Upload<p className="opacity-0">o</p><IconCloudUpload/>
                   </button>
                </NavLink>
 
                <NavLink to="/playlist">
-                  <button className="flex flex-row border-transparent border-b-2 hover:border-white hover:border-b-2 duration-[.3s]">
-                     New playlist <IconPlaylistAdd/>
+                  <button className="flex flex-row border-transparent border-b-2 text-[1.3rem] hover:border-white hover:border-b-2 duration-[.3s]">
+                     New playlist<p className="opacity-0">o</p><IconPlaylistAdd/>
                   </button>
                </NavLink>
 
                <NavLink to="/profile">
-                  <button className="flex flex-row border-transparent border-b-2 hover:border-white hover:border-b-2 duration-[.3s]">
-                     Profile <IconUserCircle/>
+                  <button className="flex flex-row border-transparent border-b-2 text-[1.3rem] hover:border-white hover:border-b-2 duration-[.3s]">
+                     Profile<p className="opacity-0">o</p><IconUserCircle/>
                   </button>
                </NavLink>
 
                <NavLink to="/">
                   <button
-                     className="flex flex-row border-transparent border-b-2 hover:border-white hover:border-b-2 duration-[.3s]"
+                     className="flex flex-row border-transparent border-b-2 text-[1.3rem] hover:border-white hover:border-b-2 duration-[.3s]"
                      onClick={handleClickLogout}>
-                     Logout<IconLogout/>
+                     Logout<p className="opacity-0">o</p><IconLogout/>
                   </button>
                </NavLink>
             </div>
