@@ -7,14 +7,27 @@ const llenarDB = require("./llenarDB");
 //config socket.io
 
 const http = require ("http");
-const socketIO = require('socket.io');
 
-const server = http.createServer(app);
-const io = socketIO(server)
+const server = http.createServer();
 
-io.on ('connection', (socket)=>{
-  console.log (`User connected`);
-})
+const io = require('socket.io')(server, {
+  cors: { origin: '*' }
+});
+
+io.on('connection', (socket) => {
+  console.log('Se ha conectado un cliente');
+
+  socket.broadcast.emit('chat_message', {
+      usuario: 'INFO',
+      mensaje: 'Se ha conectado un nuevo usuario'
+  });
+
+  socket.on('chat_message', (data) => {
+      io.emit('chat_message', data);
+  });
+});
+
+server.listen(3002);
 
 
 conn

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { spotyFansApi } from "../../../services/apiConfig";
 import { setCurrentSongUrls } from "../../Redux/actions";
 import { useDispatch, useSelector} from "react-redux";
+import Chat from "../Chat/Chat";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -76,6 +77,7 @@ const Detail = () => {
           </div>
         </div>
       </div>
+      <Chat className="chat" />
     </div>
   );
 };

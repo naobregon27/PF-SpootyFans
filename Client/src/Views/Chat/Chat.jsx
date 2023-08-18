@@ -1,5 +1,5 @@
-import {io} from "socket.io-client"
-import {useState, useEffect} from "react"
+import { io } from "socket.io-client"
+import { useState, useEffect } from "react"
 import { LiMensaje, UlMensajes } from "./plantillachat.jsx";
 
 const socket = io('http://localhost:3002');
@@ -27,24 +27,27 @@ function Chat() {
 
   const enviarMensaje = () => {
     socket.emit('chat_message', {
-      usuario: socket.id,
+      // usuario: socket.id,
       mensaje: nuevoMensaje
     });
   }
 
   return (
-    <div className="App">
-      <h2>{isConnected ? 'CONECTADO' : 'NO CONECTADO'}</h2>
-      <UlMensajes>
-        {mensajes.map(mensaje => (
-          <LiMensaje>{mensaje.usuario}: {mensaje.mensaje}</LiMensaje>
-        ))}
-      </UlMensajes>
-      <input
-        type="text"
-        onChange={e => setNuevoMensaje(e.target.value)}
-        
-      />
+    <div >
+      <h2>{isConnected ? "CONECTADO" : "NO CONECTADO"}</h2>
+      <div className={style.mensaje}>
+        <UlMensajes>
+          {mensajes.map(mensaje => (
+            <LiMensaje> {mensaje.usuario} {mensaje.mensaje}</LiMensaje>
+          ))}
+        </UlMensajes>
+      </div>
+
+      <div >
+        <input className={style.input} type="text" value={nuevoMensaje} onChange={e => setNuevoMensaje(e.target.value)} />
+      </div>
+  
+      
       <button onClick={enviarMensaje}>Enviar</button>
     </div>
   );
