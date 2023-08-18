@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import style from "./Form_song.module.css";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { useSelector } from "react-redux";
 import {
@@ -9,7 +8,7 @@ import {
 } from "../../../services/apiConfig";
 import { useLocation } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-
+import {IconFileMusic, IconPhotoPlus} from "@tabler/icons-react";
 
 const FormSong = () => {
   const token = localStorage.getItem("token");
@@ -193,53 +192,62 @@ const FormSong = () => {
   };
 
   return (
-    <>
-      <form className={style.mainContainer}>
-        <div className={style.form}>
-          <h2>good luck...</h2>
-          <div className="form-group">
-            <label htmlFor="file">Choose the audio file</label>
+    <div>
+      <form className=" flex flex-col justify-center items-center w-screen max-w-full h-screen bg-transparent font-custom overflow-x-hidden absolute text-white">
+        
+        <div className="z-10 w-[25rem] h-fit min-h-[50%] flex flex-col justify-evenly items-center rounded-[2rem] p-5 bg-[#ffffff10] shadow-inner shadow-white backdrop-blur-[6px] hover:scale-[1.05] duration-[.3s]">
+
+          <h2 className="text-[2rem]">Good luck...</h2>
+
+          <div className="flex flex-row justify-center items-center gap-10">
+
+            <label className="text-white flex flex-col justify-center items-center" htmlFor="file"><IconFileMusic size={80} stroke={1}/>
+            <p className="text-[.9rem] text-[#ffffff80]">audio file</p>
+            </label>
             <input
-              className={`${style.datos} ${style["datos-btn"]}`}
+              className="hidden"
               type="file"
               id="file"
               onChange={handleSoundChange}
             />
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleFormControlFile1">
-              Choose the album cover
+          
+            <label className="text-white flex flex-col justify-center items-center" htmlFor="exampleFormControlFile1">
+            <IconPhotoPlus size={80} stroke={1}/>
+            <p className="text-[.9rem] text-[#ffffff80]">album cover</p>
             </label>
             <input
-              className={`${style.datos} ${style["datos-btn"]}`}
+              className="hidden"
               type="file"
               id="exampleFormControlFile1"
               onChange={handleImageChange}
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="name">Name of the song:</label>
+
+          <div >
             <input
-              className={style.datos}
+              className="text-white outline-none p-2 w-[15rem] border border-[#ffffff20] bg-transparent rounded-[5rem] focus:scale-[1.1] hover:shadow-[rgba(0,_0,_0,_0.2)_0px_60px_40px_-7px] duration-[.3s]"
               type="text"
               id="name"
+              placeholder="Name of the song"
               value={data.name}
               onChange={handleNameChange}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="artist">Artist:</label>
+            
             <input
-              className={style.datos}
+              className="text-white outline-none p-2 w-[15rem] border border-[#ffffff20] bg-transparent rounded-[5rem] focus:scale-[1.1] focus:shadow-[rgba(0,_0,_0,_0.2)_0px_60px_40px_-7px] duration-[.3s]"
               type="text"
               id="artist"
+              placeholder="Artist"
               value={data.artist}
               onChange={handleArtistChange}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="genre">Genre:</label>
-            <select onChange={handleGenreChange}>
+            <label className=" flex justify-center items-center text-white"htmlFor="genre"></label>
+            <select 
+            className="text-white outline-none p-2 border border-[#ffffff70] bg-transparent rounded-[5rem] focus:scale-[1.1] focus:shadow-[rgba(0,_0,_0,_0.2)_0px_60px_40px_-7px]" onChange={handleGenreChange}>
               <option value="">Select Genre</option>
               {newGenres.map((genre) => {
                 return (
@@ -249,35 +257,30 @@ const FormSong = () => {
                 );
               })}
             </select>
-
-            {/* <label htmlFor="genre">Genre:</label>
-          <input
-            className={style.datos}
-            type="text"
-            id="genre"
-            value={data.genre}
-            onChange={handleGenreChange}
-          /> */}
           </div>
+
           <button
-            className={style.boton}
+            className="flex text-[1.5rem] flex-row justify-center items-center p-[.4rem] shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] bg-white text-black w-[7rem] rounded-[5rem] border border-[#ffffff20] hover:bg-transparent hover:scale-[1.2] hover:text-white duration-[.3s]"
             type="button"
             onClick={up}
             disabled={!userData.isPremium}>
-            Upload your song!
+            Upload
           </button>
             {!userData.isPremium && (
             <h2>You must be Premium to upload songs.</h2>
             )}
         </div>
       </form>
-      <div>
+
+      {!userData.isPremium && 
+      <div className="flex flex-col justify-center items-center h-screen w-screen z-[990] absolute bg-[#ffffff10] backdrop-blur-[7px]">
       {!userData.isPremium && (
-          <button onClick={handleBuy}>Upgrade to Premium</button>
-          )}
+        <button className="text-white text-[5rem] font-custom border p-5 rounded-[5rem] bg-[#ffffff20] hover:shadow-[5px_5px_0px_0px_rgba(109,40,217)] mt-01" onClick={handleBuy}>Upgrade to <span className="animate-multicolor_text">Premium</span></button>
+        )}
           {preferenceId && <Wallet initialization={{ preferenceId: preferenceId }} />}
       </div>
-    </>
+      }
+    </div>
   );
 };
 

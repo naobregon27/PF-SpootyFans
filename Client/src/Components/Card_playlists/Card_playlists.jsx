@@ -72,7 +72,7 @@ const Card_playlists = () => {
          <div className="grid grid-cols-3 gap-5 justify-center items-center mt-5">
             {playlists.map((playlist) => (
                <div
-                  className="flex flex-row justify-between items-center w-[20rem]  pl-5 pr-5 z-50 bg-white rounded-[1rem] border shadow-2xl hover:text-white hover:bg-black duration-[.3s]"
+                  className="text-black flex flex-row justify-between items-center w-[20rem]  pl-5 pr-5 z-50 bg-white rounded-[1rem] border shadow-2xl hover:text-white hover:bg-black duration-[.3s]"
                   key={playlist.id}>
                   <div className="text-[2rem] p-2 w-[10rem] overflow-hidden  whitespace-nowrap ">
                      <NavLink to={`/playlist/${playlist.id}`}>
