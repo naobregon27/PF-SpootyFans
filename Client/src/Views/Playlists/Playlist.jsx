@@ -100,22 +100,18 @@ const Playlist = () => {
    };
 
    return (
-      <div className=" flex flex-col justify-center items-center w-screen max-w-full h-screen bg-slate-200 font-custom overflow-x-hidden absolute">
-         <p className="w-screen min-w-screen overflow-clip bg-fixed m-0 break-words text-[5.8rem] select-none leading-[.8] text-white blur-[3px] fixed inset-0 z-0">
-            ClásicaRockPopHipHopJazzBluesReggaeTrapmetalElectrónicaRapR&BCountryEDMFunkMetalAmbientElectropopHardstyleChillwaveDancehallDubstepTechnoFlamencoSoulReguetónTrapCumbiaAlternativaDiscoSkaFolkIndieGospelPostpunkSalsaSambaSynthwaveVallenatoPunkFunkMetalcoreBluegrassGrimeMerengueIndustrialNeosoulRancheraNoisepopChiptuneSwingProgressivehouseNewageCelticSkapunkExperimentalPsytranceGrungeFadoJungleKpopR&BalternativoElectroswingReggaetónespañolTriphopDrumandbassRockalternativoBachataGaragerockChansonTranceDreampopAmericanaJpopPowermetalCountrypopSertanejoMerengueurbanoTraplatinoElectrohousePopunkHip
-            hopalternativoDeathmetalPoprockRagtimeDowntempoJazzfusionRockprogresivoHardrockReguetónclásicoPostrockTangoElectropopalternativoAmbientalblackmetalDancepopPostpunkrevivalJazzcontemporáneoReggaerootsElectroclashPopalternativoIndiefolkPsychedelicrockSoulalternativoBigbandTrapcoreElectrónicaexperimentalAmbientpopNeofolkFolkrockEDMalternativoRapcoreCumbiavilleraPopexperimentalNujazzMetalalternativoCountryalternativoSynthpopIndiepopPunkpopDarkambientMelodicdeathmetalR&BcontemporáneoNoiserock
-         </p>
+      <div className=" flex flex-col justify-center items-center w-screen max-w-full h-screen bg-transparent font-custom overflow-x-hidden absolute text-white">
 
-         <div className="z-10 w-fit h-fit min-h-[50%] flex flex-col justify-evenly items-center rounded-[2rem] p-5 bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]">
+         <div className="z-10 w-fit h-fit min-h-[50%] flex flex-col justify-evenly items-center rounded-[2rem] p-5 bg-[#ffffff10] shadow-inner shadow-white backdrop-blur-[6px]">
             <div>
-               <h2 className="flex flex-col justify-center items-center text-black text-[2rem] mb-[1rem]">
+               <h2 className="flex flex-col justify-center items-center text-[2rem] mb-[1rem]">
                   Create a new Playlist
                </h2>
 
                <div className="flex justify-center items-center">
-                  <div className="flex flex-row justify-center w-fit bg-white  rounded-[5rem] gap-2">
+                  <div className="flex flex-row justify-center w-fit gap-2">
                      <input
-                        className="text-[1rem] bg-transparent outline-none p-1 w-[15rem] border-b-2  focus:border-black duration-[.3s]"
+                        className="text-[1rem] bg-transparent outline-none p-1 w-[15rem] border-b-2 border-[#ffffff30] focus:border-white duration-[.3s]"
                         type="text"
                         value={newPlaylist}
                         onChange={(e) => setNewPlaylist(e.target.value)}
@@ -131,13 +127,12 @@ const Playlist = () => {
             </div>
 
             <div className="flex flex-col justify-center items-center">
-
                <h2 className="text-[1.3rem] mb-5 mt-5">My playlists:</h2>
 
                <div className=" grid grid-cols-2 gap-4">
                   {playlists.map((playlist) => (
                      <div
-                        className="flex flex-row justify-between items-center p-[.7rem] shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] rounded-[5rem] w-[10rem] hover:bg-black hover:text-white hover:translate-y-[-.5rem] duration-[.3s]"
+                        className="flex flex-row justify-between items-center p-[.7rem] shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] rounded-[5rem] w-[10rem] border border-[#ffffff20] bg-[#00000020] hover:bg-white hover:text-black hover:translate-y-[-.5rem] duration-[.3s]"
                         key={playlist.id}>
                         <div className="whitespace-nowrap overflow-hidden text-ellipsis">
                            <NavLink to={`/playlist/${playlist.id}`}>
@@ -164,8 +159,8 @@ const Playlist = () => {
         <h1 className="flex flex-col justify-center items-center text-black font-bold"> Let´s add some songs!</h1>
         <h2 className="flex flex-col justify-center items-center">You wanna add a song?</h2>
 
-        <input list="brow" onChange={(e) => findSong(e.target.value)}/>
-          <datalist id="brow">
+        <input list="brow" onChange={(e) => findSong(e.target.value)} />
+        <datalist id="brow">
           {songs.map((song) => (
             <option key={song.id} value={song.name}>
               {song.name}

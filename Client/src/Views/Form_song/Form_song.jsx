@@ -13,7 +13,7 @@ import jwt_decode from "jwt-decode";
 
 const FormSong = () => {
   const token = localStorage.getItem("token");
-  const {userId} = jwt_decode(token);
+  const {userId, email} = jwt_decode(token);
   const location = useLocation();
   const genres = useSelector((state) => state.categories);
   const newGenres = genres.filter((genre) => genre.name !== "All");
@@ -29,7 +29,7 @@ const FormSong = () => {
   });
   const [preferenceId, setPreferenceId] = useState(null);
   initMercadoPago("TEST-49489d9a-43ea-4810-a664-1a848029c094");
-
+  
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const status = queryParams.get("status");
@@ -103,6 +103,13 @@ const FormSong = () => {
     });
   };
 
+  const handleArtistChange = (e) => {
+    setData({
+      ...data,
+      artist: e.target.value,
+    });
+  };
+
   const handleGenreChange = (e) => {
     setData({
       ...data,
@@ -152,7 +159,7 @@ const FormSong = () => {
       const formImage = new FormData();
 
       formSound.append("file", soundFile);
-      formImage.append("multipartFile", imagedFile);
+      formImage.append("image", imagedFile);
 
       const responseSound = await postMusicApi.post("/postmusic", formSound);
       console.log(
@@ -161,18 +168,19 @@ const FormSong = () => {
       );
 
       const responseImage = await postImageApi.post(
-        "/cloudinary/upload",
+        "/upload",
         formImage
       );
       console.log(
         "URL del archivo jpg cargado:",
-        responseImage.data.secure_url
+        responseImage.data.imageUrl
       );
 
       const postDataObject = {
         ...data,
-        imageUrl: responseImage.data.secure_url,
+        imageUrl: responseImage.data.imageUrl,
         url: responseSound.data.fileUrl,
+        email: email,
       };
 
       await setData(postDataObject);
@@ -217,6 +225,16 @@ const FormSong = () => {
               id="name"
               value={data.name}
               onChange={handleNameChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="artist">Artist:</label>
+            <input
+              className={style.datos}
+              type="text"
+              id="artist"
+              value={data.artist}
+              onChange={handleArtistChange}
             />
           </div>
           <div className="form-group">

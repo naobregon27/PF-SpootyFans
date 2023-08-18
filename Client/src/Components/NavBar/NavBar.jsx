@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { allSongs, setCurrentSongUrls } from "../../Redux/actions";
 import { useNavigate } from "react-router-dom";
-import {IconArrowDown} from '@tabler/icons-react'
+import {IconArrowDown, IconLogout, IconUserCircle, IconPlaylistAdd, IconCloudUpload, IconHome} from '@tabler/icons-react'
 
 function NavBar() {
    const dispatch = useDispatch();
@@ -19,7 +19,7 @@ function NavBar() {
 
    return (
       <div className="absolute z-[999] h-0 w-screen max-w-full bg-white font-custom">
-         <div className="flex flex-col justify-between items-center relative h-[5rem] top-[-3.4rem] hover:top-0 hover:bg-black hover:text-white hover:shadow-2xl duration-[.3s]">
+         <div className="flex flex-col justify-between items-center relative h-[5rem] top-[-3.4rem] hover:top-0 bg-[#ffffff10] backdrop-blur-[7px] text-white hover:shadow-2xl duration-[.3s]">
             {/* <img
                className=""
                src={logo}
@@ -29,35 +29,35 @@ function NavBar() {
             <div className="flex justify-around items-center font-custom w-screen mt-4">
                <NavLink to="/home">
                   <button
-                     className="border-black border-b-2 hover:border-white hover:border-b-2 duration-[.3s]"
+                     className="flex flex-row border-transparent border-b-2 text-[1.3rem] hover:border-white hover:border-b-2 duration-[.3s]"
                      onClick={handleRerender}>
-                     Home
+                     Home<p className="opacity-0">o</p><IconHome />
                   </button>
                </NavLink>
 
                <NavLink to="/create">
-                  <button className="border-black border-b-2 hover:border-white hover:border-b-2 duration-[.3s]">
-                     Upload
+                  <button className="flex flex-row border-transparent border-b-2 text-[1.3rem] hover:border-white hover:border-b-2 duration-[.3s]">
+                     Upload<p className="opacity-0">o</p><IconCloudUpload/>
                   </button>
                </NavLink>
 
                <NavLink to="/playlist">
-                  <button className="border-black border-b-2 hover:border-white hover:border-b-2 duration-[.3s]">
-                     New playlist
+                  <button className="flex flex-row border-transparent border-b-2 text-[1.3rem] hover:border-white hover:border-b-2 duration-[.3s]">
+                     New playlist<p className="opacity-0">o</p><IconPlaylistAdd/>
                   </button>
                </NavLink>
 
                <NavLink to="/profile">
-                  <button className="border-black border-b-2 hover:border-white hover:border-b-2 duration-[.3s]">
-                     Profile
+                  <button className="flex flex-row border-transparent border-b-2 text-[1.3rem] hover:border-white hover:border-b-2 duration-[.3s]">
+                     Profile<p className="opacity-0">o</p><IconUserCircle/>
                   </button>
                </NavLink>
 
                <NavLink to="/">
                   <button
-                     className="border-black border-b-2 hover:border-white hover:border-b-2 duration-[.3s]"
+                     className="flex flex-row border-transparent border-b-2 text-[1.3rem] hover:border-white hover:border-b-2 duration-[.3s]"
                      onClick={handleClickLogout}>
-                     Logout
+                     Logout<p className="opacity-0">o</p><IconLogout/>
                   </button>
                </NavLink>
             </div>

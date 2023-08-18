@@ -5,6 +5,8 @@ const authentication = require("../middlewares/authentication");
 const setPremium = require("../controllers/users/setPremium");
 const getUserById = require("../controllers/users/getUserById");
 const putUsername = require("../controllers/users/putUsername");
+const getAllUsers = require("../controllers/users/getAllUsers");
+const setActive = require("../controllers/users/setActive");
 
 userRouter.post("/register", async (req, res) => {
   const userData = req.body;
@@ -66,6 +68,27 @@ userRouter.put("/newUsername", authentication, async (req, res) => {
     return res.status(400).json({ error: userModified.error });
   } else {
     return res.status(200).json(userModified);
+  }
+});
+
+userRouter.get("/", async (req, res) => {
+  const allUsers = await getAllUsers();
+
+  if (allUsers.error) {
+    return res.status(400).json({ error: allUsers.error });
+  } else {
+    return res.status(200).json(allUsers);
+  }
+});
+
+userRouter.put("/setActive/:userId", async (req, res) => {
+  const { userId } = req.params;
+  const modifiedUser = await setActive(userId);
+
+  if (modifiedUser.error) {
+    return res.status(400).json({ error: modifiedUser.error });
+  } else {
+    return res.status(200).json(modifiedUser);
   }
 });
 

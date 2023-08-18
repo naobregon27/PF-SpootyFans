@@ -1,6 +1,6 @@
 import jwt_decode from "jwt-decode";
-import style from "./Profile.module.css";
-import { AiFillEdit } from "react-icons/ai";
+// import style from "./Profile.module.css";
+import { IconPencil } from "@tabler/icons-react";
 import { useState } from "react";
 import { spotyFansApi } from "../../../services/apiConfig";
 
@@ -41,42 +41,45 @@ export default function Profile() {
   };
 
   return (
-    <main className={style.main_container}>
-      <div className={style.profile_container}>
-        <div className={style.username_container}>
+    <main className="flex flex-col w-screen h-screen justify-center items-center">
+      <div className="flex flex-col justify-center items-center">
+
+        <div classname="flex flex-row justify-center items-center">
+
           {!usernameEditing && (
-            <h2 className={style.username}>{usernameValue}</h2>
+            <h2>{usernameValue}</h2>
           )}
+          
           {!usernameEditing && (
-            <AiFillEdit
-              className={style.edit_username}
+            <IconPencil
               onClick={handleClickEdit}
             />
           )}
           {usernameEditing && (
+            
             <input
-              className={style.input_name}
               value={usernameValue}
               onChange={handleChangeUsernameValue}
               autoFocus
             />
           )}
           {usernameEditing && (
-            <button className={style.button_save} onClick={handleClickSave}>
+
+            <button onClick={handleClickSave}>
               Save
             </button>
           )}
         </div>
-        <div className={style.tags_container}>
-          {isPremium && <p className={style.premium}>Premium</p>}
-          {isAdmin && <p className={style.admin}>Admin</p>}
+
+        <div>
+          {isPremium && <p >Premium</p>}
+          {isAdmin && <p>Admin</p>}
         </div>
         <img
-          className={style.profile_image}
           src={profileImageUrl}
           alt={username}
         />
-        <h3 className={style.email}>{email}</h3>
+        <h3>{email}</h3>
       </div>
     </main>
   );

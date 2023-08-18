@@ -65,7 +65,7 @@ const Card_playlists = () => {
    // Resto del código...
 
    return (
-      <div className="flex flex-col justify-center items-center mt-5 mb-10">
+      <div className="flex flex-col justify-center items-center mt-5 mb-10 text-white">
          {/* ... (otros elementos del componente) */}
          <h2 className="text-[2rem]">My playlists:</h2>
 

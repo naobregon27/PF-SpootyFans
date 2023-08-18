@@ -1,0 +1,21 @@
+#form {
+    width: 250px;
+    margin: 0 auto;
+    height: 50px;
+  }
+  
+  #form p {
+    text-align: center;
+  }
+  
+  #form label {
+    font-size: 20px;
+  }
+  
+  label {
+    color: grey;
+  }
+
+  .amarilla {
+    color: orange;
+  }
