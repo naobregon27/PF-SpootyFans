@@ -83,6 +83,7 @@ const userRegister = async ({
       updatedAt: createdUser.updatedAt,
     };
     emailer.sendMailRegister(userInfo);
+    
     return userInfo;
 
   } catch (error) {

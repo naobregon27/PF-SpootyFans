@@ -11,5 +11,5 @@ export const postMusicApi = axios.create({
 });
 
 export const postImageApi = axios.create({
-  baseURL: "https://postimage-production.up.railway.app",
+  baseURL: "https://postimage-production.up.railway.app", 
 });

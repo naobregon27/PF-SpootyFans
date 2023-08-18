@@ -20,6 +20,7 @@ const setPremium = async (userId) => {
     emailer.sendMailPremium(userFound);
 
     return "Usuario modificado correctamente.";
+    
   } catch (error) {
     return { error: error.message };
   }

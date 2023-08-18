@@ -13,7 +13,7 @@ const postMusic = async (req, res) => {
       genre,
       imageUrl,
       isActive,
-      artist, // Asegúrate de incluir el campo "artist" aquí
+      artist,
     });
 
     const song = await Song.create({
@@ -22,7 +22,7 @@ const postMusic = async (req, res) => {
       genre,
       imageUrl,
       isActive,
-      artist, // Asegúrate de incluir el campo "artist" aquí también
+      artist,
     });
     await categoryRelationship(song);
     res.status(201).json(song);

@@ -145,7 +145,6 @@ const FormSong = () => {
 
   const postData = async (postData) => {
     try {
-      console.log(postData);
       const response = await spotyFansApi.post("/music/upload/url", postData);
       console.log(response.data);
     } catch (error) {
