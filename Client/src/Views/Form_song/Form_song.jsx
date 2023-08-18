@@ -145,6 +145,7 @@ const FormSong = () => {
 
   const postData = async (postData) => {
     try {
+      console.log(postData);
       const response = await spotyFansApi.post("/music/upload/url", postData);
       console.log(response.data);
     } catch (error) {
@@ -159,7 +160,7 @@ const FormSong = () => {
       const formImage = new FormData();
 
       formSound.append("file", soundFile);
-      formImage.append("multipartFile", imagedFile);
+      formImage.append("image", imagedFile);
 
       const responseSound = await postMusicApi.post("/postmusic", formSound);
       console.log(
@@ -168,17 +169,17 @@ const FormSong = () => {
       );
 
       const responseImage = await postImageApi.post(
-        "/cloudinary/upload",
+        "/upload",
         formImage
       );
       console.log(
         "URL del archivo jpg cargado:",
-        responseImage.data.secure_url
+        responseImage.data.imageUrl
       );
 
       const postDataObject = {
         ...data,
-        imageUrl: responseImage.data.secure_url,
+        imageUrl: responseImage.data.imageUrl,
         url: responseSound.data.fileUrl,
       };
 

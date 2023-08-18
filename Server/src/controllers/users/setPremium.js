@@ -17,7 +17,7 @@ const setPremium = async (userId) => {
 
     if (!userModified) throw new Error("Error al modificar el usuario.");
 
-    emailer.sendMailPremium(userModified);
+    emailer.sendMailPremium(userFound);
 
     return "Usuario modificado correctamente.";
   } catch (error) {
