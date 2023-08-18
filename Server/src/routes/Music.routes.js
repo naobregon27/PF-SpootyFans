@@ -9,6 +9,7 @@ const {getSongByNameAndArtist} = require("../helpers/getMusicByName");
 const {Song} = require("../db")
 const categoryRelationship = require('../helpers/categoryRelationship')
 const authentication = require("../middlewares/authentication");
+const setActive = require("../controllers/music/setActive");
 
 
 // Configurar Multer para guardar el archivo temporal en la carpeta 'uploads'
@@ -32,10 +33,22 @@ musicRouter.get("/", authentication, async (req, res) => {
 });
 
 
-musicRouter.get("/all", authentication, async (req, res) => {
+musicRouter.get("/all", async (req, res) => {
   const songs = await Song.findAll();
   return res.status(200).json(songs);
 });
+
+musicRouter.put("/setActive/:songId", async (req, res) => {
+  const { songId } = req.params;
+  const modifiedSong = await setActive(songId);
+
+  if (modifiedSong.error) {
+    return res.status(400).json({ error: modifiedSong.error });
+  } else {
+    return res.status(200).json(modifiedSong);
+  }
+});
+
 
 
 musicRouter.post("/rate", authentication, async(req, res)=>{

@@ -1,5 +1,5 @@
-const { users, songs, playLists, categories, rating } = require("./data");
-const { User, PlayList, Song, Category, Rating } = require("./src/db");
+const { users, songs, playLists, categories } = require("./data");
+const { User, PlayList, Song, Category } = require("./src/db");
 const categoryRelationship = require('./src/helpers/categoryRelationship')
 
 module.exports = () => {
@@ -14,43 +14,31 @@ module.exports = () => {
     User.create(newUser);
   });
 
-  songs.forEach(async ({ name, artist, genre, url, imageUrl, isActive, averageRating }) => {
+  songs.forEach(async ({ name, genre, url, imageUrl, isActive }) => {
     const newSong = {
       name,
-      artist,
       genre,
       url,
       imageUrl,
       isActive,
-      averageRating
     };
     const song = await Song.create(newSong);
-    await categoryRelationship(song)
+    await categoryRelationship(song);
   });
 
   playLists.forEach(({ name, likes }) => {
     const newPlayList = {
       name,
-      likes
-    }
-    PlayList.create(newPlayList)
-  })
+      likes,
+    };
+    PlayList.create(newPlayList);
+  });
 
-  categories.forEach(({ name, description }) => {
-    const newCategory = {
-      name,
-      description
-    }
-    Category.create(newCategory)
-  })
-
-  rating.forEach(async ({userId, idSong, stars})=>{
-    const newRating = {
-      userId,
-      idSong,
-      stars
-    }
-    await Rating.create(newRating)
-  })
-
+  // categories.forEach(({ name, description }) => {
+  //   const newCategory = {
+  //     name,
+  //     description
+  //   }
+  //   Category.create(newCategory)
+  // })
 };
