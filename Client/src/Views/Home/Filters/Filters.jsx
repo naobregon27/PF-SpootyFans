@@ -8,10 +8,6 @@ const Filters = () => {
    const genres = useSelector((state) => state.categories);
    const [rating, setRating] = useState(["All", 5, 4, 3, 2, 1])
 
-   useEffect(() => {
-      dispatch(allCategories());
-   }, [dispatch]);
-
    const handleGenre = (event) => {
       event.target.value === "All"
          ? dispatch(allSongs())
@@ -23,6 +19,10 @@ const Filters = () => {
          ? dispatch(allSongs())
          :  dispatch(allSongsRating(event.target.value));
    };
+
+   useEffect(() => {
+      dispatch(allCategories());
+   }, []);
 
    return (
       <div class=" flex flex-row items-center gap-5 rounded-[5rem]">

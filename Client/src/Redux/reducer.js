@@ -57,9 +57,11 @@ const reducer = (state = initialState, action) => {
     case GET_SONGS_BY_GENRE:
       return {
         ...state,
-        songsCopy: state.songs.filter((song) => song.genre === action.payload),
+        songsCopy: state.songsCopy.filter((song) => song.genre === action.payload),
       };
+      
     case GET_ALL_CATEGORIES:
+
       const genres = new Set();
       genres.add("All");
       action.payload.forEach((genre) => genres.add(genre.name));
@@ -89,7 +91,7 @@ const reducer = (state = initialState, action) => {
     case GET_SONGS_BY_RATING:
       return{
         ...state,
-        songsCopy: state.songs.filter((song) => song.averageRating === Number(action.payload)),
+        songsCopy: state.songsCopy.filter((song) => song.averageRating === Number(action.payload)),
       }
     default:
       return { ...state };
