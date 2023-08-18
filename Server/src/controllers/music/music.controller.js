@@ -4,7 +4,7 @@ const validateParams = require('../../utils/validationsPostMusic/validateDate')
 
 
 const postMusic = async (req, res) => {
-  const {url, name, genre, imageUrl, isActive} = req.body
+  const { url, name, genre, imageUrl, isActive, artist } = req.body;
 
   try {
     validateParams({
@@ -13,21 +13,24 @@ const postMusic = async (req, res) => {
       genre,
       imageUrl,
       isActive,
-  });
+      artist,
+    });
 
-    const song = await  Song.create({
+    const song = await Song.create({
       url,
       name,
       genre,
       imageUrl,
-      isActive
-    })
-    await categoryRelationship(song)
-    res.status(201).json(song)
+      isActive,
+      artist,
+    });
+    await categoryRelationship(song);
+    res.status(201).json(song);
   } catch (error) {
-    res.status(404).json(error)
+    res.status(404).json(error);
   }
 };
+
 
 const searchId = async(req, res)=>{
   const {id} = req.params
