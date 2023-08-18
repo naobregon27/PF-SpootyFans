@@ -31,7 +31,7 @@ function Home() {
 
          <div className="max-md:flex max-md:justify-center max-md:items-center justify-center justify-items-center items-center place-items-center overflow-hidden font-custom absolute mt-5 z-10">
             
-            <div className="flex flex-row justify-center items-center gap-5 mt-3">
+            <div className="flex flex-row justify-center items-center gap-5 mt-[2rem]">
 
                <SearchBar />
                <Filters />

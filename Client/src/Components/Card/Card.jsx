@@ -29,19 +29,21 @@ const Card = ({ id, name, artist, genre, url, image, averageRating }) => {
                alt={image}
             />
          </NavLink>
-         <div className="flex flex-col justify-center items-start  w-[10rem] overflow-hidden  whitespace-nowrap text-ellipsis mb-3">
+         <div className="flex W-screen flex-col justify-center items-start  w-[10rem] overflow-hidden  whitespace-nowrap text-ellipsis mb-3">
             <h3 className=" text-[1.5rem] uppercase relative hover:animate-text_scrolling">
                {name}
             </h3>
-            {/* <h3 className="w-full text-center p-1">{genre}</h3> */}
+            <div className="w-[90%] flex flex-row justify-evenly">
             <h3 className="text-[1.2rem]">{artist}</h3>
-
+            </div>
             <div className="w-[90%] flex flex-row justify-evenly">
                <h3 className="text-[#ffffff95]">{genre}</h3>
-               <form className={styles.clasificacion}>{renderStars()}</form>
             </div>
-         </div>
-         <NavLink to={`/detail/${id}`}>
+            <div className="w-[90%] flex flex-row justify-evenly">
+            
+            <form className={styles.clasificacion}>{renderStars()}</form></div>
+            </div>
+            <NavLink to={`/detail/${id}`}>
             <span className=" whitespace-nowrap flex justify-center items-center m-2 h-[2rem] w-[8rem]  border-none bg-transparent rounded-[.5rem] hover:bg-white hover:border hover:text-black duration-[.3s]">
                play song!
             </span>
