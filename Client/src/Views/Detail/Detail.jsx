@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 import { spotyFansApi } from "../../../services/apiConfig";
 import { setCurrentSongUrls, setRating } from "../../Redux/actions";
 import { useDispatch, useSelector} from "react-redux";
+import Chat from "../Chat/Chat";
 import React from "react";
 import styles from "./Detail.module.css";
+
 
 const Detail = ({averageRating}) => {
   const dispatch = useDispatch();
@@ -105,6 +107,7 @@ const Detail = ({averageRating}) => {
           </div>
         </div>
       </div>
+      <Chat className="chat" />
     </div>
   );
 };

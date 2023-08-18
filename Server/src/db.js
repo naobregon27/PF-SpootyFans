@@ -4,6 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 
+const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 // deploy
 // const { DB_URL } = process.env;
 // const sequelize = new Sequelize(DB_URL, {
