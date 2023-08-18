@@ -1,9 +1,23 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: url('./assets/bg.png');
+  background-image: url('./assets/bg1.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  background: #ffffff10;
+  padding: 2px;
+  filter: blur(10px);
+  border: solid 1px #ffffff10;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #ffffff20;
+  border-radius: 5rem;
+  margin: 1px;
 }

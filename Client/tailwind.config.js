@@ -59,7 +59,7 @@ export default {
             text_scrolling: "text_scrolling 5s linear infinite",
             loader_animation: "loader_animation 8s ease-in-out infinite",
             loader_text_animation: "loader_text_animation 3s linear infinite",
-            multicolor_text:"multicolor_text 15s ease-in-out infinite"
+            multicolor_text:"multicolor_text 5s ease-in-out infinite"
          },
       },
    },
