@@ -29,3 +29,5 @@ const verifyEmail = async (email) => {
     return { error: error.message };
   }
 };
+
+module.exports = verifyEmail;
