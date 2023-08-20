@@ -93,4 +93,17 @@ const sendMailPremium = async (user) => {
     console.log("se envio el correo!")
     return
   }
-  exports.sendMailSong = (user) => sendMailSong(user)
+exports.sendMailSong = (user) => sendMailSong(user);
+
+const sendVerifyCode = async (user) => {
+  const transporter = createTransporter();
+  const info = await transporter.sendMail({
+    from: `SpotyFans Team ${USER_NODEMAILER}`,
+    to: user.email,
+    subject: "Código de verificación Dashboard Admin SpotyFans.",
+    text: `Este es su código de verificación: ${user.verificationCode}`,
+  });
+  console.log("se envio el correo!");
+  return;
+};
+exports.sendVerifyCode = (user) => sendVerifyCode(user);
