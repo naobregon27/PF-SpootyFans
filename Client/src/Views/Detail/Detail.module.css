@@ -2,17 +2,17 @@ input[type="radio"] {
     display: none;
   }
   
-label {
-    color: grey;
+.label {
+    color: rgb(131, 128, 128);
+    font-size: 1.5rem;
   }
   
-.clasificacion {
+/* .clasificacion {
     direction: rtl;
     unicode-bidi: bidi-override;
-  }
+  } */
   
-  .label:hover,
-  .label:hover ~ label {
+  .label:hover {
     color: orange;
   }
   

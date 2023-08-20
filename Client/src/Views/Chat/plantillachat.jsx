@@ -10,9 +10,11 @@ const UlMensajes = styled.ul`
 `;
 
 const LiMensaje = styled.li`
-    background-color: lightblue;
-    border: 2px solid dodgerblue;
-    padding: 10px 20px;
+    background-color: #00000080;
+    padding: .5rem .8rem;
+    border-radius: 2rem;
+    margin: .5rem;
+    color: white;
 `
 
 export {
