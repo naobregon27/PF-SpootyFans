@@ -1,24 +1,22 @@
 import ReactAudioPlayer from "react-audio-player";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { spotyFansApi } from "../../../services/apiConfig";
-import { setCurrentSongUrls, setRating } from "../../Redux/actions";
-import { useDispatch, useSelector} from "react-redux";
+import { setRating } from "../../Redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 import React from "react";
 import styles from "./Detail.module.css";
 import Chat from "../Chat/Chat";
 
-const Detail = ({averageRating}) => {
+const Detail = ({ averageRating }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { id } = useParams();
   const [songDetail, setSongDetail] = useState({});
   const currentSongUrls = useSelector((state) => state.currentSongUrls);
 
-
   const handleRating = (value) => {
-    dispatch(setRating(value, id))
-  }
+    dispatch(setRating(value, id));
+  };
 
   const renderStars = () => {
     const stars = [];
@@ -33,7 +31,9 @@ const Detail = ({averageRating}) => {
             checked={averageRating === i}
             onClick={() => handleRating(event.target.value)}
           />
-          <label className={styles.label} htmlFor={`radio${i}`}>★</label>
+          <label className={styles.label} htmlFor={`radio${i}`}>
+            ★
+          </label>
         </React.Fragment>
       );
     }
@@ -70,32 +70,29 @@ const Detail = ({averageRating}) => {
     return <h1>No hay ID</h1>;
   }
 
-  const playSong = () => {
-    const updatedUrls = [songDetail.url]; 
-    dispatch(setCurrentSongUrls(updatedUrls)); 
-    navigate(`/detail/${id}`);
-  }
-
   return (
-    <div className="flex flex-col justify-center items-center font-custom w-screen h-screen text-white">
-      <div className=" flex flex-col justify-center items-center shadow-inner shadow-white p-5 rounded-[2rem] bg-[#ffffff10] backdrop-blur-[6px] font-custom overflow-x-hidden absolute text-white">
-       
-          <img
-            className="w-[15rem] rounded-[1.5rem]"
-            src={songDetail.imageUrl}
-            alt={`Imagen de la canción ${songDetail.name}`}
-          />
+    <div className="flex flex-row gap-10 justify-center items-center font-custom w-screen h-screen text-white">
+      <div className="flex flex-col w-fit h-fit justify-around items-center shadow-inner shadow-white p-2 rounded-[2rem] bg-[#ffffff10] backdrop-blur-[6px] font-custom overflow-x-hidden text-white">
+        <img
+          className="w-[30rem] m-10 rounded-[1.5rem]"
+          src={songDetail.imageUrl}
+          alt={`${songDetail.name}`}
+        />
 
-        <div className="flex flex-col justify-center items-center w-[30rem] h-[14rem] ml-[1rem] max-md:ml-0">
+        <div className="flex flex-col justify-center items-center h-[14rem] ml-[1rem] max-md:ml-0">
           <div className="">
-            <h className="text-[2rem] leading-7 overflow-hidden">
+            <h className="text-[3.5rem] leading-7 overflow-hidden">
               {songDetail.name}
             </h>
-            <h3 className="ml-[.2rem]">{songDetail.genre}</h3>
+            <h3 className="text-[#ffffff90] justify-center items-center mt-5 mb-5 ml-[.2rem] text-[2rem]">
+              {songDetail.genre}
+            </h3>
 
-          <div className="">
-            <form className={styles.clasificacion}>!ereh gnos siht etaR {renderStars()}</form>
-          </div>
+            <div className="">
+              <form className="flex flex-row w-full justify-evenly text-[2rem]">
+                Rate song <div>{renderStars()}</div>
+              </form>
+            </div>
 
             {/* <ReactAudioPlayer
               className="w-[25rem] max-md:max-w-[18rem]"
@@ -103,13 +100,10 @@ const Detail = ({averageRating}) => {
               controls
               controlsList="nodownload"
             /> */}
-
-            <button onClick={playSong}>Play Song</button>
           </div>
         </div>
-        <Chat className="chat" />
-        </div>
-      
+      </div>
+      <Chat className="chat" />
     </div>
   );
 };

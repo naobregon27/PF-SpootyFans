@@ -19,7 +19,7 @@ io.on('connection', (socket) => {
 
   socket.broadcast.emit('chat_message', {
       usuario: 'INFO',
-      mensaje: 'Se ha conectado un nuevo usuario'
+      mensaje: 'A new user has connected'
   });
 
   socket.on('chat_message', (data) => {
