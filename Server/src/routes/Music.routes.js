@@ -10,7 +10,7 @@ const {Song} = require("../db")
 const categoryRelationship = require('../helpers/categoryRelationship')
 const authentication = require("../middlewares/authentication");
 const setActive = require("../controllers/music/setActive");
-
+const putSongName = require("../controllers/music/putSongName");
 
 // Configurar Multer para guardar el archivo temporal en la carpeta 'uploads'
 const upload = multer({ dest: "uploads/" });
@@ -29,9 +29,7 @@ musicRouter.get("/", authentication, async (req, res) => {
   } else {
     return res.status(200).json(songs);
   }
-
 });
-
 
 musicRouter.get("/all", async (req, res) => {
   const songs = await Song.findAll();
@@ -49,21 +47,28 @@ musicRouter.put("/setActive/:songId", async (req, res) => {
   }
 });
 
-
-
-musicRouter.post("/rate", authentication, async(req, res)=>{
+musicRouter.post("/rate", authentication, async (req, res) => {
   const { userId } = req.user;
 
-  const rate = await rateSong({...req.body, userId})
-  if(rate.error){
-    return res.status(400).json({error: rate.error});
-  }else{
-    return res
-      .status(200)
-      .json({ message: "Thanks for rating" });
+  const rate = await rateSong({ ...req.body, userId });
+  if (rate.error) {
+    return res.status(400).json({ error: rate.error });
+  } else {
+    return res.status(200).json({ message: "Thanks for rating" });
   }
-
 });
 
+musicRouter.put("/:songId", async (req, res) => {
+  const { songId } = req.params;
+  const { newName } = req.body;
+
+  const modifiedSong = await putSongName({ songId, newName });
+
+  if (modifiedSong.error) {
+    return res.status(400).json({ error: modifiedSong.error });
+  } else {
+    return res.status(200).json(modifiedSong);
+  }
+});
 
 module.exports = musicRouter;
