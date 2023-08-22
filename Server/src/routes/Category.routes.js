@@ -6,6 +6,7 @@ const {
 const authentication = require("../middlewares/authentication");
 const setActive = require("../controllers/categories/setActive");
 const postCategory = require("../controllers/categories/postCategory");
+const putCategoryName = require('../controllers/categories/putCategoryName')
 
 categoryRouter.get("/", async (req, res) => {
   const AllCategories = await getAllCategory();
@@ -56,6 +57,20 @@ categoryRouter.post("/", async (req, res) => {
     return res.status(200).json(createdCategory);
   }
 });
+
+categoryRouter.put("/:categoryId", async (req, res) => {
+  const { categoryId } = req.params;
+  const { newName } = req.body;
+
+  const modifiedCategory = await putCategoryName({ categoryId, newName });
+
+  if (modifiedCategory.error) {
+    return res.status(400).json({ error: modifiedCategory.error });
+  } else {
+    return res.status(200).json(modifiedCategory);
+  }
+});
+
 
 
 module.exports = categoryRouter;
