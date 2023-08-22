@@ -11,6 +11,7 @@ export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES";
 export const PLAY_MUSIC = "PLAY_MUSIC";
 export const PAUSE_MUSIC = "PAUSE_MUSIC";
 export const SET_CURRENT_SONG_URLS = "SET_CURRENT_SONG_URLS";
+export const RESET_SONGS_COPY = "RESET_SONGS_COPY";
 
 //Trae todas las canciones dentro de la base de datos
 export const allSongs = () => {
@@ -159,4 +160,8 @@ export const pauseMusic = () => ({
 export const setCurrentSongUrls = (urls) => ({
   type: SET_CURRENT_SONG_URLS,
   payload: urls,
+});
+
+export const resetSongsCopy = () => ({
+  type: RESET_SONGS_COPY,
 });
