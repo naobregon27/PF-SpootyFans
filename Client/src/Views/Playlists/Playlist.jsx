@@ -154,39 +154,4 @@ const Playlist = () => {
    );
 };
 
-{
-   /* <div>
-        <h1 className="flex flex-col justify-center items-center text-black font-bold"> Let´s add some songs!</h1>
-        <h2 className="flex flex-col justify-center items-center">You wanna add a song?</h2>
-
-        <input list="brow" onChange={(e) => findSong(e.target.value)} />
-        <datalist id="brow">
-          {songs.map((song) => (
-            <option key={song.id} value={song.name}>
-              {song.name}
-            </option>
-          ))}
-          </datalist>  
-        
-      </div>
-
-      <div>
-        <h2 className="flex flex-col justify-center items-center">To what playlist?</h2>
-        <select
-          value={selectedPlaylist}
-          onChange={(e) => setSelectedPlaylist(e.target.value)}
-        >
-          <option value="">Select Playlist</option>
-          {playlists.map((playlist) => (
-            <option key={playlist.id} value={playlist.id}>
-              {playlist.name}
-            </option>
-          ))}
-        </select>
-        <hr/>
-      
-      </div>
-      <button className={style.boton} onClick={addSongToPlaylist}>Add Song</button> */
-}
-
 export default Playlist;
