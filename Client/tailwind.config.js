@@ -86,7 +86,7 @@ export default {
             loader_animation: "loader_animation 8s ease-in-out infinite",
             loader_text_animation: "loader_text_animation 3s linear infinite",
             multicolor_text:"multicolor_text 5s ease-in-out infinite",
-            burbujas: "burbujas 15s ease-in-out infinite",
+            burbujas: "burbujas burbujas_horizontal 15s ease-in-out infinite",
             burbujas_horizontal: "burbujas_horizontal ease-in-out infinite"
          },
       },

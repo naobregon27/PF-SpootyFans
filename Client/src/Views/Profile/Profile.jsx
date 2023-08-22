@@ -45,7 +45,7 @@ export default function Profile() {
     <div className=" flex flex-col justify-center items-center w-screen max-w-full h-screen bg-transparent font-custom overflow-x-hidden absolute text-white">
 
     <div className="w-screen h-screen absolute overflow-hidden">
-      <span className="absolute border-[5px] w-[5rem] h-[5rem] rounded-[100%] z-50 top-0 animate-burbujas animate-burbujas_horizontal delay-[3s]">&nbsp;</span>
+      <span className="absolute border-[5px] w-[5rem] h-[5rem] rounded-[100%] z-50 top-0 animate-burbujas delay-[3s]">&nbsp;</span>
       <span className="absolute border-[5px] w-[5rem] h-[5rem] rounded-[100%] z-50 left-[50%] top-0 animate-burbujas delay-[6s]">&nbsp;</span>
       <span className="absolute border-[5px] w-[5rem] h-[5rem] rounded-[100%] z-50 right-5 top-0 animate-burbujas delay-[7s]">&nbsp;</span>
       <span className="absolute border-[5px] w-[5rem] h-[5rem] rounded-[100%] z-50 left-[30rem] top-0 animate-burbujas delay-[1s]">&nbsp;</span>
