@@ -5,20 +5,20 @@ const path = require("path");
 
 
 // deploy
-// const { DB_URL } = process.env;
-// const sequelize = new Sequelize(DB_URL, {
-//   logging: false,
-//   native: false,
-// });
-
-// local
-const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
-const sequelize = new Sequelize("spotyfans", DB_USER, DB_PASSWORD, {
-  host: DB_HOST,
-  dialect: "mariadb",
+const { DB_URL } = process.env;
+const sequelize = new Sequelize(DB_URL, {
   logging: false,
   native: false,
 });
+
+// local
+// const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+// const sequelize = new Sequelize("spotyfans", DB_USER, DB_PASSWORD, {
+//   host: DB_HOST,
+//   dialect: "mariadb",
+//   logging: false,
+//   native: false,
+// });
 
 // Cargamos los archivos de modelos dinámicamente
 const basename = path.basename(__filename);
