@@ -17,6 +17,9 @@ const Detail_playlist = () => {
   const [songToAdd, setSongToAdd] = useState("");
   const [rerender, setRerender] = useState(false);
   const [changeName, setChangeName] = useState("");
+  const [playlistSongsChange, setPlaylistSongsChange] = useState(0);
+
+  
 
   const getPlaylistDetail = async (playListId) => {
     try {
@@ -37,6 +40,8 @@ const Detail_playlist = () => {
       getPlaylistDetail(id);
     }
   }, [id, rerender, playlist.name, playlist.Songs]);
+
+
 
   const addSongToPlaylist = async () => {
     try {
@@ -131,10 +136,16 @@ const Detail_playlist = () => {
           </NavLink>
         </div>
 
-        <h1 className="text-[1.5rem] text-[#ffffff70] hover:animate-spin duration-[.3]">
+        <h1 className="text-[1.5rem] text-[#ffffff70] ">
           "{playlist.name && playlist.name}"
         </h1>
 
+        {playlist.Songs && playlist.Songs.length > 0 && (
+            <button className="" onClick={() => playSelectedSongs()}>
+              <IconPlayerPlayFilled/>
+            </button>
+          )} 
+          
         <div className="flex flex-col justify-center items-center text-white text-[1.7rem]">
           <p>
             Want to <span className="animate-multicolor_text">change</span> the
@@ -206,11 +217,7 @@ const Detail_playlist = () => {
               <h1>This playlist is empty</h1>
             )}
           </div>
-          {/* {playlist.Songs && playlist.Songs.length > 0 && (
-            <button className="" onClick={() => playSelectedSongs()}>
-              <IconPlayerPlayFilled/>
-            </button>
-          )} */}
+
         </div>
       </div>
     </div>
