@@ -1,23 +1,23 @@
-input[type="radio"] {
+/* .inputRadio[type="radio"] {
     display: none;
-  }
+  } */
   
-.label {
+/* .labelStar {
     color: rgb(131, 128, 128);
     font-size: 1.5rem;
-  }
+  } */
   
 /* .clasificacion {
     direction: rtl;
     unicode-bidi: bidi-override;
   } */
   
-  .label:hover {
+  /* .labelStar:hover {
     color: orange;
-  }
+  } */
   
-  .input[type="radio"]:checked ~ label {
+  /* .inputRadio[type="radio"]:checked ~ label {
     color: orange;
-  }
+  } */
 
   
