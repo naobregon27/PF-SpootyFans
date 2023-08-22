@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
-import { useSelector } from "react-redux";
+import { allCategories } from "../../Redux/actions";
+import { useSelector, useDispatch } from "react-redux";
 import {
   spotyFansApi,
   postMusicApi,
@@ -14,6 +15,7 @@ const FormSong = () => {
   const token = localStorage.getItem("token");
   const {userId, email} = jwt_decode(token);
   const location = useLocation();
+  const dispatch = useDispatch()
   const genres = useSelector((state) => state.categories);
   const newGenres = genres.filter((genre) => genre.name !== "All");
   const [userData, setUserData] = useState({isPremium: false });
@@ -55,6 +57,8 @@ const FormSong = () => {
 
   useEffect(() => {
 
+    dispatch(allCategories())
+    
     const fetchUserData = async () => {
       const userResponse = await getUser();
       if (!userResponse.error) {
@@ -248,10 +252,10 @@ const FormSong = () => {
             <label className=" flex justify-center items-center text-white"htmlFor="genre"></label>
             <select 
             className="text-white outline-none p-2 border border-[#ffffff70] bg-transparent rounded-[5rem] focus:scale-[1.1] focus:shadow-[rgba(0,_0,_0,_0.2)_0px_60px_40px_-7px]" onChange={handleGenreChange}>
-              <option value="">Select Genre</option>
+              <option className="bg-red text-white" value="">Select Genre</option>
               {newGenres.map((genre) => {
                 return (
-                  <option key={genre.name} value={genre.name}>
+                  <option className="bg-black text-white" key={genre.name} value={genre.name}>
                     {genre.name}
                   </option>
                 );

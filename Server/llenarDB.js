@@ -14,7 +14,7 @@ module.exports = () => {
     User.create(newUser);
   });
 
-  songs.forEach(async ({ name, artist, genre, url, imageUrl, isActive }) => {
+  songs.forEach(async ({ name, artist, genre, url, imageUrl, isActive, averageRating }) => {
     const newSong = {
       name,
       artist,
@@ -22,6 +22,7 @@ module.exports = () => {
       url,
       imageUrl,
       isActive,
+      averageRating,
     };
     const song = await Song.create(newSong);
     await categoryRelationship(song);

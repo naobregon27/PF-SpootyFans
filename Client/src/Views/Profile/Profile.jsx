@@ -79,7 +79,7 @@ export default function Profile() {
           )}
         </div>
         <img
-          className="h-[25rem] rounded-[2rem]"
+          className="h-[96px] mb-7 rounded-[2rem]"
           src={profileImageUrl}
           alt={username}
         />

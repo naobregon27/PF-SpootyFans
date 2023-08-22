@@ -74,6 +74,8 @@ const Card = ({ id, name, artist, genre, url, image, averageRating }) => {
           alt={image}
         />
       </NavLink>
+      {console.log("nombre",name)}
+      {console.log("estrellas",averageRating)}
       <div className="flex W-screen flex-col justify-center items-start  w-[10rem] overflow-hidden  whitespace-nowrap text-ellipsis mb-3">
         <h3 className=" text-[1.5rem] uppercase relative hover:animate-text_scrolling">
           {name}
