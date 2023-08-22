@@ -51,6 +51,32 @@ export default {
                "0%":{color: "#9CFF00"},
                "50%":{color: "#FFC6F3"},
                "100%":{color: "#88C5F9"}
+            },
+            burbujas:{
+               "0%": {
+                  top: "-10%",
+                  opacity: "1",
+                  transform: "translateY(-3)"
+
+               },
+               "100%": {
+                  top: "100%",
+                  opacity: "0",
+                  transform: "translateY(-3)"
+               }
+            },
+            burbujas_horizontal: {
+               "0%":{transform: "translateY(-20px)"},
+               "10%":{transform: "translateY(10px)"},
+               "20%":{transform: "translateY(-20px)"},
+               "30%":{transform: "translateY(10px)"},
+               "40%":{transform: "translateY(-20px)"},
+               "50%":{transform: "translateY(10px)"},
+               "60%":{transform: "translateY(-20px)"},
+               "70%":{transform: "translateY(10px)"},
+               "80%":{transform: "translateY(-20px)"},
+               "90%":{transform: "translateY(10px)"},
+               "100%":{transform: "translateY(-20px)"},
             }
          },
          animation: {
@@ -59,7 +85,9 @@ export default {
             text_scrolling: "text_scrolling 5s linear infinite",
             loader_animation: "loader_animation 8s ease-in-out infinite",
             loader_text_animation: "loader_text_animation 3s linear infinite",
-            multicolor_text:"multicolor_text 5s ease-in-out infinite"
+            multicolor_text:"multicolor_text 5s ease-in-out infinite",
+            burbujas: "burbujas 15s ease-in-out infinite",
+            burbujas_horizontal: "burbujas_horizontal ease-in-out infinite"
          },
       },
    },

@@ -33,7 +33,7 @@ const Filters = () => {
             <option selected disabled>Select Genre</option>
             {genres.map((genre) => {
                return (
-                  <option className="text-[.9rem] text-black" key={genre.name} value={genre.name}>
+                  <option className="text-[.9rem]  bg-black text-white" key={genre.name} value={genre.name}>
                      {genre.name}
                   </option>
                );
@@ -46,7 +46,7 @@ const Filters = () => {
             <option selected disabled>Filter by Rating</option>
             {rating.map((rate) => {
                return (
-                  <option className="text-[.9rem] text-black"key={rate} value={rate}>
+                  <option className="text-[.9rem] bg-black text-white"key={rate} value={rate}>
                      stars: {rate}
                   </option>
                );

@@ -37,13 +37,23 @@ export default function Profile() {
   };
 
   const handleClickEdit = () => {
+    console.log(jwt_decode(token))
     setUsernameEditing(true);
   };
 
   return (
     <div className=" flex flex-col justify-center items-center w-screen max-w-full h-screen bg-transparent font-custom overflow-x-hidden absolute text-white">
+
+    <div className="w-screen h-screen absolute overflow-hidden">
+      <span className="absolute border-[5px] w-[5rem] h-[5rem] rounded-[100%] z-50 top-0 animate-burbujas animate-burbujas_horizontal delay-[3s]">&nbsp;</span>
+      <span className="absolute border-[5px] w-[5rem] h-[5rem] rounded-[100%] z-50 left-[50%] top-0 animate-burbujas delay-[6s]">&nbsp;</span>
+      <span className="absolute border-[5px] w-[5rem] h-[5rem] rounded-[100%] z-50 right-5 top-0 animate-burbujas delay-[7s]">&nbsp;</span>
+      <span className="absolute border-[5px] w-[5rem] h-[5rem] rounded-[100%] z-50 left-[30rem] top-0 animate-burbujas delay-[1s]">&nbsp;</span>
+      <span className="absolute border-[5px] w-[5rem] h-[5rem] rounded-[100%] z-50 right-[30rem] top-0 animate-burbujas delay-[5s]">&nbsp;</span>
+    </div>
+
       <div className=" flex flex-col justify-center items-center shadow-inner shadow-white p-5 rounded-[2rem] bg-[#ffffff10] backdrop-blur-[6px] font-custom overflow-x-hidden absolute text-white">
-        <div classname="flex flex-row justify-center items-center">
+        <div className="flex flex-row justify-center items-center">
           <div className="flex flex-row gap-5">
             {!usernameEditing && (
               <h2 className="text-[1.5rem]">{usernameValue}</h2>
