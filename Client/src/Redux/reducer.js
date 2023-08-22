@@ -11,6 +11,7 @@ import {
   PLAY_MUSIC, 
   PAUSE_MUSIC,
   SET_CURRENT_SONG_URLS,
+  RESET_SONGS_COPY,
 } from "./actions";
 
 const initialState = {
@@ -93,9 +94,17 @@ const reducer = (state = initialState, action) => {
         ...state,
         songsCopy: state.songsCopy.filter((song) => song.averageRating === Number(action.payload)),
       }
+
+      case RESET_SONGS_COPY:
+      return {
+          ...state,
+          songsCopy: state.songs,
+      };
+
     default:
       return { ...state };
   }
+
 
 };
 
