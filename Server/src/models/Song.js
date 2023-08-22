@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  sequelize.define(
+  const Song = sequelize.define(
     "Song",
     {
       id:{
@@ -15,6 +15,11 @@ module.exports = (sequelize) => {
       },
 
       name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+
+      artist: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -33,7 +38,12 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         allowNull: false,
       },
+      averageRating:{
+        type: DataTypes.INTEGER,
+        allowNull:true
+      },
     },
     { timestamps: false }
   );
+  return Song;
 };

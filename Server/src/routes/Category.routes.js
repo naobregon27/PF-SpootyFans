@@ -4,8 +4,11 @@ const {
   getAllCategory,
 } = require("../controllers/categories/getCategoryById");
 const authentication = require("../middlewares/authentication");
+const setActive = require("../controllers/categories/setActive");
+const postCategory = require("../controllers/categories/postCategory");
+const putCategoryName = require('../controllers/categories/putCategoryName')
 
-categoryRouter.get("/", authentication, async (req, res) => {
+categoryRouter.get("/", async (req, res) => {
   const AllCategories = await getAllCategory();
 
   try {
@@ -33,7 +36,40 @@ categoryRouter.get("/:id", authentication, async (req, res) => {
   }
 });
 
+categoryRouter.put("/setActive/:categoryId", async (req, res) => {
+  const { categoryId } = req.params;
+  const modifiedCategory = await setActive(categoryId);
 
+  if (modifiedCategory.error) {
+    return res.status(400).json({ error: modifiedCategory.error });
+  } else {
+    return res.status(200).json(modifiedCategory);
+  }
+});
+
+categoryRouter.post("/", async (req, res) => {
+  const { name } = req.body;
+  const createdCategory = await postCategory(name);
+
+  if (createdCategory.error) {
+    return res.status(400).json({ error: createdCategory.error });
+  } else {
+    return res.status(200).json(createdCategory);
+  }
+});
+
+categoryRouter.put("/:categoryId", async (req, res) => {
+  const { categoryId } = req.params;
+  const { newName } = req.body;
+
+  const modifiedCategory = await putCategoryName({ categoryId, newName });
+
+  if (modifiedCategory.error) {
+    return res.status(400).json({ error: modifiedCategory.error });
+  } else {
+    return res.status(200).json(modifiedCategory);
+  }
+});
 
 
 

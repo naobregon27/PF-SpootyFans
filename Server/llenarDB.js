@@ -14,31 +14,33 @@ module.exports = () => {
     User.create(newUser);
   });
 
-  songs.forEach(async ({ name, genre, url, imageUrl, isActive }) => {
+  songs.forEach(async ({ name, artist, genre, url, imageUrl, isActive, averageRating }) => {
     const newSong = {
       name,
+      artist,
       genre,
       url,
       imageUrl,
       isActive,
+      averageRating,
     };
     const song = await Song.create(newSong);
-    await categoryRelationship(song)
+    await categoryRelationship(song);
   });
 
   playLists.forEach(({ name, likes }) => {
     const newPlayList = {
       name,
-      likes
-    }
-    PlayList.create(newPlayList)
-  })
+      likes,
+    };
+    PlayList.create(newPlayList);
+  });
 
-  categories.forEach(({ name, description }) => {
-    const newCategory = {
-      name,
-      description
-    }
-    Category.create(newCategory)
-  })
+  // categories.forEach(({ name, description }) => {
+  //   const newCategory = {
+  //     name,
+  //     description
+  //   }
+  //   Category.create(newCategory)
+  // })
 };

@@ -75,6 +75,16 @@ Esta ruta cambia el valor de "isPremium" a su valor opuesto.
 }
 ```
 ***
+**- [PUT] - Set Active:**
+Esta ruta cambia el valor de "isActive" a su valor opuesto.  
+**Ruta:** /user/setActive/:userId  
+**Devuelve:**  
+```json
+{
+  "message": "El usuario se ha modificado satisfactoriamente." // mensaje
+}
+```
+***
 **- [GET] - Get User By Id:**
 Esta ruta devuelve toda la información de un usuario. Aunque esta ruta es un poco diferente a las otras. Si en vez pasar una id por params, se envía la palabra "this", devuelve la información del usuario que tiene la sesión iniciada (la ruta sería "/user/info/this").  
 **Ruta:** /user/info/:userId  
@@ -108,6 +118,11 @@ Esta ruta cambia el nombre de usuario del usuario que tiene la sesión iniciada.
   "message": "Usuario modificado correctamente." // mensaje
 }
 ```
+***
+**- [GET] - Get All Users:**
+Esta ruta devuelve un array de objetos con todos los usuarios almacenados en la base de datos.  
+**Ruta:** /user  
+**Devuelve:**  Arreglo de objetos (los objetos tienen la misma forma de los que devuelve la ruta get user by id).
 ## Canciones:
 
  **- [GET] - Music Detail (id):**
@@ -176,6 +191,16 @@ Esta ruta sirve para subir una canción y requiere "pasos adicionales". Con esto
       "isActive": true // indica si está activa
     }
 ```
+***
+**- [PUT] - Set Active:**
+Esta ruta cambia el valor de "isActive" a su valor opuesto.  
+**Ruta:** /music/setActive/:songId  
+**Devuelve:**  
+```json
+{
+  "message": "La canción se ha modificado satisfactoriamente." // mensaje
+}
+```
 **Devuelve:** Devuelve los datos de la canción creada.  
 ## Categorías:
 **- [GET] - Category Detail (id):**
@@ -206,7 +231,17 @@ Como puede verse en la ruta, la id se envía por params.
 **- [GET] - All Categories:**
 Esta ruta devuelve un array de objetos con todas las categorías almacenadas en la base de datos.  
 **Ruta:** /category  
-**Devuelve:** Devuelve lo mismo que la ruta por id, pero con la información de todas las categorías.  
+**Devuelve:** Devuelve lo mismo que la ruta por id, pero con la información de todas las categorías. 
+***
+**- [PUT] - Set Active:**
+Esta ruta cambia el valor de "isActive" a su valor opuesto.  
+**Ruta:** /category/setActive/:songId  
+**Devuelve:**  
+```json
+{
+  "message": "La categoría se ha modificado satisfactoriamente." // mensaje
+}
+``` 
 
 ## Listas de reproducción
 En estas rutas, no es necesario enviar la id del usuario ya que en el back obtenemos la información del usuario decodificando el token. En el back también validamos que sólo el usuario creador de las listas de reproducción pueda modificarlas, eliminarlas, agregar y remover canciones, etc. Por eso es muy importante (necesario) que envíen el token por header en cada petición que hagan a la apli.  

@@ -2,48 +2,77 @@ import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { allSongs } from "../../Redux/actions";
-import landingImage from "../../assets/musicimg.png";
 
 function Landing() {
-  const dispatch = useDispatch();
+   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(allSongs());
-  }, []);
+   useEffect(() => {
+      dispatch(allSongs());
 
-  return (
-    <div className="flex flex-col items-center justify-center w-screen h-screen bg-slate-200 font-custom overflow-hidden">
-      <p className="w-full min-w-full m-0 break-words text-[5.8rem] select-none leading-[.9] text-white blur-[3px]">
-      ClásicaRockPopHipHopJazzBluesReggaeTrapmetalElectrónicaRapR&BCountryEDMFunkMetalAmbientElectropopHardstyleChillwaveDancehallDubstepTechnoFlamencoSoulReguetónTrapCumbiaAlternativaDiscoSkaFolkIndieGospelPostpunkSalsaSambaSynthwaveVallenatoPunkFunkMetalcoreBluegrassGrimeMerengueIndustrialNeosoulRancheraNoisepopChiptuneSwingProgressivehouseNewageCelticSkapunkExperimentalPsytranceGrungeFadoJungleKpopR&BalternativoElectroswingReggaetónespañolTriphopDrumandbassRockalternativoBachataGaragerockChansonTranceDreampopAmericanaJpopPowermetalCountrypopSertanejoMerengueurbanoTraplatinoElectrohousePopunkHip hopalternativoDeathmetalPoprockRagtimeDowntempoJazzfusionRockprogresivoHardrockReguetónclásicoPostrockTangoElectropopalternativoAmbientalblackmetalDancepopPostpunkrevivalJazzcontemporáneoReggaerootsElectroclashPopalternativoIndiefolkPsychedelicrockSoulalternativoBigbandTrapcoreElectrónicaexperimentalAmbientpopNeofolkFolkrockEDMalternativoRapcoreCumbiavilleraPopexperimentalNujazzMetalalternativoCountryalternativoSynthpopIndiepopPunkpopDarkambientMelodicdeathmetalR&BcontemporáneoNoiserock
-      </p>
+      const el = document.getElementById("Card_Landing");
+      const height = el.clientHeight;
+      const width = el.clientWidth;
 
-      <div className="grid grid-cols-2 absolute max-sm:grid-cols-1">
-        <div className="flex flex-col items-center justify-center z-10">
-          <h1 className="text-[2.5rem] leading-3 select-none">Welcome</h1>
-          <h1 className="text-[2.5rem] select-none">fans of new music!</h1>
+      const handleMouseMove = (e) => {
+         const { layerX, layerY } = e;
 
-          <div className="grid grid-cols-3">
-            <NavLink
-              to="/login"
-              className="flex justify-center px-3 py-1  border rounded-[5rem] border-zinc-800 hover:scale-[1.1] hover:bg-black hover:text-white duration-300"
-            >
-              <button>Login</button>
-            </NavLink>
+         const yRotation = ((layerX - width / 2) / width) * 20;
+         const xRotation = ((layerY - height / 2) / height) * 20;
 
-            <p className=" flex items-center justify-center"> -or- </p>
+         const string = `
+        perspective(500px)
+        scale(1.1)
+        rotateX(${xRotation}deg)
+        rotateY(${yRotation}deg)`;
 
-            <NavLink
-              to="/signup"
-              className="flex justify-center px-3 py-1  border rounded-[5rem] border-zinc-800 hover:scale-[1.1] hover:bg-black hover:text-white duration-300"
-            >
-              <button>Signup</button>
-            </NavLink>
-          </div>
-        </div>
-        <img className="w-70 max-ms:hidden" src={landingImage} alt="" />
+         el.style.transform = string;
+      };
+
+      const handleMouseOut = () => {
+         el.style.transform = `
+        perspective(500px)
+        scale(1)
+        rotateX(0)
+        rotateY(0)`;
+      };
+
+      el.addEventListener("mousemove", handleMouseMove);
+      el.addEventListener("mouseout", handleMouseOut);
+
+      return () => {
+         el.removeEventListener("mousemove", handleMouseMove);
+         el.removeEventListener("mouseout", handleMouseOut);
+      };
+   }, []);
+
+   return (
+      <div className="flex flex-col items-center justify-center w-screen h-screen bg-transparent font-custom overflow-hidden text-white">
+         <div
+            id="Card_Landing"
+            className="flex flex-col items-center justify-evenly h-[17rem] w-[30rem] backdrop-blur-[6px] bg-[#ffffff10] shadow-inner shadow-white rounded-[1rem] p-5 z-10">
+            <div className="flex flex-col justify-center items-center">
+               <h1 className="text-[3rem] leading-3 select-none">Welcome</h1>
+               <h1 className="text-[2.5rem] select-none">fans of new music!</h1>
+            </div>
+
+            <div className="grid grid-cols-3">
+               <NavLink
+                  to="/login"
+                  className="flex justify-center px-3 py-1 border rounded-[5rem] text-black bg-white hover:bg-transparent hover:text-white hover:scale-[1.1] duration-300">
+                  <button>Login</button>
+               </NavLink>
+
+               <p className=" flex items-center justify-center"> -or- </p>
+
+               <NavLink
+                  to="/signup"
+                  className="flex justify-center px-3 py-1 border rounded-[5rem] text-black bg-white hover:bg-transparent hover:text-white hover:scale-[1.1] duration-300">
+                  <button>Signup</button>
+               </NavLink>
+            </div>
+         </div>
       </div>
-    </div>
-  );
+   );
 }
 
 export default Landing;
