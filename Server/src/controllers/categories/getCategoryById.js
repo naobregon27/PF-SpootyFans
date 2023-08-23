@@ -1,12 +1,25 @@
 const { Category, Song } = require("../../db");
 
-const getAllCategory = async () =>
-  await Category.findAll({
-    include: {
-      model: Song,
-      through: { attributes: [] },
-    },
-  });
+const getAllCategory = async (isAdmin) => {
+  if (isAdmin) {
+    return await Category.findAll({
+      include: {
+        model: Song,
+        through: { attributes: [] },
+      },
+    });
+  } else {
+    return await Category.findAll({
+      where: {
+        isActive: true,
+      },
+      include: {
+        model: Song,
+        through: { attributes: [] },
+      },
+    });
+  }
+};
 
 const getCategoryById = async (id) => {
   const categoryFilterId = await Category.findOne({

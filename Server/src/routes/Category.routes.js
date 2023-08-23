@@ -9,7 +9,8 @@ const postCategory = require("../controllers/categories/postCategory");
 const putCategoryName = require('../controllers/categories/putCategoryName')
 
 categoryRouter.get("/", async (req, res) => {
-  const AllCategories = await getAllCategory();
+  const { isAdmin } = req.query
+  const AllCategories = await getAllCategory(isAdmin);
 
   try {
     res.status(200).json(AllCategories);
