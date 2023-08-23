@@ -37,8 +37,8 @@ conn
       console.log(`Listen on Port: ${port}`);
     })
   )
-  .then(() => {
-    llenarDB();
-    console.log("The database has been successfully populated.");
-  })
+  // .then(() => {
+  //   llenarDB();
+  //   console.log("The database has been successfully populated.");
+  // })
   .catch((error) => console.error(error));
