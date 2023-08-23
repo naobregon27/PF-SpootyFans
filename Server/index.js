@@ -27,7 +27,7 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(80);
+server.listen("https://spootyfans.onrender.com:80");
 
 
 conn
