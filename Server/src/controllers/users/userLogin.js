@@ -15,6 +15,8 @@ const userLogin = async ({ username, email, password, isThirdPartyLogin }) => {
     if (!userFound)
       throw new Error(`El usuario con el username "${username}" no existe.`);
 
+    if (!userFound.isActive) throw new Error(`El usuario "${username}" no tiene acceso a la aplicación.`)
+
     if (!isThirdPartyLogin) {
       const passwordVerified = await verifyPassword(
         password,

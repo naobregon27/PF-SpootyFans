@@ -32,7 +32,7 @@ const Form = () => {
             navigate("/home");
          }
       } catch (error) {
-         console.error("Error during login:", error.message);
+         console.error("Error during login:", error);
       }
    };
 

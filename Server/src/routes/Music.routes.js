@@ -32,7 +32,15 @@ musicRouter.get("/", authentication, async (req, res) => {
 });
 
 musicRouter.get("/all", async (req, res) => {
-  const songs = await Song.findAll();
+  const { isAdmin } = req.query
+  let songs
+
+  if (isAdmin) {
+    songs = await Song.findAll();
+  } else {
+    songs = await Song.findAll({where: { isActive: true }});
+  }
+
   return res.status(200).json(songs);
 });
 
