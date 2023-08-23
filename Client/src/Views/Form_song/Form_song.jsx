@@ -127,7 +127,7 @@ const FormSong = () => {
           "x-access-token": token,
         },
       });
-      window.location.href = "http://pf-spooty-fans-two.vercel.app/create";
+      window.location.href = "http://localhost:5173/create";
     } catch (error) {
       console.error("Error changing user type", error);
     }
