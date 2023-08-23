@@ -95,16 +95,14 @@ const reducer = (state = initialState, action) => {
         songsCopy: state.songsCopy.filter((song) => song.averageRating === Number(action.payload)),
       }
 
-      case RESET_SONGS_COPY:
+    case RESET_SONGS_COPY:
       return {
           ...state,
           songsCopy: state.songs,
       };
-
     default:
       return { ...state };
   }
-
 
 };
 
