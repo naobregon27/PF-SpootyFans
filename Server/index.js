@@ -31,7 +31,7 @@ server.listen(3002);
 
 
 conn
-  .sync({ force: true })
+  .sync({ alter: true })
   .then(
     app.listen(port, () => {
       console.log(`Listen on Port: ${port}`);
