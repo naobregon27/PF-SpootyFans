@@ -27,7 +27,7 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(3002);
+server.listen(80);
 
 
 conn
