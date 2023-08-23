@@ -61,14 +61,13 @@ function App() {
         <div
           style={{
             position: "fixed",
-            bottom: 0,
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: "20%",
-            backgroundColor: "#f0f0f0",
-            padding: "2px",
-            boxShadow: "0px -2px 5px rgba(0, 0, 0, 0.1)",
-            marginTop: "10px", 
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            bottom: "0%",
+            width: "100vw",
+            paddingTop: "10px",
+            zIndex: "999" 
           }}
         >
           <AudioPlayerGlobal />
