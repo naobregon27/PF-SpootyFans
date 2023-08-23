@@ -188,7 +188,7 @@ const FormSong = () => {
 
       await setData(postDataObject);
       await postData(postDataObject);
-
+      alert("Thanks for uploading your song!");
       console.log(response);
     } catch (error) {
       console.log(error);
