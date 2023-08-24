@@ -27,7 +27,7 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(port);
+server.listen(3002);
 
 
 conn
