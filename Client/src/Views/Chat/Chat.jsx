@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 import { useState, useEffect } from "react";
 import { LiMensaje, UlMensajes } from "./plantillachat.jsx";
-const socket = io("https://spootyfans.onrender.com:80");
+const socket = io("http://localhost:3002");
 
 import { IconSend } from "@tabler/icons-react";
 
